@@ -1,0 +1,149 @@
+API USAGE: live search is billable. Classification may also consume API credit.
+{
+  "id": 1,
+  "radar_code": "RADAR_3_INSTITUTIONS",
+  "agent_name": "InstitutionsRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 3,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 3,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 3,
+  "accepted_count": 0,
+  "queries_executed": 5,
+  "candidates_after_rules": 3,
+  "run_metadata": {
+    "search_events_recorded": 5,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "institutions_checked": 10,
+      "institutions_newly_discovered": 3,
+      "institutions_updated": 0,
+      "decision_makers_identified": 0,
+      "current_roles_verified": 0,
+      "appointments_detected": 0,
+      "unchanged_skipped": 4,
+      "search_calls": 5,
+      "ai_calls": 0,
+      "final_kept": 3,
+      "collector_health": "HEALTHY",
+      "direct_fetches": 12
+    },
+    "collector_trace": [],
+    "truncation": [
+      "analysis_limit"
+    ],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 5,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 7,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12078,
+        "output_tokens": 683,
+        "query_chars": 61
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13218,
+        "output_tokens": 181,
+        "query_chars": 57
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12828,
+        "output_tokens": 1290,
+        "query_chars": 45
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13008,
+        "output_tokens": 1422,
+        "query_chars": 41
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13219,
+        "output_tokens": 888,
+        "query_chars": 54
+      }
+    ],
+    "dry_run": false,
+    "rule_reasons": {
+      "institutional_relevance_requires_review": 3
+    },
+    "paid_search_calls": 5,
+    "openai_requests": 5,
+    "openai_skipped": 0,
+    "tokens_per_kept_result": 11469.17,
+    "openai_calls_per_kept_result": 0.833,
+    "no_ai": false
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 64351,
+  "output_tokens": 4464,
+  "cached_tokens": 22490,
+  "ai_calls": 0,
+  "direct_fetches": 12,
+  "search_calls": 5,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}
+Search calls: 5
+Raw results: 0
+Allowed-source pages: 0
+Tender observations: 0
+Candidates created: 0
+Official pages resolved: 0
+Rejected by freshness: 0
+Rejected by relevance: 0
+Relevant observations: 0
+Verified official: 0
+Unverified credible: 0
+Unresolved: 0
+HTTP 403: 0
+HTTP 429: 0
+P1 kept: 0
+P2 kept: 0
+P3 kept: 0
+Queries with results: 0
+Queries with zero results: 0
+PMMP raw: 0
+Aggregator raw: 0
+Institutional raw: 0
+Deduped before enrichment: 0
+Discovery search calls: 0
+Resolution search calls: 0
+Unique identities: 0
+PMMP observations: 0
+Marche Facile observations: 0
+Institutional observations: 0
+Architecture kept: 0
+Topography rejected: 0
+Technical-only rejected: 0
+Heritage kept: 0
+Consultation architecturale kept: 0
+Concours architectural kept: 0
+Outside query family: 0
+Relevant/search call: 0
+Final/search call: 0
+Final kept: 3
+Collector health: HEALTHY

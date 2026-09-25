@@ -1,0 +1,107 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_3_INSTITUTIONS",
+  "agent_name": "InstitutionsRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 2,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 2,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 2,
+  "accepted_count": 0,
+  "queries_executed": 4,
+  "candidates_after_rules": 2,
+  "run_metadata": {
+    "search_events_recorded": 5,
+    "query_errors": [
+      {
+        "query": "convention institutionnelle patrimoine urbanisme Maroc",
+        "kind": "ValidationError"
+      }
+    ],
+    "source_errors": 0,
+    "collector_metrics": {
+      "institutions_checked": 10,
+      "institutions_newly_discovered": 2,
+      "institutions_updated": 0,
+      "decision_makers_identified": 0,
+      "current_roles_verified": 0,
+      "appointments_detected": 0,
+      "unchanged_skipped": 8,
+      "search_calls": 5,
+      "ai_calls": 0,
+      "final_kept": 2,
+      "collector_health": "HEALTHY",
+      "direct_fetches": 14
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 5,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": false,
+    "web_search_calls": 7,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12775,
+        "output_tokens": 432,
+        "query_chars": 61
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13026,
+        "output_tokens": 320,
+        "query_chars": 57
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13280,
+        "output_tokens": 1098,
+        "query_chars": 45
+      },
+      {
+        "purpose": "DISCOVER_INSTITUTIONS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12461,
+        "output_tokens": 1087,
+        "query_chars": 41
+      }
+    ],
+    "dry_run": false,
+    "rule_reasons": {
+      "institutional_relevance_requires_review": 2
+    },
+    "ai_skipped_reasons": {
+      "NO_AI_MODE": 2
+    },
+    "paid_search_calls": 5,
+    "openai_requests": 5,
+    "openai_skipped": 2,
+    "tokens_per_kept_result": 13619.75,
+    "openai_calls_per_kept_result": 1.25,
+    "no_ai": true
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 51542,
+  "output_tokens": 2937,
+  "cached_tokens": 18113,
+  "ai_calls": 0,
+  "direct_fetches": 14,
+  "search_calls": 5,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

@@ -1,0 +1,151 @@
+{
+  "revision_before": "a91f3d2c4e10",
+  "before": {
+    "alembic_version": 1,
+    "radars": 5,
+    "result_observations": 0,
+    "results": 0,
+    "search_runs": 0,
+    "market_reviews": 0,
+    "result_audit_events": 0
+  },
+  "active_runs": 0,
+  "backup": "backups\\source-migration-20260912T180723652198Z.json",
+  "sha256": "2884d7d56734f3a52f36606c2a9ba77aa0430025a827c7a3cee1aa8be1563cbc",
+  "applied": true,
+  "command": ".venv\\Scripts\\python.exe -m flask --app run db upgrade",
+  "revision_after": "c83d2e5f9a31",
+  "after": {
+    "alembic_version": 1,
+    "radars": 5,
+    "result_observations": 0,
+    "results": 0,
+    "search_runs": 0,
+    "source_states": 0,
+    "market_reviews": 0,
+    "result_audit_events": 0
+  },
+  "business_rows_identical": true,
+  "source_schema": {
+    "columns": [
+      {
+        "name": "id",
+        "type": "INTEGER",
+        "nullable": false,
+        "default": "nextval('source_states_id_seq'::regclass)",
+        "autoincrement": true,
+        "comment": null
+      },
+      {
+        "name": "radar_code",
+        "type": "VARCHAR(40)",
+        "nullable": false,
+        "default": "''::character varying",
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "source_name",
+        "type": "VARCHAR(200)",
+        "nullable": false,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "source_url",
+        "type": "TEXT",
+        "nullable": false,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "etag",
+        "type": "VARCHAR(500)",
+        "nullable": true,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "last_modified",
+        "type": "VARCHAR(200)",
+        "nullable": true,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "content_hash",
+        "type": "VARCHAR(64)",
+        "nullable": true,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "last_checked_at",
+        "type": "TIMESTAMP",
+        "nullable": false,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "last_changed_at",
+        "type": "TIMESTAMP",
+        "nullable": true,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "health",
+        "type": "VARCHAR(20)",
+        "nullable": false,
+        "default": "'HEALTHY'::character varying",
+        "autoincrement": false,
+        "comment": null
+      },
+      {
+        "name": "last_status_code",
+        "type": "INTEGER",
+        "nullable": true,
+        "default": null,
+        "autoincrement": false,
+        "comment": null
+      }
+    ],
+    "indexes": [
+      {
+        "name": "uq_source_states_radar_url",
+        "unique": true,
+        "column_names": [
+          "radar_code",
+          "source_url"
+        ],
+        "duplicates_constraint": "uq_source_states_radar_url",
+        "include_columns": [],
+        "dialect_options": {
+          "postgresql_include": []
+        }
+      }
+    ],
+    "foreign_keys": [],
+    "unique_constraints": [
+      {
+        "column_names": [
+          "radar_code",
+          "source_url"
+        ],
+        "name": "uq_source_states_radar_url",
+        "comment": null,
+        "dialect_options": {
+          "postgresql_include": [],
+          "postgresql_nulls_not_distinct": false
+        }
+      }
+    ]
+  }
+}

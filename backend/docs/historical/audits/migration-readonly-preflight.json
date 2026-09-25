@@ -1,0 +1,14 @@
+{
+  "revision": "a91f3d2c4e10",
+  "tables": {
+    "alembic_version": 1,
+    "radars": 5,
+    "result_observations": 0,
+    "results": 0,
+    "search_runs": 0,
+    "market_reviews": 0,
+    "result_audit_events": 0
+  },
+  "active_runs": 0,
+  "source_table_present": false
+}

@@ -1,0 +1,105 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_4_POLICIES",
+  "agent_name": "PoliciesRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 0,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 0,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 0,
+  "accepted_count": 0,
+  "queries_executed": 5,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 5,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "official_sources_checked": 1,
+      "new_texts": 0,
+      "updated_texts": 0,
+      "laws": 0,
+      "drafts": 0,
+      "strategies": 0,
+      "studies": 0,
+      "search_calls": 5,
+      "ai_calls": 0,
+      "final_kept": 0,
+      "collector_health": "DEGRADED",
+      "direct_fetches": 18
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "DEGRADED",
+    "collector_health_reasons": [
+      "no_relevant_official_policy_text"
+    ],
+    "query_performance": {},
+    "search_api_calls": 5,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 8,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_POLICIES",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13353,
+        "output_tokens": 616,
+        "query_chars": 47
+      },
+      {
+        "purpose": "DISCOVER_POLICIES",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 4829,
+        "output_tokens": 157,
+        "query_chars": 45
+      },
+      {
+        "purpose": "DISCOVER_POLICIES",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13001,
+        "output_tokens": 375,
+        "query_chars": 39
+      },
+      {
+        "purpose": "DISCOVER_POLICIES",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12972,
+        "output_tokens": 852,
+        "query_chars": 49
+      },
+      {
+        "purpose": "DISCOVER_POLICIES",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13142,
+        "output_tokens": 409,
+        "query_chars": 51
+      }
+    ],
+    "dry_run": false,
+    "paid_search_calls": 5,
+    "openai_requests": 5,
+    "openai_skipped": 0,
+    "tokens_per_kept_result": null,
+    "openai_calls_per_kept_result": null,
+    "no_ai": true
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 57297,
+  "output_tokens": 2409,
+  "cached_tokens": 22626,
+  "ai_calls": 0,
+  "direct_fetches": 18,
+  "search_calls": 5,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

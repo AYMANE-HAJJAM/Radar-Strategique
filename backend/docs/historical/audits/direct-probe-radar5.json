@@ -1,0 +1,101 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_5_FUNDING",
+  "agent_name": "FundingRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 3,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 0,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 3,
+  "accepted_count": 0,
+  "queries_executed": 1,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 1,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "funders_checked": 0,
+      "programs_found": 3,
+      "morocco_relevant": 3,
+      "status_a": 0,
+      "status_b": 2,
+      "status_c": 0,
+      "status_d": 1,
+      "direct_access": 0,
+      "consultant_opportunity": 0,
+      "beneficiary_procurement": 0,
+      "pipeline": 1,
+      "search_calls": 1,
+      "ai_calls": 0,
+      "final_kept": 3,
+      "collector_health": "HEALTHY",
+      "direct_http_requests": 4,
+      "conditional_304_count": 0,
+      "source_pages_changed": 3,
+      "source_pages_unchanged": 0,
+      "source_health": {
+        "World Bank Morocco projects API": "HEALTHY",
+        "AfDB Morocco projects": "HEALTHY",
+        "EIB Morocco projects": "FAILED",
+        "EBRD Morocco projects": "HEALTHY"
+      },
+      "escalation_level": 1,
+      "direct_fetches": 16
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 1,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 2,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 9098,
+        "output_tokens": 440,
+        "query_chars": 44
+      }
+    ],
+    "dry_run": true,
+    "rule_reasons": {
+      "missing:beneficiary|eligibility|potential_procurement": 2
+    },
+    "ai_skipped_reasons": {
+      "NO_AI_MODE": 3
+    },
+    "paid_search_calls": 1,
+    "openai_requests": 1,
+    "openai_skipped": 3,
+    "tokens_per_kept_result": 3179.33,
+    "openai_calls_per_kept_result": 0.333,
+    "paid_searches_per_kept_result": 0.333,
+    "direct_fetches_per_kept_result": 5.333,
+    "ai_cache_hits": 0,
+    "escalation_level": 1,
+    "analysis_partial": false,
+    "no_ai": true
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 9098,
+  "output_tokens": 440,
+  "cached_tokens": 0,
+  "ai_calls": 0,
+  "direct_fetches": 16,
+  "search_calls": 1,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

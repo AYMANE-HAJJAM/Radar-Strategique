@@ -1,0 +1,8 @@
+export type Run = {id:number; status:string; current_stage:string; started_at:string; finished_at:string|null; new_results_count:number; updated_results_count:number; error_message?:string|null; launched_by?:{id:number; name:string}|null};
+export type Radar = {id:number; code:string; name:string; description:string; pending_count:number; is_active:boolean; last_run:Run|null};
+export type Result = {id:number; radar_id:number; title:string; source:string; url:string|null; institution?:string|null; city?:string|null; publication:string; deadline:string; deadline_time?:string|null; review_status:string; discovery_status:string; status?:string|null; version:string; reference?:string|null; estimated_amount?:number|string|null; estimated_currency?:string|null; estimated_amount_tax_mode?:string|null; procedure?:string|null; announcement_type?:string|null; maturity?:string|null; person?:string|null; position?:string|null; recent_activity?:string|null; legal_status?:string|null; document_type?:string|null; funder?:string|null; beneficiary?:string|null; amount?:number|string|null; currency?:string|null; [key:string]:unknown};
+export type Page<T> = {items:T[]; page:number; page_size:number; total:number; pages:number};
+export type TargetedSession = {id:number; title:string; status:string; version:number; brief:Record<string, unknown>; summary?:Record<string, unknown>; results?:Page<TargetedResult>};
+export type TargetedResult = {id:number; title:string; institution?:string; source:string; url:string; status:string; score:number; reason:string};
+export type User = {id:number; name:string; role:"ADMIN"|"USER"; active:boolean; created_at:string; last_login_at:string|null; revoked_at:string|null};
+export type UserWithCode = User & {access_code:string};

@@ -1,0 +1,251 @@
+{
+  "3": {
+    "metrics": {
+      "institutions_checked": 7,
+      "institutions_newly_discovered": 5,
+      "institutions_updated": 0,
+      "decision_makers_identified": 0,
+      "current_roles_verified": 3,
+      "appointments_detected": 0,
+      "unchanged_skipped": 1,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "final_kept": 5,
+      "collector_health": "PARTIAL",
+      "direct_http_requests": 8,
+      "conditional_304_count": 0,
+      "source_pages_changed": 7,
+      "source_pages_unchanged": 0,
+      "source_health": {
+        "Composition officielle du gouvernement": "HEALTHY",
+        "Fondation Nationale des Mus\u00e9es \u2014 preuve officielle": "HEALTHY",
+        "Conseil Communal d\u2019Essaouira \u2014 preuve officielle": "HEALTHY",
+        "Minist\u00e8re de la Jeunesse, de la Culture et de la Communication \u2014 preuve officielle": "HEALTHY",
+        "Groupe Al Omrane": "HEALTHY",
+        "Agence Urbaine d\u2019El Jadida-Sidi Bennour \u2014 preuve officielle": "HEALTHY",
+        "Morocco appointments": "HEALTHY",
+        "Culture ministry news": "FAILED"
+      },
+      "officeholders_unverified": 6,
+      "verified_current": 3,
+      "probably_current": 1,
+      "unverified": 1,
+      "obsolete": 0,
+      "escalation_level": 0,
+      "representative_results": [
+        {
+          "title": "Minist\u00e8re de l\u2019Am\u00e9nagement du territoire national, de l\u2019Urbanisme, de l\u2019Habitat et de la Politique de la ville \u2014 Ministre de l\u2019Am\u00e9nagement du territoire national, de l\u2019Urbanisme, de l\u2019Habitat et de la Politique de la ville : Fatima Ezzahra El MANSOURI \u2014 probablement actuel, non confirm\u00e9",
+          "url": "https://www.maroc.ma/fr/le-maroc/gouvernement",
+          "institution": "Minist\u00e8re de l\u2019Am\u00e9nagement du territoire national, de l\u2019Urbanisme, de l\u2019Habitat et de la Politique de la ville",
+          "status": "active"
+        },
+        {
+          "title": "Fondation Nationale des Mus\u00e9es \u2014 Pr\u00e9sident de la Fondation Nationale des Mus\u00e9es : Mehdi Qotbi \u2014 r\u00f4le actuel v\u00e9rifi\u00e9",
+          "url": "https://fnm.ma/actualites/35",
+          "institution": "Fondation Nationale des Mus\u00e9es",
+          "status": "active"
+        },
+        {
+          "title": "Conseil Communal d\u2019Essaouira \u2014 Pr\u00e9sident du Conseil Communal d\u2019Essaouira : Tarik Ottmani \u2014 r\u00f4le actuel v\u00e9rifi\u00e9",
+          "url": "https://www.maroc.ma/fr/actualites/un-partenariat-strategique-pour-la-valorisation-du-musee-sidi-mohammed-ben-abdellah-dessaouira",
+          "institution": "Conseil Communal d\u2019Essaouira",
+          "status": "active"
+        },
+        {
+          "title": "Minist\u00e8re de la Jeunesse, de la Culture et de la Communication \u2014 ministre de la Jeunesse, de la Culture et de la Communication : Mohamed Mehdi Bensaid \u2014 r\u00f4le actuel v\u00e9rifi\u00e9",
+          "url": "https://www.maroc.ma/fr/actualites/renforcement-des-relations-bilaterales-entre-le-maroc-et-la-france-dans-le-domaine-de-la-culture",
+          "institution": "Minist\u00e8re de la Jeunesse, de la Culture et de la Communication",
+          "status": "active"
+        },
+        {
+          "title": "Groupe Al Omrane",
+          "url": "https://www.alomrane.gov.ma/Le-groupe/A-propos",
+          "institution": "Groupe Al Omrane",
+          "status": "active"
+        }
+      ],
+      "direct_fetches": 8
+    },
+    "status_counts": {
+      "PROBABLY_CURRENT": 1,
+      "VERIFIED_CURRENT": 3,
+      "UNVERIFIED": 1
+    },
+    "roles": [
+      {
+        "person_name": "Fatima Ezzahra El MANSOURI",
+        "evidence_date": null,
+        "verification_date": "2026-09-13",
+        "current_status": "PROBABLY_CURRENT",
+        "role_source_url": "https://www.maroc.ma/fr/le-maroc/gouvernement"
+      },
+      {
+        "person_name": "Mehdi Qotbi",
+        "evidence_date": "2026-04-13",
+        "verification_date": "2026-09-13",
+        "current_status": "VERIFIED_CURRENT",
+        "role_source_url": "https://fnm.ma/actualites/35"
+      },
+      {
+        "person_name": "Tarik Ottmani",
+        "evidence_date": "2026-04-14",
+        "verification_date": "2026-09-13",
+        "current_status": "VERIFIED_CURRENT",
+        "role_source_url": "https://www.maroc.ma/fr/actualites/un-partenariat-strategique-pour-la-valorisation-du-musee-sidi-mohammed-ben-abdellah-dessaouira"
+      },
+      {
+        "person_name": "Mohamed Mehdi Bensaid",
+        "evidence_date": "2026-07-16",
+        "verification_date": "2026-09-13",
+        "current_status": "VERIFIED_CURRENT",
+        "role_source_url": "https://www.maroc.ma/fr/actualites/renforcement-des-relations-bilaterales-entre-le-maroc-et-la-france-dans-le-domaine-de-la-culture"
+      },
+      {
+        "person_name": null,
+        "evidence_date": null,
+        "verification_date": "2026-09-13",
+        "current_status": "UNVERIFIED",
+        "role_source_url": null
+      }
+    ],
+    "usage": {
+      "direct_fetches": 8,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "cached": {
+      "direct_fetches": 0,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "memory": {
+      "first_new": 5,
+      "second_new": 0,
+      "second_duplicates": 5,
+      "rows": 5,
+      "first_seen_hash_review_preserved": true,
+      "second_search": 0,
+      "second_ai": 0,
+      "second_input": 0,
+      "second_output": 0
+    },
+    "bulletins": []
+  },
+  "4": {
+    "metrics": {
+      "official_sources_checked": 7,
+      "new_texts": 12,
+      "updated_texts": 0,
+      "laws": 7,
+      "drafts": 11,
+      "strategies": 0,
+      "studies": 0,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "final_kept": 12,
+      "collector_health": "PARTIAL",
+      "direct_http_requests": 11,
+      "conditional_304_count": 0,
+      "source_pages_changed": 4,
+      "source_pages_unchanged": 0,
+      "source_health": {
+        "BO 7415 \u2014 Loi n\u00b0 33.22 relative \u00e0 la protection du patrimoine": "HEALTHY",
+        "Bulletin Officiel \u2014 \u00e9dition fran\u00e7aise": "HEALTHY",
+        "SGG consolidated laws": "HEALTHY",
+        "SGG": "HEALTHY",
+        "Parliament legislation": "FAILED",
+        "CESE publications": "FAILED",
+        "HCP publications": "FAILED"
+      },
+      "decrees": 3,
+      "unrelated_or_nonofficial_rejected": 297,
+      "consolidated_references_checked": 2,
+      "publication_checks": 1,
+      "bulletins_checked": 2,
+      "bulletin_numbers": [
+        "7415",
+        "7526"
+      ],
+      "published_verified": 1,
+      "in_force_verified": 0,
+      "escalation_level": 0,
+      "representative_results": [
+        {
+          "title": "Loi n\u00b0 33.22 relative \u00e0 la protection du patrimoine",
+          "url": "https://www.sgg.gov.ma/BO/AR/3111/2025/BO_7415_Ar.pdf",
+          "institution": "SGG",
+          "status": "active"
+        },
+        {
+          "title": "La protection du patrimoine culturel, naturel et g\u00e9ologique (Version Arabe)",
+          "url": "https://www.sgg.gov.ma/portals/0/AvantProjet/246/Avp_loi_patrimoineculturel-NV.pdf",
+          "institution": "SGG",
+          "status": "active"
+        },
+        {
+          "title": "Les produits de construction (version arabe)",
+          "url": "https://www.sgg.gov.ma/portals/0/AvantProjet/229/2739.22.pdf",
+          "institution": "SGG",
+          "status": "active"
+        },
+        {
+          "title": "Organisation des op\u00e9rations de la construction",
+          "url": "https://www.sgg.gov.ma/portals/0/AvantProjet/196/Avp_loi_29.18_Fr.pdf",
+          "institution": "SGG",
+          "status": "active"
+        },
+        {
+          "title": "Modification et compl\u00e9ment du projet de d\u00e9cret n\u00b0 2.94.223 instituant, pour le compte du minist\u00e8re des travaux publics, de la formation professionnelle et de la formation des cadres, un syst\u00e8me de qualification et de classification des entreprises de b\u00e2timent et de travaux publics (BTP)",
+          "url": "https://www.sgg.gov.ma/portals/0/AvantProjet/166/Avp_decret_2.18.76_Fr.PDF",
+          "institution": "SGG",
+          "status": "active"
+        }
+      ],
+      "direct_fetches": 11
+    },
+    "status_counts": {
+      "PUBLISHED": 1,
+      "DRAFT": 11
+    },
+    "roles": [],
+    "usage": {
+      "direct_fetches": 11,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "cached": {
+      "direct_fetches": 0,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0
+    },
+    "memory": {
+      "first_new": 12,
+      "second_new": 0,
+      "second_duplicates": 12,
+      "rows": 12,
+      "first_seen_hash_review_preserved": true,
+      "second_search": 0,
+      "second_ai": 0,
+      "second_input": 0,
+      "second_output": 0
+    },
+    "bulletins": [
+      {
+        "bo_number": "7415",
+        "date": "2025-06-23"
+      },
+      {
+        "bo_number": "7526",
+        "date": "2026-07-16"
+      }
+    ]
+  }
+}

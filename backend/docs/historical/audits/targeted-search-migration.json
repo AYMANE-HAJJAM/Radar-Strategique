@@ -1,0 +1,125 @@
+{
+  "expected_head": "f19a7c4d2e61",
+  "applied": true,
+  "command": ".venv\\Scripts\\python.exe -m flask --app run db upgrade",
+  "revision_before": "c83d2e5f9a31",
+  "active_runs": 0,
+  "backup": "backups\\targeted-search-migration-20260914T160424412984Z.json",
+  "backup_sha256": "76e6a7af6680d2d1406f0b2bf66e7bbe74ba35855869a12fc2034681d3b1b2b4",
+  "before": {
+    "results": 35,
+    "result_observations": 35,
+    "search_runs": 5,
+    "market_reviews": 0,
+    "result_audit_events": 35,
+    "radars": 5,
+    "source_states": 6
+  },
+  "revision_after": "f19a7c4d2e61",
+  "after": {
+    "results": 35,
+    "result_observations": 35,
+    "search_runs": 5,
+    "market_reviews": 0,
+    "result_audit_events": 35,
+    "radars": 5,
+    "source_states": 6
+  },
+  "existing_row_counts_identical": true,
+  "targeted_schema": {
+    "targeted_search_result_links": {
+      "columns": [
+        "id",
+        "session_id",
+        "brief_version",
+        "result_id",
+        "match_status",
+        "review_status",
+        "relevance_score",
+        "content_fingerprint",
+        "match_reason",
+        "first_matched_at",
+        "last_matched_at"
+      ],
+      "indexes": [
+        "ix_targeted_result_links_result_id",
+        "ix_targeted_result_links_session_id",
+        "ix_targeted_search_result_links_review_status",
+        "uq_targeted_session_result"
+      ],
+      "foreign_keys": [
+        "fk_targeted_result_brief_version",
+        "fk_targeted_search_result_links_result_id_results",
+        "fk_targeted_search_result_links_session_id_targeted_sea_e8fb"
+      ],
+      "unique_constraints": [
+        "uq_targeted_session_result"
+      ]
+    },
+    "targeted_search_brief_versions": {
+      "columns": [
+        "id",
+        "session_id",
+        "version",
+        "brief",
+        "refinement_prompt",
+        "created_by_user_id",
+        "created_at"
+      ],
+      "indexes": [
+        "ix_targeted_brief_versions_session_id",
+        "uq_targeted_brief_session_version"
+      ],
+      "foreign_keys": [
+        "fk_targeted_search_brief_versions_session_id_targeted_s_544e"
+      ],
+      "unique_constraints": [
+        "uq_targeted_brief_session_version"
+      ]
+    },
+    "targeted_search_feedback": {
+      "columns": [
+        "id",
+        "session_id",
+        "result_id",
+        "brief_version",
+        "decision",
+        "reason",
+        "user_id",
+        "created_at"
+      ],
+      "indexes": [
+        "ix_targeted_feedback_result_id",
+        "ix_targeted_feedback_session_id",
+        "ix_targeted_feedback_user_id"
+      ],
+      "foreign_keys": [
+        "fk_targeted_feedback_brief_version",
+        "fk_targeted_search_feedback_result_id_results",
+        "fk_targeted_search_feedback_session_id_targeted_search_sessions"
+      ],
+      "unique_constraints": []
+    },
+    "targeted_search_sessions": {
+      "columns": [
+        "id",
+        "title",
+        "original_prompt",
+        "creator_user_id",
+        "current_version",
+        "status",
+        "last_run_at",
+        "run_summary",
+        "created_at",
+        "updated_at"
+      ],
+      "indexes": [
+        "ix_targeted_search_sessions_creator_user_id",
+        "ix_targeted_search_sessions_status"
+      ],
+      "foreign_keys": [],
+      "unique_constraints": []
+    }
+  },
+  "transaction_rollback_validated": true
+}

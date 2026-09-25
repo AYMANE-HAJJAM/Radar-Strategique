@@ -1,0 +1,101 @@
+{
+  "transport": "Simulated Telegram API; real Application polling/lifecycle and real handlers; isolated SQLite fixtures",
+  "scenarios": {
+    "startup_and_idle_300_seconds": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 300.332,
+      "verified": true
+    },
+    "start_and_menus": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.011,
+      "verified": true
+    },
+    "pending_queues": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.032,
+      "verified": true
+    },
+    "approved_queues": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.014,
+      "verified": true
+    },
+    "rejected_queues": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.011,
+      "verified": true
+    },
+    "details": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.029,
+      "verified": true
+    },
+    "approve": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.038,
+      "verified": true
+    },
+    "reject": {
+      "direct_http_fetches": 0,
+      "paid_search_requests": 0,
+      "openai_api_calls": 0,
+      "classification_calls": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "other_billable_calls": 0,
+      "model": null,
+      "elapsed_seconds": 0.03,
+      "verified": true
+    }
+  }
+}

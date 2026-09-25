@@ -1,0 +1,6 @@
+{
+  "HERITAGE_STRONG": ["patrimoine", "patrimonial", "restauration", "rehabilitation", "medina", "monument", "historique", "rempart", "muraille", "fortification", "kasbah", "ksar", "conservation", "heritage"],
+  "ARCHITECTURE": ["architecture", "architectural", "architecturale", "architecturales", "maitrise d oeuvre", "moe", "suivi des travaux", "reconversion", "diagnostic batiment"],
+  "TERRITORIAL": ["urbanisme", "urban planning", "plan d amenagement", "charte paysagere", "developpement territorial", "amenagement du territoire", "territoriale", "territorial", "requalification urbaine", "sig", "foncier", "amo", "gouvernance territoriale", "mobilite urbaine", "tourisme culturel", "strategie de developpement", "equipement culturel"],
+  "NEGATIVE": ["gardiennage", "nettoyage", "restauration collective", "denrees alimentaires", "fournitures de bureau", "informatique", "ordinateurs", "vehicules", "consommables", "materiel de laboratoire", "equipements de laboratoire", "securite privee", "fournitures", "repas", "alimentation", "materiel informatique", "mobilier de bureau"]
+}

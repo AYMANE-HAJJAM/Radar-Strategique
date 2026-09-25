@@ -1,0 +1,1920 @@
+
+
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" prefix="og: https://ogp.me/ns#">
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="Le Gouvernement inclut le Chef du Gouvernement, les Ministres et, si nécessaire, des Secrétaires d’État, conformément au Titre V de la Constitution." />
+<meta name="geo.placename" content="Maroc" />
+<link rel="canonical" href="https://www.maroc.ma/fr/le-maroc/gouvernement" />
+<meta name="robots" content="index, follow" />
+<meta property="og:site_name" content="Maroc.ma" />
+<meta property="og:title" content="Gouvernement | Maroc.ma" />
+<meta name="twitter:title" content="Gouvernement | Maroc.ma" />
+<meta name="twitter:creator" content="Portailmaroc_ma" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "Organization",
+            "additionalType": "GovernmentOrganization",
+            "@id": "https://www.maroc.ma/fr",
+            "name": "Maroc.ma",
+            "url": "https://www.maroc.ma/fr",
+            "logo": {
+                "@type": "ImageObject",
+                "representativeOfPage": "False",
+                "url": "https://maroc.ma/sites/default/files/2024-12/Logo_MAROCMA_FR-blue.svg"
+            }
+        }
+    ]
+}</script>
+<link rel="preload" as="image" fetchpriority="high" href="/sites/default/files/2024-12/Logo_MAROCMA_FR-blue.svg" />
+<link rel="preload" as="image" fetchpriority="high" href="/sites/default/files/2024-12/FR.svg" />
+<link rel="alternate" hreflang="en" href="https://www.maroc.ma/en/morocco/government" />
+<link rel="alternate" hreflang="x-default" href="https://www.maroc.ma/ar/%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8/%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D8%A9" />
+<link rel="alternate" hreflang="ar" href="https://www.maroc.ma/ar/%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8/%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D8%A9" />
+<link rel="alternate" hreflang="es" href="https://www.maroc.ma/es/marruecos/gobierno" />
+<link rel="alternate" hreflang="amz" href="https://www.maroc.ma/amz/%E2%B5%8D%E2%B5%8E%E2%B5%96%E2%B5%94%E2%B5%89%E2%B4%B1/%E2%B5%9C%E2%B5%8F%E2%B4%B1%E2%B4%B0%E2%B4%B9%E2%B5%9C" />
+<link rel="alternate" hreflang="fr" href="https://www.maroc.ma/fr/le-maroc/gouvernement" />
+
+    <title>Gouvernement | Maroc.ma</title>
+
+        <link rel="shortcut icon" type="image/x-icon" href="/HTML/assets/favicon/favicon.ico">
+    <link rel="manifest" href="/HTML/assets/favicon/site.webmanifest">
+
+        <link rel="preconnect" href="https://maroc.ma" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+
+        <link rel="dns-prefetch" href="//www.googletagmanager.com">
+        <link rel="preconnect" href="https://chatflow.fornetmaroc.com">
+
+            <link rel="preload" href="themes/custom/maroc/webfonts/manrope/manrope-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="themes/custom/maroc/webfonts/manrope/manrope-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="themes/custom/maroc/webfonts/montserrat/Montserrat-Bold.woff2" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="themes/custom/maroc/webfonts/nunito/Nunito-Regular.woff2" as="font" type="font/woff2" crossorigin>
+
+        <link rel="preload" href="https://www.maroc.ma/HTML/assets/webfonts/fa-solid-900.woff2?fasubset=1" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://www.maroc.ma/HTML/assets/webfonts/fa-brands-400.woff2?fasubset=1" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://www.maroc.ma/HTML/assets/webfonts/fa-regular-400.woff2?fasubset=1" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_jRZDOGjc58wDbynvkL9EvaYXcJ_HKlowN3ILSPfrON4.css?delta=0&amp;language=fr&amp;theme=maroc&amp;include=eJxNi0EOgCAMBD8E8qZSqqkpKaEg-nuJ4eBlMzvJoFYKqfYCssEJt8Of4EbZC1tzGapiSLtwWXyIRhCPZkvomG9SNxJnj802RDByF9Ow8O2WNXWhFzdtLKU" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_d7fu5zXkpdPf581O36XRo767NMxCmQOsGzgScNsnmr8.css?delta=1&amp;language=fr&amp;theme=maroc&amp;include=eJxNi0EOgCAMBD8E8qZSqqkpKaEg-nuJ4eBlMzvJoFYKqfYCssEJt8Of4EbZC1tzGapiSLtwWXyIRhCPZkvomG9SNxJnj802RDByF9Ow8O2WNXWhFzdtLKU" />
+
+    <style>
+  /* FA6 Solid */
+  @font-face {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: swap;
+    src: url("https://www.maroc.ma/HTML/assets/webfonts/fa-solid-900.woff2?fasubset=1") format("woff2");
+  }
+  /* FA6 Regular (si utilisé) */
+  @font-face {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: swap;
+    src: url("https://www.maroc.ma/HTML/assets/webfonts/fa-regular-400.woff2?fasubset=1") format("woff2");
+  }
+  /* FA6 Brands (si utilisé) */
+  @font-face {
+    font-family: "Font Awesome 6 Brands";
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    font-display: swap;
+    src: url("https://www.maroc.ma/HTML/assets/webfonts/fa-brands-400.woff2?fasubset=1") format("woff2");
+  }
+</style>
+
+    
+
+        
+    
+
+        
+        <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-QXPLLMK9DJ');
+
+      (function () {
+        function loadGtagScript() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-QXPLLMK9DJ';
+          document.head.appendChild(script);
+        }
+
+        function scheduleGtagLoad() {
+          if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadGtagScript, { timeout: 3000 });
+          } else {
+            setTimeout(loadGtagScript, 1000);
+          }
+        }
+
+        if (document.readyState === 'complete') {
+          scheduleGtagLoad();
+        } else {
+          window.addEventListener('load', scheduleGtagLoad, { once: true });
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="path-node page-node-type-page">
+        <button class="back-to-top" type="button" aria-label="Back to top"></button>
+
+    
+      <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas>
+    
+<header class="header-transparent">
+	<div class="container-fluid top-header">
+		<div class="btn--audio">
+			<div>
+				<a class="navbar-brand" href="/fr">
+					<img src="/sites/default/files/2024-12/FR.svg" alt="Logo" fetchpriority="high" decoding="async" width="211" height="69">
+					<img src="/sites/default/files/2024-12/Logo_MAROCMA_FR-blue.svg" alt="Logo" fetchpriority="high" decoding="async" width="211" height="69">
+				</a>
+				<button aria-label="Name" id="playPauseButton">
+					<img src="/sites/default/files/2024-09/icon-maghirb.webp" alt="Icon" width="20" height="20">
+					<span>Hymne national</span>
+					<i class="fa-solid fa-circle-play" id="playPauseIcon"></i>
+				</button>
+			</div>
+		</div>
+		<!--Audio  -->
+		<audio id="audioPlayer" src="/sites/default/files/2024-12/hymne-national_5jELSptP.mp3" preload="none" hidden></audio>
+
+		<ul class="nav justify-content-end">
+			<!-- Dropdown switch lang -->
+			<!-- Social media -->
+                  <li class="nav-item"> <a class="nav-link" href="https://www.facebook.com/portailmaroc.ma/" target="_blank" aria-label="maroc">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+                  <li class="nav-item"> <a class="nav-link" href="https://x.com/Portailmaroc_ma" target="_blank" aria-label="maroc">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
+                  <li class="nav-item"> <a class="nav-link" href="https://www.youtube.com/@PortailMaroc_Ma" target="_blank" aria-label="maroc">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+                  <li class="nav-item"> <a class="nav-link" href="https://www.instagram.com/portailmaroc_ma/" target="_blank" aria-label="maroc">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        		</ul>
+		<!-- multilangue -->
+		
+
+    
+
+<div class="multilingue">
+		<div class="dropdown">
+			<button aria-label="Name" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="fa fa-light fa-globe"></i>
+				Français
+			</button>
+			<ul class="dropdown-menu">
+																						<li>
+								<a href="/en/morocco/government" class="language-link dropdown-item" hreflang="en" data-drupal-link-system-path="node/10325">English</a>
+							</li>
+																																	<li>
+								<a href="/ar/%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8/%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D8%A9" class="language-link dropdown-item" hreflang="ar" data-drupal-link-system-path="node/10325">العربية</a>
+							</li>
+																																	<li>
+								<a href="/es/marruecos/gobierno" class="language-link dropdown-item" hreflang="es" data-drupal-link-system-path="node/10325">Español</a>
+							</li>
+																																	<li>
+								<a href="/amz/%E2%B5%8D%E2%B5%8E%E2%B5%96%E2%B5%94%E2%B5%89%E2%B4%B1/%E2%B5%9C%E2%B5%8F%E2%B4%B1%E2%B4%B0%E2%B4%B9%E2%B5%9C" class="language-link dropdown-item" hreflang="amz" data-drupal-link-system-path="node/10325">ⵜⴰⵎⴰⵣⵉⵖⵜ</a>
+							</li>
+																		</ul>
+		</div>
+	</div>
+
+
+	</div>
+	
+<div class="main-menu mobile-menu" data-sticky-class="is-sticky">
+	<div
+		class="container-fluid">
+		<!-- Navigation Bar -->
+		<nav class="navbar navbar-expand-lg navbar-light">
+			<div
+				class="container-fluid">
+				<!-- Logo -->
+				<a class="navbar-brand" href="/fr">
+					<img src="/sites/default/files/2024-12/FR.svg" alt="Logo" fetchpriority="high" decoding="async" width="211" height="69">
+					<img src="/sites/default/files/2024-12/Logo_MAROCMA_FR-blue.svg" alt="Logo" fetchpriority="high" decoding="async" width="211" height="69">
+				</a>
+
+				<!-- Toggler for mobile view -->
+				<button aria-label="Name" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Navbar links -->
+				<div class="collapse navbar-collapse" id="navbarNavDropdown">
+					<ul
+						class="navbar-nav me-auto mb-2 mb-lg-0 m-auto gap-4">
+						<!-- Menu items -->
+																					<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="#">Discours &amp; Messages Royaux</a>
+																			<div class="menu-subs-overlay menu-level-1">
+											<div class="menu-subs-inner">
+												<ul>
+													<li class="menu-subs-col">
+														<div class="menu--item">
+															<div class="menu--item-subs menu-level-2">
+																<ul>
+																																																						<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/discours-messages-royaux/discours-royaux">Discours Royaux</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/discours-messages-royaux/message-royaux">Messages  Royaux </a>
+																					</div>
+																				</div>
+																			</li>
+																																																			</ul>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="#">Le Maroc</a>
+																			<div class="menu-subs-overlay menu-level-1">
+											<div class="menu-subs-inner">
+												<ul>
+													<li class="menu-subs-col">
+														<div class="menu--item">
+															<div class="menu--item-subs menu-level-2">
+																<ul>
+																																																						<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/biographie-de-sa-majeste-le-roi-mohammed-vi">Sa Majesté le Roi Mohammed VI</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/constitution">Constitution</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/emblemes">Emblèmes</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/parlement">Parlement</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/gouvernement">Gouvernement </a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/les-partis-politiques-et-syndicats">Partis politiques et syndicats</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/le-maroc/fetes-nationales-et-religieuses">Fêtes nationales et religieuses</a>
+																					</div>
+																				</div>
+																			</li>
+																																																			</ul>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="#">Histoire du Maroc</a>
+																			<div class="menu-subs-overlay menu-level-1">
+											<div class="menu-subs-inner">
+												<ul>
+													<li class="menu-subs-col">
+														<div class="menu--item">
+															<div class="menu--item-subs menu-level-2">
+																<ul>
+																																																						<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/histoire-du-maroc/mediatheque">Médiathèque </a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/histoire-du-maroc/dates-cles">Dates clés</a>
+																					</div>
+																				</div>
+																			</li>
+																																																			</ul>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="#">Culture du Maroc</a>
+																			<div class="menu-subs-overlay menu-level-1">
+											<div class="menu-subs-inner">
+												<ul>
+													<li class="menu-subs-col">
+														<div class="menu--item">
+															<div class="menu--item-subs menu-level-2">
+																<ul>
+																																																						<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/culture-du-maroc/patrimoine-immateriel">Patrimoine immatériel</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/culture-du-maroc/patrimoine-materiel">Patrimoine matériel </a>
+																					</div>
+																				</div>
+																			</li>
+																																																			</ul>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="/fr/strategies-politiques-publiques">Stratégies &amp; politiques publiques</a>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="/fr/node/14190">Politique sociale</a>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="/fr/services-numeriques">Services numériques</a>
+																			<div class="menu-subs-overlay menu-level-1">
+											<div class="menu-subs-inner">
+												<ul>
+													<li class="menu-subs-col">
+														<div class="menu--item">
+															<div class="menu--item-subs menu-level-2">
+																<ul>
+																																																						<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/services-numeriques/grand-public">Grand public</a>
+																					</div>
+																				</div>
+																			</li>
+																																																																								<li>
+																				<div class="sub-menu-item">
+																					<div class="sub-menu-item-title">
+																						<a href="/fr/services-numeriques/entreprises-professionnels">Entreprises &amp; professionnels</a>
+																					</div>
+																				</div>
+																			</li>
+																																																			</ul>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="/fr/actualites">Actualités</a>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="/fr/investisseurs">Investisseurs</a>
+																	</li>
+																												<li class="nav-item">
+									<a class="nav-link " aria-current="page" href="/fr/touristes">Touristes</a>
+																	</li>
+																		</ul>
+					<div class="wrapper--list">
+						<div class="d-md-block d-lg-none showing--mobile-multi">
+							
+
+    
+
+<div class="multilingue">
+		<div class="dropdown">
+			<button aria-label="Name" class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="fa fa-light fa-globe"></i>
+				Français
+			</button>
+			<ul class="dropdown-menu">
+																						<li>
+								<a href="/en/morocco/government" class="language-link dropdown-item" hreflang="en" data-drupal-link-system-path="node/10325">English</a>
+							</li>
+																																	<li>
+								<a href="/ar/%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8/%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D8%A9" class="language-link dropdown-item" hreflang="ar" data-drupal-link-system-path="node/10325">العربية</a>
+							</li>
+																																	<li>
+								<a href="/es/marruecos/gobierno" class="language-link dropdown-item" hreflang="es" data-drupal-link-system-path="node/10325">Español</a>
+							</li>
+																																	<li>
+								<a href="/amz/%E2%B5%8D%E2%B5%8E%E2%B5%96%E2%B5%94%E2%B5%89%E2%B4%B1/%E2%B5%9C%E2%B5%8F%E2%B4%B1%E2%B4%B0%E2%B4%B9%E2%B5%9C" class="language-link dropdown-item" hreflang="amz" data-drupal-link-system-path="node/10325">ⵜⴰⵎⴰⵣⵉⵖⵜ</a>
+							</li>
+																		</ul>
+		</div>
+	</div>
+
+
+						</div>
+						<!-- Search button -->
+						<button aria-label="Search" type="button" class="btn search-btn" data-bs-toggle="modal" data-bs-target="#searchModal">
+							<i class="fa-solid fa-magnifying-glass"></i>
+						</button>
+					</div>
+															<div class="wrapper-accessibilty social--media-mobile">
+						<div class="list-social-sticky">
+							<ul>
+								<li class="nav-item">
+									<a class="nav-link" href="https://www.facebook.com/portailmaroc.ma/" aria-label="Facebook">
+										<i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+										<span>Facebook</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="https://x.com/Portailmaroc_ma" aria-label="Twitter">
+										<i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+										<span>Twitter</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="https://www.youtube.com/@PortailMaroc_Ma" aria-label="Youtube">
+										<i class="fa-brands fa-youtube" aria-hidden="true"></i>
+										<span>Youtube</span>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="https://www.instagram.com/portailmaroc_ma/" aria-label="Instagram">
+										<i class="fa-brands fa-instagram" aria-hidden="true"></i>
+										<span>Instagram</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="search--bar">
+    <div class="search--bar-inner">
+        <form class="views-exposed-form" data-drupal-selector="views-exposed-form-search-content-block-1" action="/fr/search/content" method="get" id="views-exposed-form-search-content-block-1" accept-charset="UTF-8">
+  
+
+<form action="" method="get">
+    <div class="btn-search-submit">
+        <div class="input--text">
+                        
+<input data-drupal-selector="edit-keys" type="text" id="edit-keys" name="keys" value="" size="30" maxlength="128" />
+        </div>
+        <div class="form-actions js-form-wrapper form-wrapper d-none">
+                        <input data-drupal-selector="edit-submit-search-content" type="submit" id="edit-submit-search-content" value="Rechercher" class="button js-form-submit form-submit" />
+
+        </div>
+    </div>
+</form>
+
+<button aria-label="Name" type="button">
+    <i class="fa-solid fa-xmark"></i>
+</button>
+
+
+
+</form>
+
+    </div>
+</div>
+
+</div>
+
+</header>
+
+<!-- Accessibilty Module -->
+  <div id="accessPanel" class="accessibility-panel" style="position: fixed; top: 0; right: -420px;">
+    <div class="accessPanel-header">
+      <div class="accessPanel-header__l">
+        <h5 class="accessPanel-header__title">Visual Accessibility Options</h5>
+      </div>
+      <button class="accessPanel-header__close" type="button" aria-label="Close the accessibility menu">
+        <span style="width: 24px; height: 16px; display: flex;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 14 14" width="100%" height="100%">
+            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"
+              d="m2.30436241 2.30436238 9.39127515 9.39127515m-9.39127518 6e-8 9.39127515-9.39127515"></path>
+          </svg>
+        </span>
+        <span class="focus-outline"></span>
+      </button>
+    </div>
+    <div class="accessPanel-features__wrapper">
+      <button class="accessPanel-features__reset">
+        <span class="accessPanel-features__reset__i">
+          <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 19 16" width="24" height="24">
+            <g fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-width="1.84">
+              <path
+                d="M16.20106 8c0 .9667-.189683 1.8872-.5324673 2.7251-.3427843.8372-.8386698 1.5911-1.4517524 2.2246-.6130825.6335-1.3426846 1.1459-2.152902 1.5001-.8108948.3542-1.70172746.5502-2.6372711.5502-.93554365 0-1.8263763-.196-2.63727112-.5502-.81021738-.3542-1.53981948-.8666-2.15290203-1.5001M2.6522744 8c0-.9667.189683-1.8872.53246728-2.7251.34278427-.8372.83866982-1.5911 1.45175237-2.2246.61308255-.6335 1.34268465-1.1459 2.15290203-1.5001C7.6002909 1.196 8.49112355 1 9.4266672 1c.93554364 0 1.8263763.196 2.6372711.5502.8102174.3542 1.5398195.8666 2.152902 1.5001">
+              </path>
+              <path stroke-linejoin="round"
+                d="m4.92576062 6.96092-2.48958935 1.484L1 5.87242m13.0125924 2.93832 2.3886509-1.652L18 9.62694"></path>
+            </g>
+          </svg>
+        </span>
+        <span class="accessPanel-features__reset__text">Reset All Accessibility
+          Settings</span>
+      </button>
+      <div class="accessPanel-features__title">
+        <span id="content_title" class="accessPanel-features__title__s">Content adjustements</span>
+      </div>
+      <div class="accessPanel-features">
+        <div class="accessPanel-features__item">
+          <button type="button" id="spacingText" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-spacing-1"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Text Spacing</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="biggerText" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-bigger-text-1"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Bigger Text</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="lineHeightText" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-line-height-1"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Line Height</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="dyslexiaText" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-font-dx"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Dyslexia Friendly</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="accessPanel-features__title">
+        <span id="display_title" class="accessPanel-features__title__s">Display adjustements</span>
+      </div>
+      <div class="accessPanel-features">
+        <div class="accessPanel-features__item">
+          <button type="button" id="contrastBg" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-contrast-plus"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Contrast +</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="screenReader" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-screen-reader"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Screen Reader</div>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="highlightLinks" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-highlight-links"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Highlight Links</div>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="cursorGuide" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-cursor-1"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Cursor</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="hideImages" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-hide-images"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Hide Images</div>
+          </button>
+        </div>
+        <div class="accessPanel-features__item">
+          <button type="button" id="saturationBg" class="accessPanel-features__item__i">
+            <span class="accessPanel-features__item__icon">
+              <span class="icon icon-saturation-1"></span>
+            </span>
+            <div class="accessPanel-features__item__name">Saturation</div>
+            <span class="accessPanel-features__item__steps">
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+              <span class="accessPanel-features__step">
+                <span class="accessPanel-features__step__i"></span>
+              </span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="accessPanel-footer">
+      <div class="accessPanel-footer__l">
+        <h5 class="accessPanel-footer__title">Spark Vibe ForNet</h5>
+      </div>
+    </div>
+  </div>
+  <!-- ./ Accessibilty Module -->
+
+<div class="wrapper-accessibilty social--media-mobile">
+	<div class="list-social-sticky">
+		<ul>
+              <li class="nav-item">
+          <a class="nav-link" href="https://www.facebook.com/portailmaroc.ma/" target="_blank" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+            <span>Facebook</span>
+          </a>
+        </li>
+              <li class="nav-item">
+          <a class="nav-link" href="https://x.com/Portailmaroc_ma" target="_blank" aria-label="X">
+            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+            <span>X</span>
+          </a>
+        </li>
+              <li class="nav-item">
+          <a class="nav-link" href="https://www.youtube.com/@PortailMaroc_Ma" target="_blank" aria-label="Youtube">
+            <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            <span>Youtube</span>
+          </a>
+        </li>
+              <li class="nav-item">
+          <a class="nav-link" href="https://www.instagram.com/portailmaroc_ma/" target="_blank" aria-label="Instagram">
+            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            <span>Instagram</span>
+          </a>
+        </li>
+      		</ul>
+	</div>
+</div>
+
+<div class="wrapper-accessibilty" id="chatbot-setting">
+	<button aria-label="Name" id="toggleAccessPanel" type="button" class="btn-accessibilty toggel-panel-edtior">
+		    <img src="/HTML/assets/images/Accessibility.png" alt="chat-bot">
+	</button>
+	<button aria-label="Name" id="vfrc-launcher" type="button" class="btn-vfrc-launcher toggel-panel-edtior">
+		<img src="/HTML/assets/images/Chatbot.svg" alt="chat-bot">
+	</button>
+</div>
+  <main id="main-content">
+    <section class="banner--breadcrumbs  odd-re-bg">
+      <div class="container">
+        <div class="row">
+          <!-- breadcrumb -->
+                        <div>
+    
+
+      <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+              <li class="breadcrumb-item" >
+                  <a href="/fr">Accueil</a>
+                </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                  <span> Le Maroc</span>
+                </li>
+          </ol>
+  </nav>
+
+
+  </div>
+
+                    <!-- Title Page -->
+                        <div>
+    
+
+    
+    <div class="title--page text-center">
+        <h1 >
+Gouvernement</h1>
+    </div>
+
+
+  </div>
+
+                  </div>
+      </div>
+    </section>
+    <!-- content -->
+            <div>
+    
+
+    
+<div class="views-element-container">
+<div class="js-view-dom-id-aeda48f1801b7f2aa26139fd1b160dd58d3703fa6cd6d3084601f824245bdf74">
+  <section class="emblemes  odd-re-bg" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+
+      <div class="row">
+        <div class="all-item--service">
+          <div class="tabs--item">
+            <button id="section1">
+              Gouvernement
+            </button>
+            <button id="section2">
+              Anciens Chefs de gouvernement
+            </button>
+          </div>
+          <div class="element--detail row">
+            <!-- element 1  -->
+            <div class="element-sc">
+              <div class="row">
+                                                                      <section class="wrapper--info--paragraphs">
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="info-top-title bg-blue-title">
+                            <div class="title--parent-h2">
+                              <h2>Attributions du gouvernement</h2>
+                            </div>
+                          </div>
+                          <div class="info--paragraphs">
+                            <div class="container"><div class="row"><div class="col-lg-12"><p>Le Gouvernement se compose du Chef du Gouvernement et des Ministres, et peut comprendre aussi des Secrétaires d’Etat (Titre V de la Constitution)</p></div></div></div>
+                          </div>
+                        </div>
+                                                  <div id="flipbookPDFContainer" data-lang="fr"></div>
+                                              
+                      </div>
+                    </div>
+                  </section>
+                                      <section class="wrapper--all-items">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <div class="info-top-title bg-blue-title" data-aos="fade-up" data-aos-duration="2000">
+                              <div class="title--parent-h2">
+                                <h2>Composition du Gouvernement</h2>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          
+
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.cg.gov.ma/fr/biographie-du-chef-du-gouvernement" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/1-Aziz-Akhannouch.jpg" alt="Image 1">
+		</div>
+		<h3>M. Aziz AKHANNOUCH</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.cg.gov.ma/fr/biographie-du-chef-du-gouvernement" target="_blank">Chef du gouvernement</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/2-Abdelouafi-Laftit.jpg" alt="Image 1">
+		</div>
+		<h3>M. Abdelouafi LAFTIT</h3>
+    <div class="paragraph--gouver">
+      <span target="_blank">Ministre de l&#039;Intérieur</span>
+    </div>
+		</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://diplomatie.ma/fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/3-Nasser-Bourita.jpg" alt="Image 1">
+		</div>
+		<h3>M. Nasser BOURITA</h3>
+    <div class="paragraph--gouver">
+      <a href="https://diplomatie.ma/fr" target="_blank">Ministre des Affaires étrangères, de la coopération africaine et des Marocains résidant à l’étranger</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://justice.gov.ma/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/4-Abdellatif-Ouahbi.jpg" alt="Image 1">
+		</div>
+		<h3>M. Abdellatif OUAHBI</h3>
+    <div class="paragraph--gouver">
+      <a href="https://justice.gov.ma/" target="_blank">Ministre de la Justice</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.habous.gov.ma/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/5-Ahmed-Toufiq.jpg" alt="Image 1">
+		</div>
+		<h3>M. Ahmed TOUFIQ</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.habous.gov.ma/" target="_blank">Ministre des Habous et des Affaires islamiques</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="http://www.sgg.gov.ma/Accueil.aspx" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/6-Mohamed-Hajoui.jpg" alt="Image 1">
+		</div>
+		<h3>M. Mohamed  HAJOUI</h3>
+    <div class="paragraph--gouver">
+      <a href="http://www.sgg.gov.ma/Accueil.aspx" target="_blank">Secrétaire Général du Gouvernement</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.finances.gov.ma/Fr/Pages/index.aspx" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/7-Nadia-Fettah-Alaoui.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Nadia FETTAH</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.finances.gov.ma/Fr/Pages/index.aspx" target="_blank">Ministre de l’Economie et des Finances</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.equipement.gov.ma/Pages/accueil.aspx" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/8-Nizar-Baraka.jpg" alt="Image 1">
+		</div>
+		<h3>M. Nizar BARAKA</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.equipement.gov.ma/Pages/accueil.aspx" target="_blank">Ministre de l’Equipement et de l’Eau</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.men.gov.ma/Fr/Pages/Accueil.aspx" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Mohamed-Saad-Berrada.jpg" alt="Image 1">
+		</div>
+		<h3>M. Mohamed Saad BERRADA</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.men.gov.ma/Fr/Pages/Accueil.aspx" target="_blank">Ministre de l’Education nationale, du Préscolaire et des Sports</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.sante.gov.ma/Pages/Accueil.aspx" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Amine-Tahraoui-.jpg" alt="Image 1">
+		</div>
+		<h3>M. Amine TEHRAOUI</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.sante.gov.ma/Pages/Accueil.aspx" target="_blank">Ministre de la Santé et de la Protection sociale</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.mhpv.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/11-Fatima-Ezzahra-El-Mansouri.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Fatima Ezzahra El MANSOURI</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.mhpv.gov.ma/fr/" target="_blank">Ministre de l’Aménagement du territoire national, de l’Urbanisme, de l’Habitat et de la Politique de la ville</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="http://www.mpm.gov.ma/wps/portal/PortaIl-MPM/ACCUEIL/!ut/p/b1/04_Sj9Q1NDQzNDI2NrC01I_Qj8pLLMtMTyzJzM9LzAHxo8ziDdzcffyNDMwMLAJcDQ08g1wtwnxMnIAsU6CCSJACHMDRgJD-cP0o_ErMYApwW-HnkZ-bqp8blWPpqeuoCAAlR5NT/dl4/d5/L2dBISEvZ0FBIS9nQSEh/#&amp;panel1-1" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Ahmed-Bouari.jpg" alt="Image 1">
+		</div>
+		<h3>M. Ahmed EL BOUARI</h3>
+    <div class="paragraph--gouver">
+      <a href="http://www.mpm.gov.ma/wps/portal/PortaIl-MPM/ACCUEIL/!ut/p/b1/04_Sj9Q1NDQzNDI2NrC01I_Qj8pLLMtMTyzJzM9LzAHxo8ziDdzcffyNDMwMLAJcDQ08g1wtwnxMnIAsU6CCSJACHMDRgJD-cP0o_ErMYApwW-HnkZ-bqp8blWPpqeuoCAAlR5NT/dl4/d5/L2dBISEvZ0FBIS9nQSEh/#&amp;panel1-1" target="_blank">Ministre de l’Agriculture, de la Pêche maritime, du Développement rural et des Eaux et Forêts</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://miepeec.gov.ma/?lang=fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/13-Younes-Sekkouri.jpg" alt="Image 1">
+		</div>
+		<h3>M. Younes SEKKOURI OUBBAHESSOU</h3>
+    <div class="paragraph--gouver">
+      <a href="https://miepeec.gov.ma/?lang=fr" target="_blank">Ministre de l’Inclusion économique, de la Petite entreprise, de l’Emploi et des Compétences</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.mcinet.gov.ma/fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/14-Ryad-Mezzour.jpg" alt="Image 1">
+		</div>
+		<h3>M. Ryad MEZZOUR</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.mcinet.gov.ma/fr" target="_blank">Ministre de l’Industrie et du Commerce</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://mtaess.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/15-Fatim-Zahra-Ammor.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Fatima Zahra AMMOR</h3>
+    <div class="paragraph--gouver">
+      <a href="https://mtaess.gov.ma/fr/" target="_blank">Ministre du Tourisme, de l’Artisanat et de l’Economie sociale et solidaire</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.enssup.gov.ma/en?slug=" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Azzedine-El-Midaoui.jpg" alt="Image 1">
+		</div>
+		<h3>M. Azzedine EL MIDAOUI </h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.enssup.gov.ma/en?slug=" target="_blank">Ministre de l’Enseignement supérieur, de la recherche scientifique et de l’innovation</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.environnement.gov.ma/fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/17-Leila-Benali.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Leila BENALI</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.environnement.gov.ma/fr" target="_blank">Ministre de la Transition énergétique et du Développement durable</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.transport.gov.ma/Pages/accueil.aspx" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Abdessamad-Kayouh.jpg" alt="Image 1">
+		</div>
+		<h3>M. Abdessamad KAYOUH</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.transport.gov.ma/Pages/accueil.aspx" target="_blank">Ministre du Transport et de la Logistique</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://mjcc.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/19-Mohamed-Mehdi-Bensaid.jpg" alt="Image 1">
+		</div>
+		<h3>M. Mohamed Mehdi BENSAID</h3>
+    <div class="paragraph--gouver">
+      <a href="https://mjcc.gov.ma/fr/" target="_blank">Ministre de la Jeunesse, de la Culture et de la Communication</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://social.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Naima-Ben-Yahia.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Naima BEN YAHIA</h3>
+    <div class="paragraph--gouver">
+      <a href="https://social.gov.ma/fr/" target="_blank">Ministre de la Solidarité, de l’Insertion sociale et de la Famille</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/21-Abdellatif-Loudiyi.jpg" alt="Image 1">
+		</div>
+		<h3>M. Abdeltif LOUDYI</h3>
+    <div class="paragraph--gouver">
+      <span target="_blank">Ministre délégué auprès du Chef du gouvernement chargé de l’administration de la Défense nationale</span>
+    </div>
+		</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://micepp.gov.ma/fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Karim-Zidane.jpg" alt="Image 1">
+		</div>
+		<h3>M. Karim ZIDANE</h3>
+    <div class="paragraph--gouver">
+      <a href="https://micepp.gov.ma/fr" target="_blank">Ministre délégué auprès du chef du gouvernement chargé de l’Investissement, de la Convergence et de l’évaluation des Politiques publiques</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/23-Faouzi-Lekjaa.jpg" alt="Image 1">
+		</div>
+		<h3>M. Fouzi LEKJAA</h3>
+    <div class="paragraph--gouver">
+      <span target="_blank">Ministre délégué auprès du ministre de l’Economie et des Finances, chargé du Budget</span>
+    </div>
+		</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.mcrp.gov.ma/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/24-Mustapha-Baitas.jpg" alt="Image 1">
+		</div>
+		<h3>M. Mustapha BAITAS</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.mcrp.gov.ma/" target="_blank">Ministre délégué auprès du chef du gouvernement chargé des Relations avec le parlement, Porte-parole du gouvernement</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.mmsp.gov.ma/fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-10/Amal-El-Fallah-Seghrouchni.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Amal EL FALLAH</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.mmsp.gov.ma/fr" target="_blank">Ministre délégué auprès du chef du gouvernement chargé de la Transition numérique et de la Réforme administrative</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="http://www.mpm.gov.ma/wps/portal/PortaIl-MPM/ACCUEIL/!ut/p/b1/04_Sj9Q1NDQzNDI2NrC01I_Qj8pLLMtMTyzJzM9LzAHxo8ziDdzcffyNDMwMLAJcDQ08g1wtwnxMnIAsU6CCSJACHMDRgJD-cP0o_ErMYApwW-HnkZ-bqp8blWPpqeuoCAAlR5NT/dl4/d5/L2dBISEvZ0FBIS9nQSEh/#&amp;panel1-1" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-11/Zakia-Driouich.jpg" alt="Image 1">
+		</div>
+		<h3>Mme. Zakia DRIOUICH</h3>
+    <div class="paragraph--gouver">
+      <a href="http://www.mpm.gov.ma/wps/portal/PortaIl-MPM/ACCUEIL/!ut/p/b1/04_Sj9Q1NDQzNDI2NrC01I_Qj8pLLMtMTyzJzM9LzAHxo8ziDdzcffyNDMwMLAJcDQ08g1wtwnxMnIAsU6CCSJACHMDRgJD-cP0o_ErMYApwW-HnkZ-bqp8blWPpqeuoCAAlR5NT/dl4/d5/L2dBISEvZ0FBIS9nQSEh/#&amp;panel1-1" target="_blank">Secrétaire d’Etat auprès du ministre de l’Agriculture, du Développement rural et des Eaux et forêts, chargée de la Pêche maritime.</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.mcinet.gov.ma/fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-11/Omar-Hejira.jpg" alt="Image 1">
+		</div>
+		<h3>M. Omar HEJIRA</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.mcinet.gov.ma/fr" target="_blank">Secrétaire d’Etat auprès du ministre de l’Industrie et du Commerce, chargé du Commerce extérieur</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://www.mhpv.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-11/Adib-Benbrahim.jpg" alt="Image 1">
+		</div>
+		<h3>M. Adib BEN-BRAHIM</h3>
+    <div class="paragraph--gouver">
+      <a href="https://www.mhpv.gov.ma/fr/" target="_blank">Secrétaire d’Etat auprès de la ministre de l&#039;Aménagement du Territoire national, de l&#039;Urbanisme, de l&#039;Habitat et de la Politique de la Ville, chargé de l’Habitat</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://miepeec.gov.ma/?lang=fr" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-11/Hicham-Sabiry%2C.jpg" alt="Image 1">
+		</div>
+		<h3>M. Hicham SABIRY</h3>
+    <div class="paragraph--gouver">
+      <a href="https://miepeec.gov.ma/?lang=fr" target="_blank">Secrétaire d’Etat auprès du ministre de l’Inclusion économique, de la petite entreprise, de l’emploi et des compétences, chargé du Travail</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://mtaess.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-11/M.-Lahcen-Essaadi.jpg" alt="Image 1">
+		</div>
+		<h3>M. Lahcen ES-SAADI</h3>
+    <div class="paragraph--gouver">
+      <a href="https://mtaess.gov.ma/fr/" target="_blank">Secrétaire d’Etat auprès de la ministre du Tourisme, de l’Artisanat et de l’Economie sociale et solidaire, chargé de l’Artisanat et de l’Economie sociale et solidaire</a>
+    </div>
+				</a>
+	</div>
+
+<div class="col-lg-3 col-md-6 col-12 sc-item" data-aos="fade-up" data-aos-duration="2000">
+			<a href="https://social.gov.ma/fr/" target="_blank">
+				<div class="sc-item-img">
+			<img src="/sites/default/files/2024-11/M.-Abdeljabbar-ER-RACHIDI.jpg" alt="Image 1">
+		</div>
+		<h3>M. Abdeljabbar ER-RACHIDI</h3>
+    <div class="paragraph--gouver">
+      <a href="https://social.gov.ma/fr/" target="_blank">Secrétaire d’Etat auprès de la ministre de la Solidarité, de l’Insertion Sociale et de la Famille, chargé de l’Insertion Sociale</a>
+    </div>
+				</a>
+	</div>
+
+                        </div>
+                      </div>
+                    </section>
+                                                </div>
+            </div>
+            <div class="element-sc">
+              <div class="row">
+                <div class="views-element-container">
+<div class="js-view-dom-id-aa43c47592ce88433392fe409a799b1981ed8a57c29fa5d8d1a7f11e78d167cf">
+    <section section class="wrapper--timeline">
+      <div class="container">
+        <div class="timeline">
+          <div data-drupal-views-infinite-scroll-content-wrapper class="views-infinite-scroll-content-wrapper clearfix">
+
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/time1.png" width="210" height="210" alt="M. Saad Dine EL OTMANI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Saad Dine EL OTMANI</h2>
+		<p>Chef du gouvernement</p>
+		<h3 class="timeline-date"><ul><li><time datetime="2017-03-17T12:00:00Z">17  Mars,  2017</time>
+ - <time datetime="2021-09-10T12:00:00Z">10  Septembre,  2021</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/NoPath%20-%20Copie%20%2851%29.png" width="210" height="210" alt="M. Abdelilah BENKIRANE" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Abdelilah BENKIRANE</h2>
+		<p>Chef du gouvernement</p>
+		<h3 class="timeline-date"><ul><li><time datetime="2013-10-10T12:00:00Z">10  Octobre,  2013</time>
+ - <time datetime="2017-04-05T12:00:00Z">5  Avril,  2017</time>
+</li><li><time datetime="2011-11-29T12:00:00Z">29  Novembre,  2011</time>
+ - <time datetime="2013-10-09T12:00:00Z">9  Octobre,  2013</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/NoPath%20-%20Copie%20%2853%29.png" width="210" height="210" alt="M. Abbas EL FASSI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Abbas EL FASSI</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="2007-09-19T12:00:00Z">19  Septembre,  2007</time>
+ - <time datetime="2012-01-03T12:00:00Z">3  Janvier,  2012</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/NoPath%20-%20Copie%20%2811%29.png" width="210" height="210" alt="driss jettou" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Driss JETTOU</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="2004-06-08T12:00:00Z">8  Juin,  2004</time>
+ - <time datetime="2007-10-15T12:00:00Z">15  Octobre,  2007</time>
+</li><li><time datetime="2002-11-07T12:00:00Z">7  Novembre,  2002</time>
+ - <time datetime="2004-06-08T12:00:00Z">8  Juin,  2004</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/NoPath%20-%20Copie%20%2810%29.png" width="210" height="210" alt="M. Abderahmane YOUSSOUFI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Abderahmane YOUSSOUFI</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="2000-09-06T12:00:00Z">6  Septembre,  2000</time>
+ - <time datetime="2002-11-01T12:00:00Z">1  Novembre,  2002</time>
+</li><li><time datetime="1998-03-14T12:00:00Z">14  Mars,  1998</time>
+ - <time datetime="2000-09-06T12:00:00Z">6  Septembre,  2000</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/Abdellatif%20FILALI_0.jpg" width="210" height="210" alt="M. Abdellatif FILALI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Abdellatif FILALI</h2>
+		<p>Premier ministre et ministre des affaires étrangères</p>
+		<h3 class="timeline-date"><ul><li><time datetime="1995-02-28T12:00:00Z">28  février,  1995</time>
+ - <time datetime="1998-03-14T12:00:00Z">14  Mars,  1998</time>
+</li><li><time datetime="1994-06-07T12:00:00Z">7  Juin,  1994</time>
+ - <time datetime="1995-02-27T12:00:00Z">27  février,  1995</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/Mohamed%20Karim%20LAMRANI.jpg" width="210" height="210" alt="M. Mohamed Karim LAMRANI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Mohamed Karim LAMRANI</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="1992-08-11T12:00:00Z">11  Août,  1992</time>
+ - <time datetime="1993-11-11T12:00:00Z">11  Novembre,  1993</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/Azzedine%20LARAKI.jpg" width="210" height="210" alt="M. Azzedine LARAKI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Azzedine LARAKI</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="1986-09-30T12:00:00Z">30  Septembre,  1986</time>
+ - <time datetime="1992-08-10T12:00:00Z">10  Août,  1992</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/Mohamed%20Karim%20LAMRANI.jpg" width="210" height="210" alt="M. Mohamed Karim LAMRANI" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Mohamed Karim LAMRANI</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="1983-11-19T12:00:00Z">19  Novembre,  1983</time>
+ - <time datetime="1985-04-11T12:00:00Z">11  Avril,  1985</time>
+</li></ul></h3>
+
+			</div>
+</div>
+
+
+<div class="timeline-item">
+					<div class="timeline-content">
+				<div class="img-thumbnail">
+					  <img loading="lazy" src="/sites/default/files/2024-10/Maati%20BOUABID.jpg" width="210" height="210" alt="M. Maati BOUABID" />
+
+
+				</div>
+			</div>
+			<div class="timeline-content-wrapper">
+		<h2 class="timeline-title">M. Maati BOUABID</h2>
+		<p>Premier ministre</p>
+		<h3 class="timeline-date"><ul><li><time datetime="1981-11-05T12:00:00Z">5  Novembre,  1981</time>
+ - <time datetime="1983-11-30T12:00:00Z">30  Novembre,  1983</time>
+</li><li><time datetime="1979-03-27T12:00:00Z">27  Mars,  1979</time>
+ - <time datetime="1981-11-05T12:00:00Z">5  Novembre,  1981</time>
+</li></ul></h3>
+
+			</div>
+</div>
+</div>
+
+        </div>
+        <!-- Load More button -->
+        
+    <div  class="js-pager__items pager text-center btn--sc" data-drupal-views-infinite-scroll-pager>
+        <a href="?page=1">Afficher plus</a>
+    </div>
+
+      </div>
+
+    </section>
+</div>
+
+
+
+
+</div>
+
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  
+  
+
+    <section class="wrapper--decouvrir-egalement">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="info-top-title bg-blue-title">
+                        <div class="title--parent-h2">
+                            <h2>Continuez votre visite sur notre Portail</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                
+
+        <div class="col-lg-4">
+        <a href="/fr/le-maroc/constitution">
+            <div class="items--egalements">
+                <div class="column--img">
+                    
+
+    
+
+  
+
+      <img loading="lazy" src="/sites/default/files/2024-12/Constitution.jpg" width="728" height="512" alt="constitution" />
+
+
+
+
+
+
+                </div>
+                <div class="column--info">
+                    <h3>
+Constitution</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+        <div class="col-lg-4">
+        <a href="/fr/le-maroc/parlement">
+            <div class="items--egalements">
+                <div class="column--img">
+                    
+
+    
+
+  
+
+      <img loading="lazy" src="/sites/default/files/2024-12/Parlement.png" width="728" height="512" alt="Parlement" />
+
+
+
+
+
+
+                </div>
+                <div class="column--info">
+                    <h3>
+Parlement</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+        <div class="col-lg-4">
+        <a href="/fr/le-maroc/les-partis-politiques-et-syndicats">
+            <div class="items--egalements">
+                <div class="column--img">
+                    
+
+    
+
+  
+
+      <img loading="lazy" src="/sites/default/files/2024-12/Monarchie.png" width="728" height="512" alt="Monarchie" />
+
+
+
+
+
+
+                </div>
+                <div class="column--info">
+                    <h3>
+Partis politiques et syndicats</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+
+
+            </div>
+        </div>
+    </section>
+
+
+  
+</div>
+<script>
+	setTimeout(function() {
+		jQuery(document).ready(function() {
+			var source_pdf = "/sites/default/files/2025-01/attributions_gouvernement_du_maroc_fr_2011_0.pdf";
+			var flipbookPDFContainer = $("#flipbookPDFContainer");
+			var lang = $(flipbookPDFContainer).data('lang');
+
+			if (lang == 'ar') {
+				var directionVar = DFLIP.DIRECTION.RTL;
+			} else {
+				var directionVar = DFLIP.DIRECTION.LTR;
+			}
+			var option_pdf = {
+				webgl:true,
+				scrollWheel: false,
+				backgroundColor: "#808080",
+				direction: directionVar,
+			};
+			var flipBook_pdf = $("#flipbookPDFContainer").flipBook(source_pdf, option_pdf);
+		});
+		
+	},1500)
+</script>
+</div>
+
+
+
+
+    <div class="views-element-container">
+
+
+    <section class="actualites  bg-blue-normal odd-re-bg" id="actualites-internes">
+        <div class="container">
+            <div class="info-top-title">
+                <div class="title--parent-h2">
+                    <h2>Dernières actualités</h2>
+                </div>
+            </div>
+            <div class="row slider-element-maps">
+                <div class="col-lg-12 slider-actualites-internes">
+                        
+
+
+    <div class="col-md-item">
+    <div class="card">
+        <a href="/fr/actualites/legislatives-2026-1850-listes-de-candidatures-presentees-lechelle-nationale">
+            <div class="wrapper-img" style="background-image: url('/sites/default/files/styles/846x448_actualites/public/2026-09/2026-2b3k3.webp?itok=iWxHxgdK')">
+                <img src="/sites/default/files/styles/846x448_actualites/public/2026-09/2026-2b3k3.webp?itok=iWxHxgdK" class="card-img-top" alt="image Actualité 0" width="846" height="448" loading="lazy">
+            </div>
+            <div class="card-body">
+                <h3>Législatives 2026: 1.850 listes de candidatures présentées à l&#039;échelle nationale</h3>
+                <div class="info--bottom-date-more">
+                    <div class="date--actualites">
+                        <span><i class="fas fa-calendar-alt"></i><time datetime="2026-09-11T12:00:00Z">11  Septembre,  2026</time>
+</span>
+                    </div>
+                    <div class="more--link">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+    <div class="col-md-item">
+    <div class="card">
+        <a href="/fr/actualites/institut-du-monde-arabe-larchitecte-salima-naji-remporte-le-grand-prix-du-design-2026">
+            <div class="wrapper-img" style="background-image: url('/sites/default/files/styles/846x448_actualites/public/2026-09/L-architecte-Salima-Naji.jpg.webp?itok=dz-br431')">
+                <img src="/sites/default/files/styles/846x448_actualites/public/2026-09/L-architecte-Salima-Naji.jpg.webp?itok=dz-br431" class="card-img-top" alt="image Actualité 1" width="846" height="448" loading="lazy">
+            </div>
+            <div class="card-body">
+                <h3>Institut du Monde Arabe : L’architecte Salima Naji remporte le Grand Prix du design 2026</h3>
+                <div class="info--bottom-date-more">
+                    <div class="date--actualites">
+                        <span><i class="fas fa-calendar-alt"></i><time datetime="2026-09-10T12:00:00Z">10  Septembre,  2026</time>
+</span>
+                    </div>
+                    <div class="more--link">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+    <div class="col-md-item">
+    <div class="card">
+        <a href="/fr/actualites/la-17e-edition-du-salon-du-cheval-del-jadida-du-13-au-18-octobre-2026">
+            <div class="wrapper-img" style="background-image: url('/sites/default/files/styles/846x448_actualites/public/2026-09/Jadida.png.webp?itok=v6vTTaRj')">
+                <img src="/sites/default/files/styles/846x448_actualites/public/2026-09/Jadida.png.webp?itok=v6vTTaRj" class="card-img-top" alt="image Actualité 2" width="846" height="448" loading="lazy">
+            </div>
+            <div class="card-body">
+                <h3>La 17e édition du Salon du Cheval d’El Jadida du 13 au 18 octobre 2026</h3>
+                <div class="info--bottom-date-more">
+                    <div class="date--actualites">
+                        <span><i class="fas fa-calendar-alt"></i><time datetime="2026-09-10T12:00:00Z">10  Septembre,  2026</time>
+</span>
+                    </div>
+                    <div class="more--link">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+    <div class="col-md-item">
+    <div class="card">
+        <a href="/fr/actualites/beijing-les-couleurs-et-les-savoir-faire-du-maroc-lhonneur-au-colourful-world">
+            <div class="wrapper-img" style="background-image: url('/sites/default/files/styles/846x448_actualites/public/2026-09/China.png.webp?itok=Py4ObXEi')">
+                <img src="/sites/default/files/styles/846x448_actualites/public/2026-09/China.png.webp?itok=Py4ObXEi" class="card-img-top" alt="image Actualité 3" width="846" height="448" loading="lazy">
+            </div>
+            <div class="card-body">
+                <h3>Beijing : les couleurs et les savoir-faire du Maroc à l’honneur au &quot;Colourful World&quot;</h3>
+                <div class="info--bottom-date-more">
+                    <div class="date--actualites">
+                        <span><i class="fas fa-calendar-alt"></i><time datetime="2026-09-10T12:00:00Z">10  Septembre,  2026</time>
+</span>
+                    </div>
+                    <div class="more--link">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+    <div class="col-md-item">
+    <div class="card">
+        <a href="/fr/actualites/legislatives-2026cap-sur-le-renforcement-de-la-confiance-institutionnelle">
+            <div class="wrapper-img" style="background-image: url('/sites/default/files/styles/846x448_actualites/public/2026-09/elec_0.png.webp?itok=gwrWmPIE')">
+                <img src="/sites/default/files/styles/846x448_actualites/public/2026-09/elec_0.png.webp?itok=gwrWmPIE" class="card-img-top" alt="image Actualité 4" width="846" height="448" loading="lazy">
+            </div>
+            <div class="card-body">
+                <h3>Législatives 2026..Cap sur le renforcement de la confiance institutionnelle</h3>
+                <div class="info--bottom-date-more">
+                    <div class="date--actualites">
+                        <span><i class="fas fa-calendar-alt"></i><time datetime="2026-09-10T12:00:00Z">10  Septembre,  2026</time>
+</span>
+                    </div>
+                    <div class="more--link">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+
+  </div>
+
+      </main>
+<footer>
+  <div class="footer-top">
+    <div class="container">
+                  <div class="row" id="top-footer">
+        <div class="col-lg-3">
+          <div class="logo-left-footer">
+            <a href="/fr" aria-label="Portail Maroc.ma - Accueil">
+              <img
+                src="/sites/default/files/2024-12/FR.svg"
+                alt="maroc"
+                fetchpriority="low"
+                loading="lazy"
+                decoding="async"
+                width="211" height="69">
+            </a>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="top-footer-center-application">
+            <h4>Téléchargez l'application</h4>
+            <div class="app-telecharger">
+              <div class="app-store">
+                <img src="/HTML/assets/images/apple-store.png" alt="" loading="lazy" decoding="async" width="140" height="140">
+                                  <a href="https://apps.apple.com/us/app/portail-national-du-maroc/id1190551995" target="_blank" rel="noopener">
+                    <img src="/sites/default/files/2024-12/Download_on_the_App_Store_Badge_FR_RGB_blk_100517.png" alt="AppStore" class="img-play" loading="lazy" decoding="async" width="135" height="40">
+                  </a>
+                              </div>
+              <div class="play-store">
+                                  <a href="https://play.google.com/store/apps/details?id=ma.maroc.portail" target="_blank" rel="noopener">
+                    <img src="/sites/default/files/2024-12/GetItOnGooglePlay_Badge_Web_color_French-o.png" alt="PlayStore" class="img-play" loading="lazy" decoding="async" width="135" height="40">
+                  </a>
+                                <img src="/HTML/assets/images/play-store.png" alt="" loading="lazy" decoding="async" width="140" height="140">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3">
+          <div class="logo-right-footer">
+            <a href="https://mjcc.gov.ma/fr/departements/communication/" target="_blank" rel="noopener" aria-label="Ministère de la Jeunesse, de la Culture et de la Communication">
+              <img
+                src="/sites/default/files/2024-12/mjcc_white.svg"
+                alt="maroc"
+                fetchpriority="low"
+                loading="lazy"
+                decoding="async"
+                width="269" height="105">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="center-footer">
+        <ul class="social-icon">
+          <!-- Social media -->
+                      <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.facebook.com/portailmaroc.ma/" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+              </a>
+            </li>
+                      <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://x.com/Portailmaroc_ma" aria-label="X">
+                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+              </a>
+            </li>
+                      <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.youtube.com/@PortailMaroc_Ma" aria-label="Youtube">
+                <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+              </a>
+            </li>
+                      <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.instagram.com/portailmaroc_ma/" aria-label="Instagram">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </a>
+            </li>
+                  </ul>
+      </div>
+
+            <div class="row" id="bottom-footer-copyright">
+        <!-- Menu -->
+        <ul>
+          <li><a href="/fr/conditions-generales-d-utilisation">Conditions générales d'utilisation</a></li>
+        </ul>
+        <ul class="px-3">
+          <li><a href="/cdn-cgi/l/email-protection#f0939f9e84919384b09d91829f93de9d91">Contactez-nous</a></li>
+        </ul>
+        <!-- copyright -->
+        <div class="sc-copyright">
+          <p>Ministère de la Jeunesse, de la Culture et de la Communication ©  2026  -Tous droits réservés</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </div>
+
+    
+
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="application/json" data-drupal-selector="drupal-settings-json">{"path":{"baseUrl":"\/","pathPrefix":"fr\/","currentPath":"node\/10325","currentPathIsAdmin":false,"isFront":false,"currentLanguage":"fr"},"pluralDelimiter":"\u0003","suppressDeprecationErrors":true,"ajaxPageState":{"libraries":"eJw1jVEOhDAIBS9U7JEMFtywocWUVuPtt1nrz8u8gUCyypFqP1AXaZxBxVvIWC1FJGqG5YavT0O7yjH5o7ahQvJ3aNdog7qzBr99XIsbOodT-PL4zyUbdZ1qlbJLGV9XT9VUnxV4LTz2B7TcPqs","theme":"maroc","theme_token":null},"ajaxTrustedUrl":{"\/fr\/search\/content":true},"views":{"ajax_path":"\/fr\/views\/ajax","ajaxViews":{"views_dom_id:aa43c47592ce88433392fe409a799b1981ed8a57c29fa5d8d1a7f11e78d167cf":{"view_name":"historique_des_chefs_du_gouvernement","view_display_id":"block_1","view_args":"","view_path":"\/node\/10325","view_base_path":"le-maroc\/historique-des-chefs-du-gouvernement","view_dom_id":"aa43c47592ce88433392fe409a799b1981ed8a57c29fa5d8d1a7f11e78d167cf","pager_element":0}}},"user":{"uid":0,"permissionsHash":"c0f321e15b51e6af7462e29392a0601a4d534e873dbd072799b767d621a18ffc"}}</script>
+<script src="/themes/custom/maroc/js/jquery-3.7.1.min.js?v=3.7.1"></script>
+<script src="/sites/default/files/js/js_60uLEiU3xHvfM35foIFnM-xC3xphSccnETSLDxmZ4iE.js?scope=footer&amp;delta=1&amp;language=fr&amp;theme=maroc&amp;include=eJzLTSzKT9ZPScvJLNDJBbPzy3N0k4Gs0uLUHJ2yzNTy4vjMvLTMvMyS1Pji5KL8nBx9sKguTFQXIgoAPCwdNA"></script>
+<script src="/themes/custom/maroc/js/bootstrap.bundle.min.js?v=2.1" defer></script>
+<script src="/themes/custom/maroc/js/accessibilty.min.js?v=2.1" defer></script>
+<script src="/themes/custom/maroc/js/scripts.min.js?v=2.1" defer></script>
+<script src="/themes/custom/maroc/js/a11y-runtime-patches.js?v=2.1" defer></script>
+<script src="/sites/default/files/js/js_4uEveTcW2v2BLep-1_kBdPaAw3Rez1U0lAD4mEGWweQ.js?scope=footer&amp;delta=6&amp;language=fr&amp;theme=maroc&amp;include=eJzLTSzKT9ZPScvJLNDJBbPzy3N0k4Gs0uLUHJ2yzNTy4vjMvLTMvMyS1Pji5KL8nBx9sKguTFQXIgoAPCwdNA"></script>
+<script src="/themes/custom/maroc/js/owl.carousel.min.js?v=1.9" defer></script>
+<script src="/themes/custom/maroc/js/slider.min.js?v=1.9" defer></script>
+<script src="/sites/default/files/js/js_GjicillGdHMe-UGpXD7fGezk9dOie3Y2GKFaaqAvyMM.js?scope=footer&amp;delta=9&amp;language=fr&amp;theme=maroc&amp;include=eJzLTSzKT9ZPScvJLNDJBbPzy3N0k4Gs0uLUHJ2yzNTy4vjMvLTMvMyS1Pji5KL8nBx9sKguTFQXIgoAPCwdNA"></script>
+
+
+            
+    <div id="chatbot-widget"></div>
+
+        <script>
+        (function () {
+          function loadChatbotWidget() {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = 'https://chatflow.fornetmaroc.com/widget/widget.css';
+            document.head.appendChild(link);
+
+            var script = document.createElement('script');
+            script.src = 'https://chatflow.fornetmaroc.com/widget/widget.js';
+            script.onload = function () {
+              ChatbotWidget.init({
+                containerId: 'chatbot-widget',
+                apiUrl: 'https://chatflow.fornetmaroc.com/api',
+                apiKey: 'f221716c300b47982c0a9fb8d6e1ee0c39f9fbcf780645761d42a16ef3419298',
+                projectId: 1,
+                workflowId: 1,
+                enableIntentDetection: true,
+                config: {
+                  textDirection: 'ltr'
+                }
+              });
+            };
+            document.body.appendChild(script);
+          }
+
+          function scheduleLoad() {
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(loadChatbotWidget, { timeout: 3000 });
+            } else {
+              setTimeout(loadChatbotWidget, 1000);
+            }
+          }
+
+          if (document.readyState === 'complete') {
+            scheduleLoad();
+          } else {
+            window.addEventListener('load', scheduleLoad, { once: true });
+          }
+        })();
+    </script>
+
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"1291d7748146429bac580a9e1210ea16","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_2_PROJECTS",
+  "agent_name": "ProjectsRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 1,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 1,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 1,
+  "accepted_count": 0,
+  "queries_executed": 6,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 6,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "direct_pages": 2,
+      "paid_search_calls": 6,
+      "resolution_search_calls": 0,
+      "raw_results": 100,
+      "project_observations": 1,
+      "official_confirmed": 1,
+      "secondary_only": 0,
+      "duplicates": 0,
+      "updates": 0,
+      "rejected_vague": 105,
+      "rejected_old": 3,
+      "rejected_irrelevant": 0,
+      "rejected_completed": 2,
+      "rejected_tender": 0,
+      "final_kept": 1,
+      "maturity_a": 0,
+      "maturity_b": 0,
+      "maturity_c": 1,
+      "maturity_d": 0,
+      "collector_health": "HEALTHY",
+      "direct_fetches": 14
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 6,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 11,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13083,
+        "output_tokens": 182,
+        "query_chars": 40
+      },
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13138,
+        "output_tokens": 235,
+        "query_chars": 32
+      },
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13181,
+        "output_tokens": 296,
+        "query_chars": 34
+      },
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12924,
+        "output_tokens": 226,
+        "query_chars": 23
+      },
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13067,
+        "output_tokens": 440,
+        "query_chars": 32
+      },
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13144,
+        "output_tokens": 196,
+        "query_chars": 41
+      }
+    ],
+    "dry_run": false,
+    "rule_reasons": {
+      "review:future_opportunity_uncertain": 1
+    },
+    "ai_skipped_reasons": {
+      "NO_AI_MODE": 1
+    },
+    "paid_search_calls": 6,
+    "openai_requests": 6,
+    "openai_skipped": 1,
+    "tokens_per_kept_result": 40056.0,
+    "openai_calls_per_kept_result": 3.0,
+    "no_ai": true
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 78537,
+  "output_tokens": 1575,
+  "cached_tokens": 27171,
+  "ai_calls": 0,
+  "direct_fetches": 14,
+  "search_calls": 6,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

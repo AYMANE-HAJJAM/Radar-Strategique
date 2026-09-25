@@ -1,0 +1,92 @@
+[
+  {
+    "radar": 1,
+    "direct_http_attempts": 52,
+    "discovery_requests": 0,
+    "resolution_requests": 5,
+    "openai_api_requests": 5,
+    "web_search_tool_calls": 7,
+    "classification_calls": 0,
+    "input_tokens": 26226,
+    "output_tokens": 384,
+    "models": [
+      "gpt-5.6-luna"
+    ],
+    "usage_complete": true,
+    "other_billable_provider_calls": 0,
+    "health": "PARTIAL",
+    "candidates": 20
+  },
+  {
+    "radar": 2,
+    "direct_http_attempts": 2,
+    "discovery_requests": 6,
+    "resolution_requests": 0,
+    "openai_api_requests": 6,
+    "web_search_tool_calls": 11,
+    "classification_calls": 0,
+    "input_tokens": 71459,
+    "output_tokens": 1310,
+    "models": [
+      "gpt-5.6-luna"
+    ],
+    "usage_complete": true,
+    "other_billable_provider_calls": 0,
+    "health": "HEALTHY",
+    "candidates": 1
+  },
+  {
+    "radar": 3,
+    "direct_http_attempts": 1,
+    "discovery_requests": 5,
+    "resolution_requests": 0,
+    "openai_api_requests": 5,
+    "web_search_tool_calls": 5,
+    "classification_calls": 0,
+    "input_tokens": 65207,
+    "output_tokens": 4607,
+    "models": [
+      "gpt-5.6-luna"
+    ],
+    "usage_complete": true,
+    "other_billable_provider_calls": 0,
+    "health": "HEALTHY",
+    "candidates": 4
+  },
+  {
+    "radar": 4,
+    "direct_http_attempts": 2,
+    "discovery_requests": 5,
+    "resolution_requests": 0,
+    "openai_api_requests": 5,
+    "web_search_tool_calls": 6,
+    "classification_calls": 0,
+    "input_tokens": 57422,
+    "output_tokens": 3495,
+    "models": [
+      "gpt-5.6-luna"
+    ],
+    "usage_complete": true,
+    "other_billable_provider_calls": 0,
+    "health": "HEALTHY",
+    "candidates": 3
+  },
+  {
+    "radar": 5,
+    "direct_http_attempts": 2,
+    "discovery_requests": 6,
+    "resolution_requests": 0,
+    "openai_api_requests": 6,
+    "web_search_tool_calls": 9,
+    "classification_calls": 0,
+    "input_tokens": 79275,
+    "output_tokens": 7824,
+    "models": [
+      "gpt-5.6-luna"
+    ],
+    "usage_complete": true,
+    "other_billable_provider_calls": 0,
+    "health": "HEALTHY",
+    "candidates": 17
+  }
+]

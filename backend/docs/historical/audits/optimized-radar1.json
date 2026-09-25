@@ -1,0 +1,3514 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_1_MARKETS",
+  "agent_name": "MarketsRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 28,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 28,
+  "updated_results_count": 0,
+  "rejected_count": 49,
+  "manual_review_count": 28,
+  "accepted_count": 0,
+  "queries_executed": 5,
+  "candidates_after_rules": 11,
+  "run_metadata": {
+    "search_events_recorded": 5,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "raw_results_count": 102,
+      "allowed_domain_results": 0,
+      "aggregate_pages_detected": 0,
+      "individual_tenders_extracted": 77,
+      "candidates_created": 77,
+      "rejected_by_source": 0,
+      "rejected_by_parser": 0,
+      "rejected_by_freshness": 0,
+      "rejected_by_relevance": 49,
+      "official_resolution_attempts": 28,
+      "rejected_by_resolution": 0,
+      "official_urls_resolved": 11,
+      "duplicates_skipped": 25,
+      "control_reference_filtered": 0,
+      "kept_p1": 1,
+      "kept_p2": 27,
+      "kept_p3": 0,
+      "verified_official": 11,
+      "unverified_credible": 17,
+      "unresolved": 0,
+      "http_403": 0,
+      "http_429": 0,
+      "queries_with_results": 0,
+      "queries_with_zero_results": 5,
+      "deduped_before_enrichment": 25,
+      "pmmp_raw": 82,
+      "aggregator_raw": 20,
+      "institutional_raw": 0,
+      "discovery_search_calls": 0,
+      "resolution_search_calls": 5,
+      "query_scope_filtered": 0,
+      "direct_pages_fetched": 10,
+      "pmmp_observations": 57,
+      "marchefacile_observations": 20,
+      "institutional_observations": 0,
+      "unique_identities": 77,
+      "generic_pages": 0,
+      "procurement_pages": 10,
+      "page_type_tender_detail": 1,
+      "page_type_tender_list": 9,
+      "page_type_procurement_category": 0,
+      "page_type_institutional_procurement": 0,
+      "page_type_generic_org": 0,
+      "page_type_non_procurement": 0,
+      "topography_rejected": 2,
+      "technical_only_rejected": 14,
+      "heritage_kept": 1,
+      "consultation_architecturale_kept": 0,
+      "concours_architectural_kept": 0,
+      "architecture_kept": 28,
+      "pages_discovered": 0,
+      "relevant_candidates": 28,
+      "rejected": 49,
+      "search_calls": 5,
+      "raw_results": 102,
+      "usable_results": 77,
+      "cost_warning": false,
+      "observations_architecture": 34,
+      "direct_fetches": 60,
+      "observations_rehabilitation": 20,
+      "observations_urbanism": 9,
+      "observations_project_management": 10,
+      "relevant_observations_per_search_call": 5.6,
+      "final_kept_per_search_call": 5.6
+    },
+    "collector_trace": [
+      {
+        "query_index": null,
+        "reference": "SP4130189",
+        "title": "Etudes d’exécution, fourniture des équipements, construction, installation et mise en service de la station de transfert d’Energie par pompage (STEP) el Menzel",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "construction"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "04/2026/CA/BR/RGON",
+        "title": "L'élaboration des études architecturales et suivi des travaux d'aménagement de la corniche de SIDI IFNI.",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1032453&orgAcronyme=m8x",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturales"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux",
+              "corniche"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "12/SAP/2026",
+        "title": "Etudes techniques et du suivi des travaux de la sécurisation de l’ensemble des accès de l’Institut Royal de Police et la Division de la Police Equestre à Kénitra (en lot unique).",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "etudes techniques",
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux",
+              "institut"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "46/2026",
+        "title": "ELABORATION DES ETUDES TECHNIQUES ET SUIVI DES TRAVAUX DE RECONSTRUCTION DU CENTRE HOSPITALIER REGIONAL DE SOUSS MASSA-AGADIR.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "etudes techniques",
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "SR4131005/2026/ONEEBELEC",
+        "title": "Etudes et les fournitures THT-BT, les travaux de montage de l’appareillage électrique, les travaux de génie civil relatifs à la réalisation et la mise en service de l’extension en 225kv du poste 225/60kv de Ouled Haddou.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ],
+            "NEGATIVE": [
+              "fournitures"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "04/2026/DIAEA",
+        "title": "La réalisation des  Etudes Complémentaires  dans le cadre du Programme « Renforcement de la résilience climatique de l'agriculture par l'utilisation efficace des ressources en eau limitées » - Composantes « PMH Douirane",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "455/2026/SRMCS",
+        "title": "Marché Cadre - MISSIONS D’ETUDES TECHNIQUES DANS LE DOMAINE DE L’ELECTRICITE",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "etudes techniques"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "05/2026/CCH",
+        "title": "ETUDES TECHNIQUES ET SUIVI DES TRAVAUX D’ACHEVEMENT DE VIABILISATION DU LOTISSEMENT DE AYACH  AU NIVEAU DE LA COMMUNE DE CHBIKA- PROVINCE TAN-TAN",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "etudes techniques",
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "206/2026",
+        "title": "ETUDES TECHNIQUES ET SUIVI DES TRAVAUX DE CONSTRUCTION DE L’ECOLE COMMUNAUTAIRE ISSEKSI A LA COMMUNE TERRITORIALE ISSEKSI RELEVANT DE LA PROVINCE D’AZILAL (PA-2026) -LOT UNIQUE-",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "territoriale"
+            ],
+            "TECHNICAL": [
+              "etudes techniques",
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "204/2026",
+        "title": "ETUDES TECHNIQUES ET SUIVI DES TRAVAUX DE CONSTRUCTION DES SALLES DE PRESCOLAIRE RELEVANT DES PROVINCES DE FQUIH BEN SALAH, KHOURIBGA ET KHENIFRA PA 2026 – EN LOT UNIQUE-",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "etudes techniques",
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "09/AUKSS/2026",
+        "title": "Etude de l’élaboration du plan d’aménagement du centre chef-lieu de la commune d’Arbaoua (lot unique)",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "plan d amenagement"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "09/2026",
+        "title": "REALISATION DES ETUDES TECHNIQUES DES PROJETS AU SEIN DE LA COMMUNE KRIFATE : • ETUDE D’AMENAGEMENT ET CONSTRUCTION DE10 KM DES RUES (DALLAGE). • ETUDE D’AMENAGEMENT ET CONSTRUCTION DES PISTES ET ROUTES SUR UN LINEAIRE DE 30 KM DANS LE TERRITOIRE DE ",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "etudes techniques"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "11/AUKSS/2026",
+        "title": "Etude d’élaboration du plan d’aménagement du centre de Khnichet à la commune de Khnichet (lot unique)",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "plan d amenagement"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "10/AUKSS/2026",
+        "title": "Etude d’élaboration du plan d’aménagement du centre Dlalha à la commune Moulay Bousselham (lot unique)",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "plan d amenagement"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "08/AUKSS/2026",
+        "title": "Etude d’élaboration du plan d’aménagement de la ville de Mechra Bel Ksiri (lot unique).",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "plan d amenagement"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "CA/01/2026/BG",
+        "title": "Etude architecturale et le suivi des travaux pour la construction des bâtiments administratifs au sein du siège de la Préfecture d’Arrondissements de Sidi Bernoussi.",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "batiments",
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "63/2026/DPA/G",
+        "title": "Etude Architecturale Pour La Construction D'une Unité Pour La Valorisation Du Miel Au Profit D’une Union Des Coopératives Apicoles Au Niveau Du Cercle De Taddart Province De Guercif Dans Le Cadre Du Programme IHYAE.",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "61/2026/DPA/G",
+        "title": "Etude architecturale pour la construction d'une unité de production des olives de table bio au profit d'une coopérative au cercle Taddart province de Guercif dans le cadre du programme IHYAE",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "90/AREPFM/2026",
+        "title": "ETUDES ARCHITECTURALES ET SUIVI DES TRAVAUX DE CONSTRUCTION DU CENTRE DE SECOURS DE LA PROTECTION CIVILE AL ISMAILIA A LA VILLE DE MEKNES – REGION FES MEKNES",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturales"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "64/2026/DPA/G",
+        "title": "Etude Architecturale Pour La Construction D’une Unité De Production Du Couscous Au Profit De La Coopérative Berkinat Anniswia Au Cercle Taddart Province De Guercif Dans Le Cadre Du Programme IHYAE",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": ".01/ASBMS/2026",
+        "title": "ETUDES ARCHITECTURALES, SUIVI ET COORDINATION DES TRAVAUX DE RECONSTRUCTION DE DEUX UNITES SCOLAIRES MODULAIRES DES DOUARS TOUNKSIF ET TOUG EL KHIR ET D’UNE UNITE SCOLAIRE DEFINITIVE DU DOUAR TIGHZA ET DE CINQ MOSQUEES DES DOUARS TOUNKSIF, TOUG EL KH",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturales"
+            ],
+            "TECHNICAL": [
+              "suivi",
+              "coordination"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "89/AREPFM/2026",
+        "title": "ETUDES ARCHITECTURALES ET SUIVI DES TRAVAUX DE DEMOLITION ET RECONSTRUCTION D’UNE CASERNE DE GENDARMERIE ROYALE - PROVINCE D’IFRANE - REGION FES MEKNES",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturales"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "12/AUKSS/2026",
+        "title": "Etude d’élaboration du plan d’aménagement du centre Sidi Abdelaziz à la commune d’Oulad H’Cine (lot Unique)",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "plan d amenagement"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "2/2026/CL",
+        "title": "Etude architecturale et le suivi des travaux de construction d’un cimetière à Ain Chouk à la ville de Larache.",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "46/2026/BP",
+        "title": "Contrôle topographique des travaux de construction de la 2ème tranche de la piste reliant entre centre Sidi Zouine et douar El Matougui El Foukani sur une longueur d'environ 1,0 km à la commune territoriale Sidi Zouine à la préfecture de Marrakech",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "territoriale"
+            ],
+            "TECHNICAL": [
+              "controle"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "topography_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "25/2026/ABHM",
+        "title": "Réalisation des levés topographique pour l’établissement de l’Atlas des zones inondables Lot n°1 : Province Nador Lot n°2 : Province Berkane Lot n°3 : Province Driouch",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "topography_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "01/CA.INDH/2026",
+        "title": "ETUDES ARCHITECTURALES ET SUIVI DES TRAVAUX DE CONSTRUCTION DE SIX UNITES PRESCOLAIRES AUX COMMUNES TERRITORIALES SUIVANTES : OD AISSA - OD BOUGHADI – TACHRAFT ET AIN KAICHER / PROVINCE DE KHOURIBGA",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturales"
+            ],
+            "TERRITORIAL": [
+              "territoriales"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux",
+              "unites prescolaires"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "05/2026/CA/BR/RGON",
+        "title": "ETUDE ARCHITECTURAL ET SUIVI DES TRAVAUX D’AMÉNAGEMENT EXTÉRIEUR DU CENTRE MOHAMED VI DES HANDICAPES A LA VILLE DE GUELMIM PROVINCE DE GUELMIM",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architectural"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "21/2026",
+        "title": "CONCEPTION ARCHITECTURALE ET SUIVI DES TRAVAUX DE DÉMOLITION ET DE RECONSTRUCTION DE LA CAÏDAT DE BENI BOUYAFROUR ET LA CONSTRUCTION DU LOGEMENT DE FONCTION – PROVINCE DE NADOR",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "2/2026",
+        "title": "L’étude architecturale et le suivi des travaux de construction d’une villa destinée pour logement de fonction à la Préfecture d'Arrondissement Hay Hassani, Casablanca",
+        "reason": "credible_fallback",
+        "discovered_from": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "original_discovery_url": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "PROCUREMENT_AGGREGATOR",
+        "resolution_state": "UNVERIFIED_BUT_CREDIBLE",
+        "resolution_error": "official_resolution_failed",
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "44/2026/ANEPRSK",
+        "title": "LA CONCEPTION ARCHITECTURALE ET LE SUIVI DES TRAVAUX DE CONSTRUCTION DES LOGEMENTS SIDI ABDELLAH A SALE.",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1036634&orgAcronyme=o8p",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "32/2026/INDH",
+        "title": "ACQUISITION DE 08 UNITÈS MOBILES MÈDICALE DE CONSULTATION《TYPE FOURGON》AU PROFIT DES DOUARS AL OUMOUMA A LA PROVINCE DE CHEFCHAOUEN.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "22/PB/DE/INDH/2026",
+        "title": "la conception architecturale et le suivi des travaux de construction de treize (13) unités préscolaires au niveau des communes Tissaf, Ermila, El Orjane, Fritissa, Ksabi Moulouya, Enjil, Ait El Mane, El Mers et",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1037086&orgAcronyme=g3h",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturale"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "construction",
+              "travaux",
+              "unites prescolaires"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": ".01/ASBMS/2026.",
+        "title": "ETUDES ARCHITECTURALES, SUIVI ET COORDINATION DES\nTRAVAUX DE RECONSTRUCTION DE DEUX UNITES SCOLAIRES MODULAIRES DES DOUARS\nTOUNKSIF ET TOUG EL KHIR ET D’UNE UNITE SCOLAIRE DEFINITIVE DU DOUAR TIGHZA\nET DE CINQ MOSQUEES DES",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1038764&orgAcronyme=o8p",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturales"
+            ],
+            "TECHNICAL": [
+              "suivi",
+              "coordination"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "16/DAR/2026",
+        "title": "Etude et Assistance technique pour le suivi et la coordination des actions des acteurs, dans le cadre de la convention d’aménagement et de réhabilitation des oasis de Zagora 2026-2029, Province de Zagora.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ],
+            "TECHNICAL": [
+              "suivi",
+              "coordination",
+              "assistance technique"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "54/PA/BG/2026",
+        "title": "« Travaux d’aménagement et de réhabilitation d’un logement de fonction “CHALET QUEMADO” à la ville d’Al Hoceima",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "44/DR2/2026",
+        "title": "Réhabilitation des conduites d’adduction d’eau potable relevant de secteur de production Essaouira – Chichaoua.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "10011437",
+        "title": "Réhabilitation du réseau de distribution d'eau potable au niveau de la ville de Taourirt - Tranche 1",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "10011946",
+        "title": "Réhabilitation du réseau de distribution d'eau potable des quartiers non touchés par PAP 2 au centre El Aioun",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "405/2026/SRMCS",
+        "title": "Réhabilitation des installations de chloration des stations de traitement\nde «Sidi Bennour» et de «Khmis Zmamra»",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "19/2026/BR",
+        "title": "Etablissement des études techniques des travaux d’entretien et de réhabilitation de la salle couverte kindy, relevant de la préfecture d’Arrondissements Ben M’Sick- Casablanca",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ],
+            "TECHNICAL": [
+              "etudes techniques"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "18/2026/BR",
+        "title": "Établissement des études techniques des travaux d’entretien et de réhabilitation de la salle couverte Sbata, relevant de la préfecture d’Arrondissements Ben M’Sick- Casablanca",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ],
+            "TECHNICAL": [
+              "etudes techniques"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "40/2026/OFPPT",
+        "title": "Travaux de réhabilitation et de restauration de l’Institut Spécialisé des Métiers Traditionnels du bâtiment FES « DAR MOKRI ».",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1037621&orgAcronyme=o4d",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation",
+              "restauration"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "batiment",
+              "travaux",
+              "institut"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "195/2026/APDN",
+        "title": "ETUDES TECHNIQUES ET SUIVI DES TRAVAUX DE RÉHABILITATION DES FAÇADES ET MISE À NIVEAU DE L’ENVIRONNEMENT DE KSAR MAJAZ, PROVINCE FAHS ANJRA.",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1038949&orgAcronyme=a1t",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 5,
+          "priority": 1,
+          "signals": {
+            "REHABILITATION": [
+              "rehabilitation"
+            ],
+            "TECHNICAL": [
+              "etudes techniques",
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "10/2026",
+        "title": "hygiène et le nettoyage des bâtiments administratifs Relevant du Centre hospitalier provincial de Khouribga. Province de Khouribga.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ],
+            "NEGATIVE": [
+              "nettoyage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "29/2026/DRAIRSK/BG",
+        "title": "la passation d’un marché reconductible relatif aux prestations de gardiennage et de surveillance des bâtiments administratifs dans la région de Rabat Salé Kénitra, en lot unique.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ],
+            "NEGATIVE": [
+              "gardiennage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "19/2026/DPJT",
+        "title": "Gardiennage et sécurité des bâtiments du tribunaux de la Circonscription Judiciaire de Tanger",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ],
+            "NEGATIVE": [
+              "gardiennage",
+              "securite"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "70/AOO.MDD/2026",
+        "title": "GARDIENNAGE ET SURVEILLANCE DES ÉTABLISSMENTS SCOLAIRES DE L'ENSEIGNEMENT QUALIFIANT ET DES BÂTIMENTS ADMINISTRATIFS RELEVANT DE LA DIRECTION PROVINCIALE DE L'AREF-DT À TINGHIR EN LOT UNIQUE",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ],
+            "NEGATIVE": [
+              "gardiennage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "79/2026",
+        "title": "COMPLEMENT DES TRAVAUX DE MISE À NIVEAU DE LA VOIRIE, DE L’ASSAINISSEMENT PLUVIAL ET DE L’ECLAIRAGE PUBLIC DU CENTRE DE SIDI BETTACHE, PROVINCE DE BENSLIMANE, RÉGION DE CASABLANCA SETTAT, EN LOT UNIQUE.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "19/2026/AA",
+        "title": "ENTRETIEN COURANT DE BATIMENT\" BIBLIOTHEQUE\"",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiment"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "05/2026",
+        "title": "AMENAGEMENT ET GROS TRAVAUX DE LA MAINTENANCE BATIMENT DE SIEGE DE LA COMMUNE DE HARHOURA PERFECTURE SKHIRAT- TEMARA",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiment",
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "43/DR2/2026",
+        "title": "Prestations de nettoiement des bâtiments administratifs relevant de la Direction Régionale de Production Marrakech-Safi",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "15/2026",
+        "title": "Enchère publique pour l'exploitation d'un café et des guichets de vente de tickets au sein de la gare routière à la ville d'El Marsa par voie d'occupation du domaine public de la commune d'El Marsa",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "71/2026/MID",
+        "title": "ENTRETIEN ET NETTOYAGE DES LOCAUX DES BATIMENTS ADMINISTRATIFS ET DES LYCÉES COLLEGIAUX ET QUALIFIANTS RELEVANT DE LA DIRECTION PROVINCIALE DE L’AREF DRAA-TAFILALET A MIDELT",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ],
+            "NEGATIVE": [
+              "nettoyage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "05/2026/CJ",
+        "title": "TRAVAUX D’AMENAGEMENT DE MUR DE CLOTURE DE TERRAIN COMMUNAL A LA COMMUNE DE JORF -Province d’Errachidia ,Région de Daraa Tafilalet.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "08/2026/CHPK",
+        "title": "Achat de matériel médico-technique pour le centre hospitalier provincial de Khenifra \n\tLot n°1 : Achat des tables de chirurgie\n\tLot n°2 : Achat de capteurs plans numériques",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "NEGATIVE": [
+              "medico technique"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "12/DECLP/2026",
+        "title": "Etude relative à la mise à jour du Plan d’Urgence National de Lutte contre la Pollution Marine Accidentelle pour le compte de la Direction de l’Economie Circulaire et de la Lutte contre la Pollution à Rabat en lot unique.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "N31/2026/DPAO",
+        "title": "Acquisition et installation d une chaine continue de trituration des olives a deux phases au niveau de la commune territoriale sidi moussa lemhaya  prefecture d Oujda-Angad dans le cadre du projet de developpement de l",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "territoriale"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "27/2026",
+        "title": "Assistance technique pour le suivi et le contrôle des travaux  d’aménagement des pistes rurales, d’aménagement des seguias et de creusement et d’équipement des points d’eau dans la province d’Azilal relevant de la",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "suivi",
+              "controle",
+              "assistance technique"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "22/2026/ANDA",
+        "title": "Réalisation d’une étude portant sur l’élaboration d’un plan régional d’aménagement et de gestion aquacole et du projet des structures aquacoles de la région de Souss Massa, en lot unique.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "15/2026/DPA/CH/SAHA",
+        "title": "ASSISTANCE TECHNIQUE POUR SUIVI ET CONTROLE DES TRAVAUX D’AMENAGEMENT HYDRO- AGRICOLES AU NIVEAU DES COMMUNES TERRITORIALES : ADASSIL ET IMINDOUNIT, PROVINCE DE CHICHAOUA.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "territoriales"
+            ],
+            "TECHNICAL": [
+              "suivi",
+              "controle",
+              "assistance technique"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "17/2026",
+        "title": "Prestations de sécurité et du gardiennage des locaux des annexes du Ministère de l’Aménagement du Territoire National, de l’Urbanisme, de l’Habitat et de la Politique de la Ville",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=urbanisme&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=urbanisme&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "urbanisme",
+              "amenagement du territoire"
+            ],
+            "NEGATIVE": [
+              "gardiennage",
+              "securite"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "non_architectural_purchase",
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "14/2026",
+        "title": "Organisation de la Participation du Ministère de l’Aménagement du Territoire National, de l’Urbanisme, de l’Habitat et de la Politique de la Ville à la 20ème édition du Salon International du Bâtiment (SIB 2026)",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=urbanisme&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=urbanisme&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1010716&orgAcronyme=a2a",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "urbanisme",
+              "amenagement du territoire"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "batiment"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "01/2026",
+        "title": "ACQUISITION DES ENGINS AU PROFIT DU GROUPEMENT DES COLLECTIVITÉS TERRITORIALES « COOPÉRATION »",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "territoriales"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "11/2026",
+        "title": "Etude relative à la réalisation de l’enquête nationale sur le suivi de l’insertion professionnelle des lauréats de la formation professionnelle de la cohorte 2024 après 9 mois (Lot unique)",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "suivi"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "08/2026/DRACS",
+        "title": "ETUDE RELATIVE A L’ELABORATION D’UN SCHEMA DIRECTEUR REGIONAL POUR LA REALISATION DES TRAVAUX DE CONSERVATION DES EAUX ET DES SOLS ET LA COLLECTE DES EAUX PLUVIALES DANS LA REGION DE CASABLANCA-SETTAT",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "31/2026/DPA/SMOPFA",
+        "title": "Fourniture et livraison d’animaux dans le cadre du programme de l’agriculture solidaire centrée sur l’élevage pour contribuer à la reconstitution du cheptel national au niveau des communes territoriales de Zhiligua,",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TERRITORIAL": [
+              "territoriales"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "26E008",
+        "title": "Mission d'Assistance à Maîtrise d'Ouvrage pour l'élaboration du Schéma Directeur National Vidéosurveillance, Intelligence Artificielle et Hypervision Nationale à l'horizon 2030.",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "assistance a maitrise d ouvrage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "01/2026",
+        "title": "assistance à Maîtrise d’Ouvrage pour la mise en œuvre du Contrat de Gestion Déléguée du Service de Transport Public par Bus sur le territoire de la GCT \"Tiznit Al Kobra\".",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "assistance a maitrise d ouvrage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "11/2026",
+        "title": "EXECUTION DES PRESTATIONS D’ETUDE, MAITRISE D’ŒUVRE ET SUIVI DES TRAVAUX POUR LA REALISATION DES TRAVAUX DE LA MISE A NIVEAU DU TRANCON            DE LA RN7 DU PK 176+900 AU PK 181+000 RELEVANT DE LA COMMUNE TAHANAOUT\n-",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1035198&orgAcronyme=j0w",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "maitrise d oeuvre"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "12/2026/OFPPT/DRSM",
+        "title": "Le gardiennage et la surveillance physique des locaux, des biens et des personnes ainsi que la prévention et la maitrise des incendies du siège de la DRSM de l’OFPPT et des bâtiments administratifs, techniques, pédagogiques",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "PUBLIC_ENVIRONMENT": [
+              "batiments"
+            ],
+            "NEGATIVE": [
+              "gardiennage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "27/2026/DPETL/Khouribga",
+        "title": "Mission d’assistance à la maîtrise d’œuvre pour l’étude d’exécution et le suivi des travaux de dédoublement de la Route Nationale n°25 du PK 128+300 au PK 173+000 Sur 44,7 km\n-Province de Khouribga",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1016538&orgAcronyme=o8p",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "maitrise d oeuvre"
+            ],
+            "TECHNICAL": [
+              "suivi"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "71/2026/SFRA",
+        "title": "Travaux de reconstruction du marché central de la ville de Fès-, Lot n°2 : Gros Oeuvre - Étanchéité - Lots Techniques - Corps d'Etat Architecturaux, - Wilaya de la Région Fès Meknès-",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1031409&orgAcronyme=g3h",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "architecturaux"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "DPARN1/04/2026/CFR",
+        "title": "MAITRISE D’ŒUVRE POUR LE CONTROLE ET SUIVI DES TRAVAUX DE MISE A NIVEAU DES ENTREES DE LA VILLE DE GUELMIM RACCORDEES À LA VOIE EXPRESS TIZNIT-LAÂYOUNE : VIA LA COMMUNE DE TAGANT ET VIA LA RP 1300.",
+        "reason": "verified_offer",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": "https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1033466&orgAcronyme=o8p",
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "VERIFIED_OFFICIAL",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": 4,
+          "priority": 2,
+          "signals": {
+            "ARCHITECTURE": [
+              "maitrise d oeuvre"
+            ],
+            "TECHNICAL": [
+              "suivi",
+              "controle"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "keep",
+          "rejection_reason": null,
+          "architecture_scope": true
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "FOSTP/08/2026",
+        "title": "acquisition, installation, et mise en service du MATERIEL DE CONTROLE D’ACCES au profit de la Fondation des Oeuvres Sociales des Travaux Publics (LOT UNIQUE)",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "controle"
+            ],
+            "PUBLIC_ENVIRONMENT": [
+              "travaux"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "34/2026/CD/SM",
+        "title": "Assistance à la maîtrise d’ouvrage pour la mise en œuvre du Contrat de Gestion Déléguée du Service de Transport Public par bus sur le territoire de la Commune de Dakhla",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {},
+          "decision": "reject",
+          "rejection_reason": "no_architectural_scope",
+          "architecture_scope": false
+        }
+      },
+      {
+        "query_index": null,
+        "reference": "07/JZN/2026",
+        "title": "La mise à disposition d'une assistance à maîtrise d’ouvrage (AMOA) afin d'assurer le suivi et la supervision de la conception et de la mise en œuvre des projets techniques découlant du programme d’investissement",
+        "reason": "irrelevant_business_purpose",
+        "discovered_from": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "original_discovery_url": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "official_url": null,
+        "official_resolved_from": null,
+        "source_type": "OFFICIAL_PROCUREMENT",
+        "resolution_state": "UNRESOLVED",
+        "resolution_error": null,
+        "business_relevance": {
+          "score": -5,
+          "priority": 2,
+          "signals": {
+            "TECHNICAL": [
+              "suivi",
+              "assistance a maitrise d ouvrage"
+            ]
+          },
+          "decision": "reject",
+          "rejection_reason": "technical_only",
+          "architecture_scope": false
+        }
+      }
+    ],
+    "truncation": [
+      "resolution_query_limit",
+      "analysis_limit"
+    ],
+    "collection_queries": [
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 10,
+        "candidates_created": 10,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 9,
+        "official_resolution_attempts": 1,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 1,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 1,
+        "kept_p3": 0,
+        "verified_official": 1,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 7,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 1,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "architecture",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tudes+architecturales&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 10,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_architecture": 10,
+        "relevant_candidates": 1,
+        "official_resolution_success": 1
+      },
+      {
+        "raw_results_count": 20,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 20,
+        "candidates_created": 20,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 3,
+        "official_resolution_attempts": 17,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 17,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 17,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 2,
+        "technical_only_rejected": 1,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 17,
+        "query_index": null,
+        "source_strategy": "AGGREGATOR",
+        "query_family": "architecture",
+        "query_text": "https://marchefacile.ma/appels-offres/secteur/services-architecturales-et-topographiques",
+        "domains": [
+          "marchefacile.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 20,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_detail",
+        "observations_architecture": 20,
+        "relevant_candidates": 17
+      },
+      {
+        "raw_results_count": 0,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 0,
+        "candidates_created": 0,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 0,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 1,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": 1,
+        "source_strategy": "RESOLUTION",
+        "query_family": "official_resolution",
+        "query_text": "site:marchespublics.gov.ma \"09/AUKSS/2026\"",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": 90,
+        "new_identity": 0,
+        "blocked": 0,
+        "parser_failures": 0,
+        "provider": {
+          "purpose": "DISCOVER_PROCUREMENT",
+          "query_chars": 42,
+          "response_status": "completed",
+          "output_shape": [
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "reasoning",
+              "action": null,
+              "sources_count": 0
+            },
+            {
+              "type": "message",
+              "action": null,
+              "sources_count": 0
+            }
+          ],
+          "structured_hits": 0,
+          "unobserved_or_invalid_hits": 0,
+          "source_pages_preserved": 0,
+          "source_samples": [],
+          "extraction_samples": []
+        }
+      },
+      {
+        "raw_results_count": 0,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 0,
+        "candidates_created": 0,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 0,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 1,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": 2,
+        "source_strategy": "RESOLUTION",
+        "query_family": "official_resolution",
+        "query_text": "site:marchespublics.gov.ma \"09 aukss 2026\" \"AGENCE URBAINE DE KENITRA-SIDI KACEM\"",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": 90,
+        "new_identity": 0,
+        "blocked": 0,
+        "parser_failures": 0,
+        "provider": {
+          "purpose": "DISCOVER_PROCUREMENT",
+          "query_chars": 81,
+          "response_status": "completed",
+          "output_shape": [
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "reasoning",
+              "action": null,
+              "sources_count": 0
+            },
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "reasoning",
+              "action": null,
+              "sources_count": 0
+            },
+            {
+              "type": "message",
+              "action": null,
+              "sources_count": 0
+            }
+          ],
+          "structured_hits": 0,
+          "unobserved_or_invalid_hits": 0,
+          "source_pages_preserved": 0,
+          "source_samples": [],
+          "extraction_samples": []
+        }
+      },
+      {
+        "raw_results_count": 0,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 0,
+        "candidates_created": 0,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 0,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 1,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": 3,
+        "source_strategy": "RESOLUTION",
+        "query_family": "official_resolution",
+        "query_text": "site:marchespublics.gov.ma \"Etude de l’élaboration du plan d’aménagement du centre chef-lieu de la commune d’Arbaoua (lot\" \"AGENCE URBAINE DE KENITRA-SIDI KACEM\"",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": 90,
+        "new_identity": 0,
+        "blocked": 0,
+        "parser_failures": 0,
+        "provider": {
+          "purpose": "DISCOVER_PROCUREMENT",
+          "query_chars": 161,
+          "response_status": "completed",
+          "output_shape": [
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "reasoning",
+              "action": null,
+              "sources_count": 0
+            },
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "message",
+              "action": null,
+              "sources_count": 0
+            }
+          ],
+          "structured_hits": 0,
+          "unobserved_or_invalid_hits": 0,
+          "source_pages_preserved": 0,
+          "source_samples": [],
+          "extraction_samples": []
+        }
+      },
+      {
+        "raw_results_count": 0,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 0,
+        "candidates_created": 0,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 0,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 1,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": 4,
+        "source_strategy": "RESOLUTION",
+        "query_family": "official_resolution",
+        "query_text": "site:culture.gov.ma \"09/AUKSS/2026\" \"AGENCE URBAINE DE KENITRA-SIDI KACEM\" consultation",
+        "domains": [
+          "culture.gov.ma"
+        ],
+        "recency_days": 90,
+        "new_identity": 0,
+        "blocked": 0,
+        "parser_failures": 0,
+        "provider": {
+          "purpose": "DISCOVER_PROCUREMENT",
+          "query_chars": 87,
+          "response_status": "completed",
+          "output_shape": [
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "reasoning",
+              "action": null,
+              "sources_count": 0
+            },
+            {
+              "type": "message",
+              "action": null,
+              "sources_count": 0
+            }
+          ],
+          "structured_hits": 0,
+          "unobserved_or_invalid_hits": 0,
+          "source_pages_preserved": 0,
+          "source_samples": [],
+          "extraction_samples": []
+        }
+      },
+      {
+        "raw_results_count": 0,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 0,
+        "candidates_created": 0,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 0,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 1,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": 5,
+        "source_strategy": "RESOLUTION",
+        "query_family": "official_resolution",
+        "query_text": "site:alomrane.gov.ma \"09/AUKSS/2026\" \"AGENCE URBAINE DE KENITRA-SIDI KACEM\" consultation",
+        "domains": [
+          "alomrane.gov.ma"
+        ],
+        "recency_days": 90,
+        "new_identity": 0,
+        "blocked": 0,
+        "parser_failures": 0,
+        "provider": {
+          "purpose": "DISCOVER_PROCUREMENT",
+          "query_chars": 88,
+          "response_status": "completed",
+          "output_shape": [
+            {
+              "type": "web_search_call",
+              "action": "search",
+              "sources_count": 0
+            },
+            {
+              "type": "message",
+              "action": null,
+              "sources_count": 0
+            }
+          ],
+          "structured_hits": 0,
+          "unobserved_or_invalid_hits": 0,
+          "source_pages_preserved": 0,
+          "source_samples": [],
+          "extraction_samples": []
+        }
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 4,
+        "candidates_created": 4,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 1,
+        "official_resolution_attempts": 3,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 3,
+        "duplicates_skipped": 6,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 3,
+        "kept_p3": 0,
+        "verified_official": 3,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 6,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 3,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "architecture",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=consultation+architecturale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 4,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_architecture": 4,
+        "relevant_candidates": 3,
+        "official_resolution_success": 3
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 10,
+        "candidates_created": 10,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 8,
+        "official_resolution_attempts": 2,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 2,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 1,
+        "kept_p2": 1,
+        "kept_p3": 0,
+        "verified_official": 2,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 4,
+        "heritage_kept": 1,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 2,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "rehabilitation",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=r%C3%A9habilitation&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 10,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_rehabilitation": 10,
+        "relevant_candidates": 2,
+        "official_resolution_success": 2
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 10,
+        "candidates_created": 10,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 10,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 1,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "rehabilitation",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=renovation+batiment+public&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 10,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_rehabilitation": 10
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 7,
+        "candidates_created": 7,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 7,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 3,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 3,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "urbanism",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=plan+am%C3%A9nagement&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 7,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_urbanism": 7
+      },
+      {
+        "raw_results_count": 2,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 2,
+        "candidates_created": 2,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 1,
+        "official_resolution_attempts": 1,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 1,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 1,
+        "kept_p3": 0,
+        "verified_official": 1,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 1,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "urbanism",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=urbanisme&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 2,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_urbanism": 2,
+        "relevant_candidates": 1,
+        "official_resolution_success": 1
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 4,
+        "candidates_created": 4,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 4,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 6,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 6,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "territorial_studies",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=%C3%A9tude+territoriale&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 4,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list"
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 0,
+        "candidates_created": 0,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 0,
+        "official_resolution_attempts": 0,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 0,
+        "duplicates_skipped": 10,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 0,
+        "kept_p3": 0,
+        "verified_official": 0,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 10,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 0,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 0,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "territorial_studies",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=am%C3%A9nagement+du+territoire&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 0,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list"
+      },
+      {
+        "raw_results_count": 10,
+        "allowed_domain_results": 0,
+        "aggregate_pages_detected": 0,
+        "individual_tenders_extracted": 10,
+        "candidates_created": 10,
+        "rejected_by_source": 0,
+        "rejected_by_parser": 0,
+        "rejected_by_freshness": 0,
+        "rejected_by_relevance": 6,
+        "official_resolution_attempts": 4,
+        "rejected_by_resolution": 0,
+        "official_urls_resolved": 4,
+        "duplicates_skipped": 0,
+        "control_reference_filtered": 0,
+        "kept_p1": 0,
+        "kept_p2": 4,
+        "kept_p3": 0,
+        "verified_official": 4,
+        "unverified_credible": 0,
+        "unresolved": 0,
+        "http_403": 0,
+        "http_429": 0,
+        "queries_with_results": 0,
+        "queries_with_zero_results": 0,
+        "deduped_before_enrichment": 0,
+        "pmmp_raw": 0,
+        "aggregator_raw": 0,
+        "institutional_raw": 0,
+        "discovery_search_calls": 0,
+        "resolution_search_calls": 0,
+        "query_scope_filtered": 0,
+        "direct_pages_fetched": 0,
+        "pmmp_observations": 0,
+        "marchefacile_observations": 0,
+        "institutional_observations": 0,
+        "unique_identities": 0,
+        "generic_pages": 0,
+        "procurement_pages": 0,
+        "page_type_tender_detail": 0,
+        "page_type_tender_list": 0,
+        "page_type_procurement_category": 0,
+        "page_type_institutional_procurement": 0,
+        "page_type_generic_org": 0,
+        "page_type_non_procurement": 0,
+        "topography_rejected": 0,
+        "technical_only_rejected": 1,
+        "heritage_kept": 0,
+        "consultation_architecturale_kept": 0,
+        "concours_architectural_kept": 0,
+        "architecture_kept": 4,
+        "query_index": null,
+        "source_strategy": "PMMP",
+        "query_family": "project_management",
+        "query_text": "https://www.marchespublics.gov.ma/index.php?keyWord=ma%C3%AEtrise+d%27oeuvre&page=entreprise.EntrepriseAdvancedSearch&searchAnnCons=",
+        "domains": [
+          "marchespublics.gov.ma"
+        ],
+        "recency_days": null,
+        "new_identity": 10,
+        "blocked": 0,
+        "parser_failures": 0,
+        "billable_search": false,
+        "page_type": "tender_list",
+        "observations_project_management": 10,
+        "relevant_candidates": 4,
+        "official_resolution_success": 4
+      }
+    ],
+    "collector_health": "PARTIAL",
+    "collector_health_reasons": [
+      "official_verification_pending"
+    ],
+    "query_performance": {
+      "PMMP:architecture": {
+        "executions": 2,
+        "raw_results": 20,
+        "usable_observations": 14,
+        "relevant_candidates": 4,
+        "official_resolution_success": 4,
+        "zero_results": 0,
+        "duplicates_skipped": 6,
+        "generic_pages": 0,
+        "parser_failures": 0,
+        "last_successful_at": "2026-09-11"
+      },
+      "AGGREGATOR:architecture": {
+        "executions": 1,
+        "raw_results": 20,
+        "usable_observations": 20,
+        "relevant_candidates": 17,
+        "official_resolution_success": 0,
+        "zero_results": 0,
+        "duplicates_skipped": 0,
+        "generic_pages": 0,
+        "parser_failures": 0,
+        "last_successful_at": "2026-09-11"
+      },
+      "PMMP:rehabilitation": {
+        "executions": 2,
+        "raw_results": 20,
+        "usable_observations": 20,
+        "relevant_candidates": 2,
+        "official_resolution_success": 2,
+        "zero_results": 0,
+        "duplicates_skipped": 0,
+        "generic_pages": 0,
+        "parser_failures": 0,
+        "last_successful_at": "2026-09-11"
+      },
+      "PMMP:urbanism": {
+        "executions": 2,
+        "raw_results": 12,
+        "usable_observations": 9,
+        "relevant_candidates": 1,
+        "official_resolution_success": 1,
+        "zero_results": 0,
+        "duplicates_skipped": 3,
+        "generic_pages": 0,
+        "parser_failures": 0,
+        "last_successful_at": "2026-09-11"
+      },
+      "PMMP:territorial_studies": {
+        "executions": 2,
+        "raw_results": 20,
+        "usable_observations": 4,
+        "relevant_candidates": 0,
+        "official_resolution_success": 0,
+        "zero_results": 0,
+        "duplicates_skipped": 16,
+        "generic_pages": 0,
+        "parser_failures": 0,
+        "last_successful_at": "2026-09-11"
+      },
+      "PMMP:project_management": {
+        "executions": 1,
+        "raw_results": 10,
+        "usable_observations": 10,
+        "relevant_candidates": 4,
+        "official_resolution_success": 4,
+        "zero_results": 0,
+        "duplicates_skipped": 0,
+        "generic_pages": 0,
+        "parser_failures": 0,
+        "last_successful_at": "2026-09-11"
+      }
+    },
+    "search_api_calls": 5,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 7,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_PROCUREMENT",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 5148,
+        "output_tokens": 75,
+        "query_chars": 42
+      },
+      {
+        "purpose": "DISCOVER_PROCUREMENT",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 5349,
+        "output_tokens": 90,
+        "query_chars": 81
+      },
+      {
+        "purpose": "DISCOVER_PROCUREMENT",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 5400,
+        "output_tokens": 87,
+        "query_chars": 161
+      },
+      {
+        "purpose": "DISCOVER_PROCUREMENT",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 5180,
+        "output_tokens": 98,
+        "query_chars": 87
+      },
+      {
+        "purpose": "DISCOVER_PROCUREMENT",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 5184,
+        "output_tokens": 69,
+        "query_chars": 88
+      }
+    ],
+    "dry_run": false,
+    "rule_reasons": {
+      "MISSING_PUBLICATION_DATE|OFFICIAL_DATE_EVIDENCE": 17,
+      "MISSING_LOCATION_EVIDENCE": 17,
+      "SECONDARY_SOURCE_ONLY": 17,
+      "OFFICIAL_URL_NOT_CONFIRMED": 17
+    },
+    "ai_skipped_reasons": {
+      "NO_AMBIGUITY": 17
+    },
+    "paid_search_calls": 5,
+    "openai_requests": 5,
+    "openai_skipped": 17,
+    "tokens_per_kept_result": 476.43,
+    "openai_calls_per_kept_result": 0.089,
+    "no_ai": false
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 26261,
+  "output_tokens": 419,
+  "cached_tokens": 24556,
+  "ai_calls": 0,
+  "direct_fetches": 60,
+  "search_calls": 5,
+  "resolution_search_calls": 5,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

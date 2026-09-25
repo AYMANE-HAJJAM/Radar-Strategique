@@ -1,0 +1,28 @@
+{
+  "revision": "c83d2e5f9a31",
+  "table_counts": {
+    "alembic_version": 1,
+    "radars": 5,
+    "result_observations": 0,
+    "results": 0,
+    "search_runs": 0,
+    "source_states": 0,
+    "market_reviews": 0,
+    "result_audit_events": 0
+  },
+  "timezone_columns": {
+    "last_checked_at": true,
+    "last_changed_at": true
+  },
+  "source_cache_isolation_timezone": true,
+  "cache_test_rolled_back": true,
+  "startup": {
+    "real_entrypoint_and_application": true,
+    "telegram_transport": "simulated; no real messages",
+    "paid_search": 0,
+    "openai": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "unexpected_network": 0
+  }
+}

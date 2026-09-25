@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Travaux de réhabilitation et restauration d’un institut",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Étude architecturale et suivi de construction de Dar Talib",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Études architecturales dans l’espace public d’une médina",
+    "priority": 2,
+    "decision": "review"
+  },
+  {
+    "title": "Études architecturales d’aménagement d’une corniche",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Études architecturales et techniques pour la réhabilitation d’un bâtiment",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Conception architecturale de plusieurs unités préscolaires",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Réhabilitation architecturale d’un complexe public",
+    "priority": 2,
+    "decision": "review"
+  },
+  {
+    "title": "Actualisation d’un plan d’aménagement communal",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Maîtrise d’œuvre architecturale d’un siège administratif",
+    "priority": 2,
+    "decision": "review"
+  },
+  {
+    "title": "Consultation architecturale pour réaménagement",
+    "priority": 3,
+    "decision": "reject"
+  },
+  {
+    "title": "Concours architectural pour un équipement public",
+    "priority": 1,
+    "decision": "keep"
+  },
+  {
+    "title": "Restauration d’un monument historique",
+    "priority": 1,
+    "decision": "keep"
+  }
+]

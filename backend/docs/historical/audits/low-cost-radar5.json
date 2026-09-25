@@ -1,0 +1,124 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_5_FUNDING",
+  "agent_name": "FundingRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 55,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 0,
+  "updated_results_count": 0,
+  "rejected_count": 37,
+  "manual_review_count": 18,
+  "accepted_count": 0,
+  "queries_executed": 0,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 0,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "funders_checked": 0,
+      "programs_found": 55,
+      "morocco_relevant": 55,
+      "status_a": 0,
+      "status_b": 17,
+      "status_c": 0,
+      "status_d": 0,
+      "direct_access": 0,
+      "consultant_opportunity": 0,
+      "beneficiary_procurement": 0,
+      "pipeline": 0,
+      "search_calls": 0,
+      "ai_calls": 0,
+      "final_kept": 55,
+      "collector_health": "HEALTHY",
+      "direct_http_requests": 4,
+      "conditional_304_count": 0,
+      "source_pages_changed": 3,
+      "source_pages_unchanged": 0,
+      "source_health": {
+        "World Bank Morocco projects API": "HEALTHY",
+        "AfDB Morocco projects": "HEALTHY",
+        "EIB Morocco projects": "FAILED",
+        "EBRD Morocco projects": "HEALTHY"
+      },
+      "escalation_level": 0,
+      "representative_results": [
+        {
+          "title": "Morocco Water Security and Resilience Program",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P179192",
+          "institution": "World Bank Morocco projects API",
+          "status": "active"
+        },
+        {
+          "title": "Morocco Climate Operation / Support to the Nationally-Determined Contribution (NDC)",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P178763",
+          "institution": "World Bank Morocco projects API",
+          "status": "active"
+        },
+        {
+          "title": "Morocco COVID-19 Social Protection Emergency Response Project AF",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P180741",
+          "institution": "World Bank Morocco projects API",
+          "status": "active"
+        },
+        {
+          "title": "Third Financial and Digital Inclusion Development Policy Lending",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P174005",
+          "institution": "World Bank Morocco projects API",
+          "status": "active"
+        },
+        {
+          "title": "MA North-East Economic Development Project",
+          "url": "https://projects.worldbank.org/en/projects-operations/project-detail/P167894",
+          "institution": "World Bank Morocco projects API",
+          "status": "active"
+        }
+      ],
+      "direct_fetches": 0
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 0,
+    "search_models": [],
+    "search_usage_complete": true,
+    "web_search_calls": 0,
+    "search_call_purposes": [],
+    "dry_run": true,
+    "rule_reasons": {
+      "closed_without_strategic_relevance": 37,
+      "missing:beneficiary|eligibility|potential_procurement": 24
+    },
+    "ai_skipped_reasons": {
+      "DRY_RUN": 18
+    },
+    "paid_search_calls": 0,
+    "openai_requests": 0,
+    "openai_skipped": 18,
+    "tokens_per_kept_result": 0.0,
+    "openai_calls_per_kept_result": 0.0,
+    "paid_searches_per_kept_result": 0.0,
+    "direct_fetches_per_kept_result": 0.222,
+    "ai_cache_hits": 0,
+    "escalation_level": 0,
+    "analysis_partial": false,
+    "no_ai": false
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "cached_tokens": 0,
+  "ai_calls": 0,
+  "direct_fetches": 4,
+  "search_calls": 0,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": "0E-8",
+  "error_kind": null,
+  "error_message": null
+}

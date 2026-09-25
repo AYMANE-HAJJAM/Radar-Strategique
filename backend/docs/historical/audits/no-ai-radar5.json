@@ -1,0 +1,121 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_5_FUNDING",
+  "agent_name": "FundingRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 6,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 5,
+  "updated_results_count": 0,
+  "rejected_count": 1,
+  "manual_review_count": 5,
+  "accepted_count": 0,
+  "queries_executed": 6,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 6,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "funders_checked": 2,
+      "programs_found": 6,
+      "morocco_relevant": 6,
+      "status_a": 0,
+      "status_b": 2,
+      "status_c": 1,
+      "status_d": 2,
+      "direct_access": 0,
+      "consultant_opportunity": 0,
+      "beneficiary_procurement": 0,
+      "pipeline": 2,
+      "search_calls": 6,
+      "ai_calls": 0,
+      "final_kept": 6,
+      "collector_health": "HEALTHY",
+      "direct_fetches": 14
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 6,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 7,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12949,
+        "output_tokens": 374,
+        "query_chars": 44
+      },
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12881,
+        "output_tokens": 1347,
+        "query_chars": 38
+      },
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13203,
+        "output_tokens": 540,
+        "query_chars": 42
+      },
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13033,
+        "output_tokens": 618,
+        "query_chars": 41
+      },
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 12998,
+        "output_tokens": 269,
+        "query_chars": 34
+      },
+      {
+        "purpose": "DISCOVER_FUNDING",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13000,
+        "output_tokens": 560,
+        "query_chars": 36
+      }
+    ],
+    "dry_run": false,
+    "rule_reasons": {
+      "missing:beneficiary|eligibility|potential_procurement": 4,
+      "closed_without_strategic_relevance": 1
+    },
+    "ai_skipped_reasons": {
+      "NO_AI_MODE": 5
+    },
+    "paid_search_calls": 6,
+    "openai_requests": 6,
+    "openai_skipped": 5,
+    "tokens_per_kept_result": 8177.2,
+    "openai_calls_per_kept_result": 0.6,
+    "no_ai": true
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 78064,
+  "output_tokens": 3708,
+  "cached_tokens": 27127,
+  "ai_calls": 0,
+  "direct_fetches": 14,
+  "search_calls": 6,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

@@ -1,0 +1,14 @@
+{
+  "snapshot_sha256_verified": true,
+  "isolated_data_restore_verified": true,
+  "restored_counts": {
+    "alembic_version": 1,
+    "market_reviews": 0,
+    "radars": 5,
+    "result_audit_events": 0,
+    "result_observations": 0,
+    "results": 0,
+    "search_runs": 0
+  },
+  "schema_restore_scope": "Current SQLAlchemy schema in SQLite, UTC datetime normalization; not a native PostgreSQL disaster-recovery rehearsal"
+}

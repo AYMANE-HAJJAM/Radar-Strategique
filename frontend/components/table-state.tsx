@@ -1,0 +1,3 @@
+export function TableSkeleton(){return <div className="table-skeleton" aria-label="Chargement des résultats">{Array.from({length:6},(_,i)=><div className="skeleton-row" key={i}><i/><i/><i/><i/><i/></div>)}</div>}
+export function EmptyResults({label="Aucun résultat à traiter."}:{label?:string}){return <div className="table-state"><strong>{label}</strong><span>Les nouveaux résultats apparaîtront ici.</span></div>}
+export function ResultsError({retry}:{retry:()=>void}){return <div className="table-state error-state"><strong>Impossible de charger les résultats.</strong><button className="text-button" onClick={retry}>Réessayer</button></div>}

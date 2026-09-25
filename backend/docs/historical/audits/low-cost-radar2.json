@@ -1,0 +1,131 @@
+{
+  "id": 1,
+  "radar_code": "RADAR_2_PROJECTS",
+  "agent_name": "ProjectsRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 2,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 0,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 2,
+  "accepted_count": 0,
+  "queries_executed": 2,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 2,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "direct_pages": 12,
+      "paid_search_calls": 2,
+      "resolution_search_calls": 0,
+      "raw_results": 35,
+      "project_observations": 2,
+      "official_confirmed": 2,
+      "secondary_only": 0,
+      "duplicates": 0,
+      "updates": 0,
+      "rejected_vague": 179,
+      "rejected_old": 1,
+      "rejected_irrelevant": 0,
+      "rejected_completed": 0,
+      "rejected_tender": 0,
+      "final_kept": 2,
+      "maturity_a": 0,
+      "maturity_b": 1,
+      "maturity_c": 1,
+      "maturity_d": 0,
+      "collector_health": "HEALTHY",
+      "direct_http_requests": 6,
+      "conditional_304_count": 0,
+      "source_pages_changed": 5,
+      "source_pages_unchanged": 0,
+      "source_health": {
+        "Morocco public news": "HEALTHY",
+        "Morocco public news page 2": "HEALTHY",
+        "Morocco public news page 3": "HEALTHY",
+        "Morocco public news page 4": "HEALTHY",
+        "Morocco public news page 5": "HEALTHY",
+        "APDN project news": "FAILED",
+        "Ministry of Culture news": "FAILED",
+        "Al Omrane news": "FAILED"
+      },
+      "escalation_level": 1,
+      "direct_fetches": 22,
+      "representative_results": [
+        {
+          "title": "Tétouan : Ouverture de la 14e édition du Festival Voix de Femmes",
+          "url": "https://www.maroc.ma/fr/actualites/tetouan-ouverture-de-la-14e-edition-du-festival-voix-de-femmes",
+          "institution": null,
+          "status": "active"
+        },
+        {
+          "title": "Fès : Vers une meilleure valorisation du patrimoine historique bâti de la Médina",
+          "url": "https://www.maroc.ma/fr/actualites/fes-vers-une-meilleure-valorisation-du-patrimoine-historique-bati-de-la-medina",
+          "institution": null,
+          "status": "active"
+        }
+      ]
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "HEALTHY",
+    "collector_health_reasons": [],
+    "query_performance": {},
+    "search_api_calls": 2,
+    "search_models": [
+      "gpt-5.6-luna"
+    ],
+    "search_usage_complete": true,
+    "web_search_calls": 4,
+    "search_call_purposes": [
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13208,
+        "output_tokens": 203,
+        "query_chars": 40
+      },
+      {
+        "purpose": "DISCOVER_PROJECTS",
+        "model": "gpt-5.6-luna",
+        "input_tokens": 13031,
+        "output_tokens": 151,
+        "query_chars": 32
+      }
+    ],
+    "dry_run": true,
+    "rule_reasons": {
+      "review:future_opportunity_uncertain": 1
+    },
+    "ai_skipped_reasons": {
+      "DRY_RUN": 2
+    },
+    "paid_search_calls": 2,
+    "openai_requests": 2,
+    "openai_skipped": 2,
+    "tokens_per_kept_result": 13296.5,
+    "openai_calls_per_kept_result": 1.0,
+    "paid_searches_per_kept_result": 1.0,
+    "direct_fetches_per_kept_result": 3.0,
+    "ai_cache_hits": 0,
+    "escalation_level": 1,
+    "analysis_partial": false,
+    "no_ai": false
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 26239,
+  "output_tokens": 354,
+  "cached_tokens": 9058,
+  "ai_calls": 0,
+  "direct_fetches": 6,
+  "search_calls": 2,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": null,
+  "error_kind": null,
+  "error_message": null
+}

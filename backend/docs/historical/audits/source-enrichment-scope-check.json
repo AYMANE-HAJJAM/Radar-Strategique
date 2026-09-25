@@ -1,0 +1,17 @@
+{
+  "checked": 136,
+  "changed": [
+    "app\\config.py",
+    "app\\sources\\catalog.py",
+    "app\\sources\\institution_policy.py",
+    "app\\collectors\\institutions\\collector.py",
+    "app\\collectors\\institutions\\leadership.py",
+    "app\\collectors\\policies\\collector.py",
+    "app\\collectors\\policies\\status_verification.py"
+  ],
+  "new": [
+    "app\\sources\\curated_institutions.py",
+    "app\\sources\\curated_legal.py",
+    "app\\sources\\legislative_progress.py"
+  ]
+}

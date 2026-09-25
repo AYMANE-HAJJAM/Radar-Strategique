@@ -1,0 +1,138 @@
+API USAGE: live search is billable. No classification calls or Result writes.
+{
+  "id": 1,
+  "radar_code": "RADAR_2_PROJECTS",
+  "agent_name": "ProjectsRadarAgent",
+  "status": "completed",
+  "current_stage": "COMPLETED",
+  "candidates_count": 0,
+  "duplicate_count": 0,
+  "analyzed_count": 0,
+  "new_results_count": 0,
+  "updated_results_count": 0,
+  "rejected_count": 0,
+  "manual_review_count": 0,
+  "accepted_count": 0,
+  "queries_executed": 0,
+  "candidates_after_rules": 0,
+  "run_metadata": {
+    "search_events_recorded": 0,
+    "query_errors": [],
+    "source_errors": 0,
+    "collector_metrics": {
+      "direct_pages": 12,
+      "paid_search_calls": 0,
+      "resolution_search_calls": 0,
+      "raw_results": 0,
+      "project_observations": 0,
+      "official_confirmed": 0,
+      "secondary_only": 0,
+      "duplicates": 0,
+      "updates": 0,
+      "rejected_vague": 137,
+      "rejected_old": 0,
+      "rejected_irrelevant": 0,
+      "rejected_completed": 0,
+      "rejected_tender": 0,
+      "final_kept": 0,
+      "maturity_a": 0,
+      "maturity_b": 0,
+      "maturity_c": 0,
+      "maturity_d": 0,
+      "collector_health": "DEGRADED",
+      "direct_http_requests": 6,
+      "conditional_304_count": 0,
+      "source_pages_changed": 5,
+      "source_pages_unchanged": 0,
+      "source_health": {
+        "Morocco public news": "HEALTHY",
+        "Morocco public news page 2": "HEALTHY",
+        "Morocco public news page 3": "HEALTHY",
+        "Morocco public news page 4": "HEALTHY",
+        "Morocco public news page 5": "HEALTHY",
+        "APDN project news": "FAILED",
+        "Ministry of Culture news": "FAILED",
+        "Al Omrane news": "FAILED"
+      },
+      "escalation_level": 0,
+      "direct_fetches": 2,
+      "representative_results": []
+    },
+    "collector_trace": [],
+    "truncation": [],
+    "collection_queries": [],
+    "collector_health": "DEGRADED",
+    "collector_health_reasons": [
+      "no_current_project_signals"
+    ],
+    "query_performance": {},
+    "search_api_calls": 0,
+    "search_models": [],
+    "search_usage_complete": true,
+    "web_search_calls": 0,
+    "search_call_purposes": [],
+    "dry_run": true,
+    "paid_search_calls": 0,
+    "openai_requests": 0,
+    "openai_skipped": 0,
+    "tokens_per_kept_result": null,
+    "openai_calls_per_kept_result": null,
+    "paid_searches_per_kept_result": null,
+    "direct_fetches_per_kept_result": null,
+    "ai_cache_hits": 0,
+    "escalation_level": 0,
+    "analysis_partial": false,
+    "no_ai": true
+  },
+  "candidate_errors_count": 0,
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "cached_tokens": 0,
+  "ai_calls": 0,
+  "direct_fetches": 6,
+  "search_calls": 0,
+  "resolution_search_calls": 0,
+  "estimated_ai_cost": "0E-8",
+  "error_kind": null,
+  "error_message": null
+}
+Search calls: 0
+Raw results: 0
+Allowed-source pages: 0
+Tender observations: 0
+Candidates created: 0
+Official pages resolved: 0
+Rejected by freshness: 0
+Rejected by relevance: 0
+Relevant observations: 0
+Verified official: 0
+Unverified credible: 0
+Unresolved: 0
+HTTP 403: 0
+HTTP 429: 0
+P1 kept: 0
+P2 kept: 0
+P3 kept: 0
+Queries with results: 0
+Queries with zero results: 0
+PMMP raw: 0
+Aggregator raw: 0
+Institutional raw: 0
+Deduped before enrichment: 0
+Discovery search calls: 0
+Resolution search calls: 0
+Unique identities: 0
+PMMP observations: 0
+Marche Facile observations: 0
+Institutional observations: 0
+Architecture kept: 0
+Topography rejected: 0
+Technical-only rejected: 0
+Heritage kept: 0
+Consultation architecturale kept: 0
+Concours architectural kept: 0
+Outside query family: 0
+Relevant/search call: 0
+Final/search call: 0
+Final kept: 0
+Collector health: DEGRADED

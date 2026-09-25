@@ -1,0 +1,23 @@
+{
+  "confirmed": true,
+  "backup": "backups\\radar-data-20260911T094159639857Z.json",
+  "sha256": "78fd12cd0fc8314e301b637662ffea562d080e853e7184b0c38d37a9c15305e8",
+  "before": {
+    "alembic_version": 1,
+    "radars": 5,
+    "result_observations": 114,
+    "results": 99,
+    "search_runs": 10,
+    "market_reviews": 0,
+    "result_audit_events": 101
+  },
+  "after": {
+    "alembic_version": 1,
+    "radars": 5,
+    "result_observations": 0,
+    "results": 0,
+    "search_runs": 0,
+    "market_reviews": 0,
+    "result_audit_events": 0
+  }
+}
