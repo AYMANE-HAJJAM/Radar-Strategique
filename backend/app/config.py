@@ -36,6 +36,7 @@ def load_config():
     for prefix in ('postgres://', 'postgresql://'):
         if url.startswith(prefix):
             url = 'postgresql+psycopg://' + url[len(prefix):]
+    production = os.getenv('FLASK_ENV', 'development') == 'production' or bool(os.getenv('RENDER'))
     return dict(
         SECRET_KEY=os.getenv('SECRET_KEY'),
         FLASK_ENV=os.getenv('FLASK_ENV', 'development'),
@@ -43,9 +44,13 @@ def load_config():
         SQLALCHEMY_TRACK_MODIFICATIONS=False,
         SQLALCHEMY_ENGINE_OPTIONS={'pool_pre_ping': True, 'connect_args': {'connect_timeout': 5}},
         FRONTEND_URL=os.getenv('FRONTEND_URL', 'http://localhost:3000').rstrip('/'),
+        # Local HTTP stays Lax and non-Secure. Production and Render use a
+        # Secure SameSite=None cookie so a direct cross-site call can still
+        # carry the session. The browser path is the same-origin Next.js /api
+        # proxy, which does not depend on third-party cookies.
         SESSION_COOKIE_HTTPONLY=True,
-        SESSION_COOKIE_SECURE=os.getenv('FLASK_ENV', 'development') == 'production',
-        SESSION_COOKIE_SAMESITE='None' if os.getenv('FLASK_ENV', 'development') == 'production' else 'Lax',
+        SESSION_COOKIE_SECURE=production,
+        SESSION_COOKIE_SAMESITE='None' if production else 'Lax',
         OPENAI_API_KEY=os.getenv('OPENAI_API_KEY', ''),
         OPENAI_MODEL=os.getenv('OPENAI_MODEL_DEFAULT') or os.getenv('OPENAI_MODEL', 'gpt-5.6-luna'),
         OPENAI_MODEL_ESCALATION=os.getenv('OPENAI_MODEL_ESCALATION', 'gpt-5.6-sol'),

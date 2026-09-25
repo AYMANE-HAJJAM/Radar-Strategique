@@ -1,6 +1,6 @@
 import type {User} from "@/types";
 
-const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000").replace(/\/$/, "");
+// Same-origin only. next.config.ts rewrites /api to the backend.
 let csrfToken = "";
 
 export class ApiError extends Error { constructor(public code:string, message:string, public status:number){super(message);} }
@@ -9,8 +9,10 @@ export async function api<T>(path:string, init:RequestInit = {}):Promise<T> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 30000);
   try {
-    const response = await fetch(`${API_URL}/api${path}`, {credentials:"include", ...init, signal:controller.signal,
-      headers:{"Content-Type":"application/json", ...(csrfToken ? {"X-CSRF-Token":csrfToken}:{}), ...init.headers}});
+    const headers = new Headers(init.headers);
+    if (!headers.has("Content-Type")) headers.set("Content-Type", "application/json");
+    if (csrfToken) headers.set("X-CSRF-Token", csrfToken);
+    const response = await fetch(`/api${path}`, {...init, credentials:"include", signal:controller.signal, headers});
     if (response.status === 204) return undefined as T;
     const data = await response.json();
     if (!response.ok) throw new ApiError(data.error?.code || "REQUEST_FAILED", data.error?.message || "Erreur serveur", response.status);

@@ -28,9 +28,36 @@ def test_health_is_lightweight(app):
 def test_valid_code_login_me_and_logout(app):
     user_id, code = make_user(app)
     client = app.test_client(); csrf = login(client, code)
-    assert client.get('/api/auth/me').get_json()['user']['id'] == user_id
+    me = client.get('/api/auth/me')
+    assert me.status_code == 200 and me.get_json()['user']['id'] == user_id
+    assert client.get('/api/radars').status_code == 200
     assert client.post('/api/auth/logout', headers={'X-CSRF-Token': csrf}).status_code == 204
     assert client.get('/api/auth/me').status_code == 401
+    assert client.get('/api/radars').status_code == 401
+
+
+def test_render_session_cookie_is_secure_cross_site(monkeypatch):
+    monkeypatch.setenv('RENDER', 'true')
+    monkeypatch.setenv('FLASK_ENV', 'development')
+    from app.config import load_config
+    config = load_config()
+    assert config['SESSION_COOKIE_HTTPONLY'] is True
+    assert config['SESSION_COOKIE_SECURE'] is True
+    assert config['SESSION_COOKIE_SAMESITE'] == 'None'
+
+
+def test_local_session_cookie_is_lax_and_not_secure(app):
+    _, code = make_user(app)
+    response = app.test_client().post('/api/auth/access', json={'access_code': code})
+    cookie = response.headers.get('Set-Cookie', '')
+    assert 'HttpOnly' in cookie
+    assert 'SameSite=Lax' in cookie
+    assert 'Secure' not in cookie
+
+
+def test_foreign_origin_is_not_credentialed(app):
+    response = app.test_client().get('/api/health', headers={'Origin': 'https://evil.example'})
+    assert 'Access-Control-Allow-Origin' not in response.headers
 
 
 def test_access_preflight_and_post_include_credentialed_cors(app):
