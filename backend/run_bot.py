@@ -4,9 +4,9 @@ import time
 
 from telegram.error import Conflict, InvalidToken, NetworkError, TelegramError
 
-from backend.app import create_app
-from backend.app.bot import build_application
-from backend.app.core.logging import log_failure
+from app import create_app
+from app.bot import build_application
+from app.core.logging import log_failure
 
 
 def main():

@@ -1,6 +1,6 @@
 import pytest
 
-from backend.app.core.business_relevance import evaluate_business_relevance
+from app.core.business_relevance import evaluate_business_relevance
 
 
 @pytest.mark.parametrize('text', [

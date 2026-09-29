@@ -1,10 +1,10 @@
 from datetime import timedelta
 
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar2_projects.service import ProjectsRadarAgent
-from backend.app.modules.radar2_projects.collector import ProjectsCollector
-from backend.app.modules.radar2_projects.policy import classify_signal
-from backend.app.integrations.openai.base import SearchResponse
+from app.core.validation import today_in_morocco
+from app.modules.radar2_projects.service import ProjectsRadarAgent
+from app.modules.radar2_projects.collector import ProjectsCollector
+from app.modules.radar2_projects.policy import classify_signal
+from app.integrations.openai.base import SearchResponse
 
 
 class NoSearch:
@@ -74,7 +74,7 @@ def test_high_confidence_project_skips_ai(app):
 
 
 def test_project_meaningful_update_fields(app):
-    from backend.app.core.review import ResultWorkflowService
+    from app.core.review import ResultWorkflowService
     class Existing:
         title = 'Projet'; institution = 'Région'; reference = None; deadline = None; source_status = 'active'
         radar_metadata = {'signal_type': 'PROJECT_ANNOUNCED', 'maturity': 'B', 'project_name': 'Projet'}

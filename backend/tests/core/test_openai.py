@@ -5,7 +5,7 @@ import httpx
 import pytest
 from openai import APIConnectionError
 
-from backend.app.integrations.openai.client import Analysis, OpenAIService, OpenAIServiceError
+from app.integrations.openai.client import Analysis, OpenAIService, OpenAIServiceError
 
 
 def test_structured_analysis_request():

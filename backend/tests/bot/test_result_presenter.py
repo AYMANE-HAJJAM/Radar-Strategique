@@ -1,15 +1,15 @@
 from unittest.mock import AsyncMock
 
-from backend.app.bot.handlers.common import on_callback
-from backend.app.bot.handlers.markets import parse_market_callback
-from backend.app.bot.presenters.result_presenter import (
+from app.bot.handlers.common import on_callback
+from app.bot.handlers.markets import parse_market_callback
+from app.bot.presenters.result_presenter import (
     format_result_card,
     format_result_details,
     format_review_reason,
     format_source_label,
     truncate,
 )
-from backend.tests.bot.test_bot import fixture_update
+from tests.bot.test_bot import fixture_update
 from test_market_usability import CODE, review_rows
 
 

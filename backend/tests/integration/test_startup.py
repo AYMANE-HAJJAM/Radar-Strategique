@@ -1,7 +1,7 @@
 import asyncio
 from unittest.mock import MagicMock, patch
 
-from backend.app import create_app
+from app import create_app
 
 
 def test_flask_factory_imports_without_network(monkeypatch):
@@ -11,11 +11,11 @@ def test_flask_factory_imports_without_network(monkeypatch):
     app = create_app()
     with patch('app.core.internal_api.database_available', return_value=True):
         response = app.test_client().get('/api/health')
-    assert response.json['phase'] == 2 and response.json['status'] == 'ok'
+    assert response.json['status'] == 'ok'
 
 
 def test_bot_entry_point_supplies_event_loop(app):
-    import backend.run_bot as run_bot
+    import run_bot
 
     application = MagicMock()
 

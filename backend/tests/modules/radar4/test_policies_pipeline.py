@@ -1,10 +1,10 @@
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar4_policies.service import PoliciesRadarAgent
-from backend.app.modules.radar4_policies.collector import PoliciesCollector
-from backend.app.modules.radar4_policies.policy import classify
-from backend.app.integrations.openai.base import SearchResponse
-from backend.app.core.dedup import identity_keys
-from backend.app.core.review import ResultWorkflowService
+from app.core.validation import today_in_morocco
+from app.modules.radar4_policies.service import PoliciesRadarAgent
+from app.modules.radar4_policies.collector import PoliciesCollector
+from app.modules.radar4_policies.policy import classify
+from app.integrations.openai.base import SearchResponse
+from app.core.dedup import identity_keys
+from app.core.review import ResultWorkflowService
 
 class NoSearch:
     def search(self,*args,**kwargs):return SearchResponse([])

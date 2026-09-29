@@ -1,7 +1,7 @@
 import pytest
 from types import SimpleNamespace
-from backend.app.modules.radar1_markets.policy import evaluate_relevance
-from backend.app.core.review import _unique_eligible
+from app.modules.radar1_markets.policy import evaluate_relevance
+from app.core.review import _unique_eligible
 
 @pytest.mark.parametrize('title', [
     'Étude de valorisation du patrimoine culturel et historique de Settat',

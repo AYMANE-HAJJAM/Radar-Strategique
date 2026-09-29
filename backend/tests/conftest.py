@@ -39,11 +39,16 @@ def app():
         'INTERNAL_USER_EMAIL': '',
         'INTERNAL_USER_PASSWORD_HASH': '',
         'SEARCH_PROVIDER': 'disabled',
+        'ALLOWED_TELEGRAM_USER_IDS': frozenset({123}),
+        'TELEGRAM_BOT_TOKEN': 'test-token',
     })
     with application.app_context():
         db.create_all()
         seed_radars()
     yield application
+    runner = application.extensions.get('radar_job_runner')
+    if runner is not None:
+        runner.shutdown(wait=False, cancel_futures=True)
     with application.app_context():
         db.session.remove()
         db.drop_all()

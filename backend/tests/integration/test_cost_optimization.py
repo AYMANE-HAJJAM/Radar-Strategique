@@ -3,16 +3,16 @@ from unittest.mock import MagicMock, Mock, patch
 
 import pytest
 
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.agent_schemas import TokenUsage
-from backend.app.core.collector_base import query_batches
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
-from backend.app.core.evidence import compact_candidate, relevant_snippets
-from backend.app.integrations.openai.client import OpenAIService
-from backend.scripts.test_agent import MockAnalyzer
-from backend.tests.integration.test_agent import candidate
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.agent_schemas import TokenUsage
+from app.core.collector_base import query_batches
+from app.db.extensions import db
+from app.db.models import Result
+from app.core.evidence import compact_candidate, relevant_snippets
+from app.integrations.openai.client import OpenAIService
+from scripts.test_agent import MockAnalyzer
+from tests.integration.test_agent import candidate
 
 
 def test_context_selects_relevant_sections_and_obeys_limits():
@@ -92,7 +92,7 @@ def test_token_budget_degrades_to_review_without_extra_call(app):
     engine = AgentOrchestrator(app, collector=lambda _: [candidate()], analyzer=analyzer)
     original = engine.reserve('RADAR_1_MARKETS')
     with app.app_context():
-        from backend.app.db.models import SearchRun
+        from app.db.models import SearchRun
         run = db.session.get(SearchRun, original); run.input_tokens = 1; db.session.commit()
     summary = engine.execute(original)
     analyzer.analyze_candidate.assert_not_called()

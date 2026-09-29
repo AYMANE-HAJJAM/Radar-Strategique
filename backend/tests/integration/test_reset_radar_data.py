@@ -2,16 +2,16 @@ from pathlib import Path
 from unittest.mock import Mock
 import pytest
 from sqlalchemy import inspect, text
-from backend.app.db.extensions import db
-from backend.app.db.models import Radar, Result, SearchRun, MarketReview, ResultAuditEvent, ResultObservation
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.review import page, decide
-from backend.app.bot.handlers.common import start
-from backend.scripts.reset_radar_data import reset, restore, TARGETS
-from backend.scripts.test_agent import MockAnalyzer
-from backend.tests.integration.test_agent import candidate
-from backend.tests.integration.test_phase3 import execute
+from app.db.extensions import db
+from app.db.models import Radar, Result, SearchRun, MarketReview, ResultAuditEvent, ResultObservation
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.review import page, decide
+from app.bot.handlers.common import start
+from scripts.reset_radar_data import reset, restore, TARGETS
+from scripts.test_agent import MockAnalyzer
+from tests.integration.test_agent import candidate
+from tests.integration.test_phase3 import execute
 from test_bot import fixture_update
 
 

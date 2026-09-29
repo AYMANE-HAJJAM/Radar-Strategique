@@ -8,10 +8,10 @@ from tempfile import TemporaryDirectory
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from backend.app import create_app
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.db.extensions import db
-from backend.app.db.repositories.radars import seed_radars
+from app import create_app
+from app.core.orchestrator import AgentOrchestrator
+from app.db.extensions import db
+from app.db.repositories.radars import seed_radars
 
 
 def main():

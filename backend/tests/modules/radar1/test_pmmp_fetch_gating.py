@@ -2,9 +2,9 @@
 from unittest.mock import Mock
 from types import SimpleNamespace
 
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.modules.radar1_markets.policy import preliminary_plausible
-from backend.app.integrations.openai.base import SearchHit
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.modules.radar1_markets.policy import preliminary_plausible
+from app.integrations.openai.base import SearchHit
 
 
 def test_preliminary_rejects_office_supplies_without_detail():
@@ -26,7 +26,7 @@ def test_collector_caches_detail_page_per_url():
                            links=[], rows=[], table_rows=[], row_parts=[], row_links=[],
                            headings=[], h1=[], articles=[], has_form=False)
     reader.get.return_value = ('https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1&orgAcronyme=abc', page)
-    from backend.app.integrations.http.html import AccessLimitedPages
+    from app.integrations.http.html import AccessLimitedPages
     metrics = {'http_403': 0, 'http_429': 0}
     pages = AccessLimitedPages(reader, metrics)
     url = 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=1&orgAcronyme=abc'

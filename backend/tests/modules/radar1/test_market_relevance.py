@@ -3,13 +3,13 @@ from pathlib import Path
 
 import pytest
 
-from backend.app.modules.radar1_markets.policy import evaluate_relevance, folded
-from backend.app.modules.radar1_markets.service import MarketsRadarAgent
-from backend.scripts.test_agent import MockAnalyzer
+from app.modules.radar1_markets.policy import evaluate_relevance, folded
+from app.modules.radar1_markets.service import MarketsRadarAgent
+from scripts.test_agent import MockAnalyzer
 from test_agent import candidate
 from test_phase3 import execute
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
+from app.db.extensions import db
+from app.db.models import Result
 
 EXAMPLES = json.loads(Path('tests/fixtures/manual_market_relevance.json').read_text(encoding='utf-8'))
 

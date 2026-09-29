@@ -5,11 +5,11 @@ import httpx
 import pytest
 from openai import APITimeoutError, RateLimitError
 
-from backend.app.core.agent_errors import InvalidAnalysisError, OpenAITimeoutError, OpenAIRateLimitError
-from backend.app.core.agent_schemas import Candidate
-from backend.app.core.radar_registry import RADARS
-from backend.app.integrations.openai.client import OpenAIService
-from backend.scripts.test_agent import MockAnalyzer
+from app.core.agent_errors import InvalidAnalysisError, OpenAITimeoutError, OpenAIRateLimitError
+from app.core.agent_schemas import Candidate
+from app.core.radar_registry import RADARS
+from app.integrations.openai.client import OpenAIService
+from scripts.test_agent import MockAnalyzer
 
 
 def sdk_response():

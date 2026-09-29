@@ -9,14 +9,14 @@ from datetime import timedelta
 import pytest
 from pydantic import ValidationError
 
-from backend.app.core.constants import MAX_CANDIDATE_METADATA_CHARS
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.validation import today_in_morocco
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, ResultObservation, SearchRun
-from backend.app.modules.radar1_markets.schemas import MarketCandidate
-from backend.scripts.test_agent import MockAnalyzer
+from app.core.constants import MAX_CANDIDATE_METADATA_CHARS
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.validation import today_in_morocco
+from app.db.extensions import db
+from app.db.models import Result, ResultObservation, SearchRun
+from app.modules.radar1_markets.schemas import MarketCandidate
+from scripts.test_agent import MockAnalyzer
 
 CODE = 'RADAR_1_MARKETS'
 PMMP_URL = (

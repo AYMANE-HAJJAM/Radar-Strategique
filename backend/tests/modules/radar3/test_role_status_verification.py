@@ -1,23 +1,23 @@
 from datetime import date,timedelta
 from unittest.mock import Mock
 import pytest
-from backend.app.modules.radar3_institutions.leadership import RoleEvidence, resolve, extract, role_valid
-from backend.app.modules.radar3_institutions.collector import InstitutionsCollector
-from backend.app.modules.radar4_policies.collector import PoliciesCollector
-from backend.app.modules.radar4_policies.status_verification import publication_evidence, apply_publication
-from backend.app.modules.radar4_policies.policy import classify
-from backend.app.modules.radar4_policies.service import PoliciesRadarAgent
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.validation import today_in_morocco
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
+from app.modules.radar3_institutions.leadership import RoleEvidence, resolve, extract, role_valid
+from app.modules.radar3_institutions.collector import InstitutionsCollector
+from app.modules.radar4_policies.collector import PoliciesCollector
+from app.modules.radar4_policies.status_verification import publication_evidence, apply_publication
+from app.modules.radar4_policies.policy import classify
+from app.modules.radar4_policies.service import PoliciesRadarAgent
+from app.core.orchestrator import AgentOrchestrator
+from app.core.validation import today_in_morocco
+from app.db.extensions import db
+from app.db.models import Result
 
 TODAY=date(2026,9,12)
 
 def test_bo_publication_uses_morocco_calendar_date():
     import json
-    from backend.app.integrations.http.adapters import SourceDefinition
-    from backend.app.modules.radar3_institutions.institution_policy_source import PolicySourceAdapter
+    from app.integrations.http.adapters import SourceDefinition
+    from app.modules.radar3_institutions.institution_policy_source import PolicySourceAdapter
     adapter=PolicySourceAdapter(SourceDefinition('BO','https://sgg.gov.ma/list',parser_type='BO_PUBLICATIONS'),['sgg.gov.ma'])
     rows=[{'BoDate':'/Date(1784156400000)/','BoNum':'7526','BoUrl':'/BO/FR/2873/2026/BO_7526_Fr.pdf'},
           {'BoDate':'/Date(-1804032000000)/','BoNum':'1','BoUrl':'/BO/bo_fr/1912/bo_1_fr.pdf'}]
@@ -26,7 +26,7 @@ def test_bo_publication_uses_morocco_calendar_date():
     assert items[1]['date'].startswith('1912-')
 
 def test_confirmed_role_flag_cannot_bypass_missing_evidence(app):
-    from backend.app.modules.radar3_institutions.validators import validate
+    from app.modules.radar3_institutions.validators import validate
     c=InstitutionsCollector(Mock(),app.config)
     base=c._candidate('Agence urbaine','https://alomrane.gov.ma/profile','Mission de patrimoine et urbanisme','Agence urbaine',profile_evidence=True)
     item=c.apply_leadership(base,[role(days=None,kind='GOVERNANCE')])

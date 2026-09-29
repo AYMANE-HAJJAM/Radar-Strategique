@@ -1,1 +1,130 @@
-{}
+{
+  "search": {
+    "callbacks": 10,
+    "effective_actions": 1,
+    "new_search_runs": 1,
+    "review_decisions": 0,
+    "paid_calls": 0,
+    "transport": "mock; search worker held pending"
+  },
+  "pending": {
+    "callbacks": 10,
+    "effective_actions": 1,
+    "new_search_runs": 0,
+    "review_decisions": 0,
+    "paid_calls": 0,
+    "transport": "mock; search worker held pending"
+  },
+  "details": {
+    "callbacks": 10,
+    "effective_actions": 1,
+    "new_search_runs": 0,
+    "review_decisions": 0,
+    "paid_calls": 0,
+    "transport": "mock; search worker held pending"
+  },
+  "next": {
+    "callbacks": 10,
+    "effective_actions": 1,
+    "new_search_runs": 0,
+    "review_decisions": 0,
+    "paid_calls": 0,
+    "transport": "mock; search worker held pending"
+  },
+  "approve": {
+    "callbacks": 10,
+    "effective_actions": 1,
+    "new_search_runs": 0,
+    "review_decisions": 1,
+    "paid_calls": 0,
+    "transport": "mock; search worker held pending"
+  },
+  "concurrent_search": {
+    "attempts": 10,
+    "users": 2,
+    "created_runs": 1,
+    "stale_recovery": true
+  },
+  "shared_review": {
+    "rollback": true,
+    "stale_second_user_rejected": true,
+    "decision_audit_events": 1
+  },
+  "performance": {
+    "start": {
+      "median_ms": 0.183,
+      "max_ms": 0.224
+    },
+    "radar_menu": {
+      "median_ms": 0.593,
+      "max_ms": 0.866
+    },
+    "pending": {
+      "median_ms": 96.478,
+      "max_ms": 100.313
+    },
+    "approved": {
+      "median_ms": 2.663,
+      "max_ms": 4.124
+    },
+    "rejected": {
+      "median_ms": 1.891,
+      "max_ms": 2.207
+    },
+    "details": {
+      "median_ms": 2.623,
+      "max_ms": 4.905
+    },
+    "pagination": {
+      "median_ms": 101.19,
+      "max_ms": 125.525
+    },
+    "history": {
+      "median_ms": 2.481,
+      "max_ms": 5.401
+    },
+    "approve_db_ms": 15.16,
+    "reject_db_ms": 3.213,
+    "search_ack_ms": 0.501
+  },
+  "memory_radar1": {
+    "first_new": 1,
+    "second_new": 0,
+    "second_duplicates": 1,
+    "rows": 1,
+    "second_paid_calls": 0,
+    "review_preserved": true
+  },
+  "memory_radar2": {
+    "first_new": 1,
+    "second_new": 0,
+    "second_duplicates": 1,
+    "rows": 1,
+    "second_paid_calls": 0,
+    "review_preserved": true
+  },
+  "memory_radar3": {
+    "first_new": 1,
+    "second_new": 0,
+    "second_duplicates": 1,
+    "rows": 1,
+    "second_paid_calls": 0,
+    "review_preserved": true
+  },
+  "memory_radar4": {
+    "first_new": 1,
+    "second_new": 0,
+    "second_duplicates": 1,
+    "rows": 1,
+    "second_paid_calls": 0,
+    "review_preserved": true
+  },
+  "memory_radar5": {
+    "first_new": 1,
+    "second_new": 0,
+    "second_duplicates": 1,
+    "rows": 1,
+    "second_paid_calls": 0,
+    "review_preserved": true
+  }
+}

@@ -5,19 +5,19 @@ from unittest.mock import Mock, AsyncMock, patch
 
 import pytest
 
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.agent_schemas import RunSummary, RunStatus, Stage
-from backend.app.core.validation import today_in_morocco
-from backend.app.bot.handlers.jobs import notify_when_finished
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import extract_rows
-from backend.app.integrations.pmmp.client import is_direct_notice
-from backend.app.modules.radar1_markets.policy import domain_match, normalize_domain, source_role
-from backend.app.integrations.openai.base import SearchHit, SearchResponse
-from backend.app.integrations.openai.search import OpenAISearchProvider
-from backend.app.core.agent_job_service import JobTicket
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.orchestrator import AgentOrchestrator
+from app.core.agent_schemas import RunSummary, RunStatus, Stage
+from app.core.validation import today_in_morocco
+from app.bot.handlers.jobs import notify_when_finished
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import extract_rows
+from app.integrations.pmmp.client import is_direct_notice
+from app.modules.radar1_markets.policy import domain_match, normalize_domain, source_role
+from app.integrations.openai.base import SearchHit, SearchResponse
+from app.integrations.openai.search import OpenAISearchProvider
+from app.core.agent_job_service import JobTicket
 from test_phase3 import CODE, hit, URL
 
 RADAR = RADAR_AGENT_REGISTRY.resolve(CODE)
@@ -176,7 +176,7 @@ def test_discovery_kind_with_identity_survives_blocked_page_and_uses_hosted_link
 
 def test_observed_official_notice_id_resolves_verified_detail_without_document_get(app):
     from urllib.error import HTTPError
-    from backend.app.integrations.pmmp.client import detail_from_official_identity
+    from app.integrations.pmmp.client import detail_from_official_identity
     url = 'https://cpmaroc.com/appels-offres/109919'
     document = LIVE_URL.replace('EntrepriseDetailConsultation', 'EntrepriseDownloadAvisJAL')
     run = collector(app, [SearchHit(url=url, title='Etude architecturale patrimoniale', reference='CA11/2026/APDN', institution='APDN')])
@@ -196,7 +196,7 @@ def test_observed_official_notice_id_resolves_verified_detail_without_document_g
 def test_cli_writes_unicode_report_even_with_ascii_console(app, tmp_path, monkeypatch):
     import io
     import json
-    from backend.scripts import run_live_radar
+    from scripts import run_live_radar
     class AsciiConsole(io.StringIO):
         def write(self, value):
             value.encode('ascii')

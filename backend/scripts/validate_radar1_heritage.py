@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from backend.app.modules.radar1_markets.policy import evaluate_relevance
+from app.modules.radar1_markets.policy import evaluate_relevance
 
 
 def walk(value):

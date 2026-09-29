@@ -3,12 +3,12 @@ from unittest.mock import Mock
 
 import pytest
 
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, TargetedSearchBriefVersion, TargetedSearchResultLink, TargetedSearchSession
-from backend.app.integrations.openai.base import SearchHit, SearchResponse
-from backend.app.modules.targeted_search.parser import fold, interpret_brief
-from backend.app.modules.targeted_search.service import ActiveTargetedRunError, StaleBriefError, TargetedSearchService
-from backend.app.bot.handlers.common import fallback, on_callback
+from app.db.extensions import db
+from app.db.models import Result, TargetedSearchBriefVersion, TargetedSearchResultLink, TargetedSearchSession
+from app.integrations.openai.base import SearchHit, SearchResponse
+from app.modules.targeted_search.parser import fold, interpret_brief
+from app.modules.targeted_search.service import ActiveTargetedRunError, StaleBriefError, TargetedSearchService
+from app.bot.handlers.common import fallback, on_callback
 from test_bot import fixture_update
 
 

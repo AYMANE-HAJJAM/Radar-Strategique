@@ -2,13 +2,13 @@ from types import SimpleNamespace
 
 import pytest
 
-from backend.app.bot.handlers.funding import parse_funding_callback
-from backend.app.bot.handlers.institutions import parse_institution_callback
-from backend.app.bot.handlers.markets import parse_market_callback
-from backend.app.bot.handlers.policies import parse_policy_callback
-from backend.app.bot.handlers.projects import parse_project_callback
-from backend.app.bot.state import clamped_page, pagination_label, pagination_rows
-from backend.app.core.review import page
+from app.bot.handlers.funding import parse_funding_callback
+from app.bot.handlers.institutions import parse_institution_callback
+from app.bot.handlers.markets import parse_market_callback
+from app.bot.handlers.policies import parse_policy_callback
+from app.bot.handlers.projects import parse_project_callback
+from app.bot.state import clamped_page, pagination_label, pagination_rows
+from app.core.review import page
 from test_market_usability import CODE, review_rows
 
 

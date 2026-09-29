@@ -3,12 +3,12 @@ from pathlib import Path
 
 import pytest
 
-from backend.app.bot.presenters.result_presenter import format_result_card
-from backend.app.modules.radar1_markets.discovery_strategies import FAMILY_TERMS, build_discovery_plan
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import procurement_metadata
-from backend.app.modules.radar1_markets.policy import evaluate_relevance
-from backend.app.core.review import page as review_page
+from app.bot.presenters.result_presenter import format_result_card
+from app.modules.radar1_markets.discovery_strategies import FAMILY_TERMS, build_discovery_plan
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import procurement_metadata
+from app.modules.radar1_markets.policy import evaluate_relevance
+from app.core.review import page as review_page
 from test_agent import candidate
 from test_phase3 import execute, URL
 

@@ -1,6 +1,7 @@
 from typing import Literal
-from pydantic import Field, AwareDatetime
+from pydantic import AwareDatetime, Field, model_validator
 from app.core.agent_schemas import BaseCandidate, BaseAnalysis
+from app.integrations.pmmp.parser import normalize_estimate
 
 
 class MarketCandidate(BaseCandidate):
@@ -44,6 +45,31 @@ class MarketCandidate(BaseCandidate):
     deadline_at: AwareDatetime | None = None
     access_mode: Literal['DIRECT_OFFICIAL', 'INDIRECT_PMMP_SEARCH', 'OFFICIAL_INSTITUTION', 'SECONDARY_DISCOVERY'] = 'SECONDARY_DISCOVERY'
     official_confirmation: bool = False
+
+    @model_validator(mode='before')
+    @classmethod
+    def sanitize_optional_estimate(cls, data):
+        """Placeholders are optional metadata. They must not fail candidate validation."""
+        if not isinstance(data, dict):
+            return data
+        if 'estimated_amount' in data:
+            parsed = normalize_estimate(
+                data.get('estimated_amount'),
+                official=bool(data.get('estimated_amount_verified')),
+                source=data.get('estimated_amount_source'))
+            data['estimated_amount'] = parsed['amount']
+            if parsed['amount'] is None:
+                data['estimated_amount_verified'] = False
+            if not data.get('estimated_currency') and parsed['currency']:
+                data['estimated_currency'] = parsed['currency']
+            if not data.get('estimated_amount_tax_mode') and parsed['tax_mode']:
+                data['estimated_amount_tax_mode'] = parsed['tax_mode']
+        elif data.get('estimated_amount_verified'):
+            data['estimated_amount_verified'] = False
+        budget = data.get('budget')
+        if 'budget' in data and not (isinstance(budget, (int, float)) and not isinstance(budget, bool)):
+            data['budget'] = normalize_estimate(budget)['amount']
+        return data
 
     def radar_fields(self):
         data = {**super().radar_fields(), 'morocco_related': self.morocco_related,

@@ -3,19 +3,19 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import extract_rows, dce_metadata, verify_detail
-from backend.app.integrations.http.html import PublicPages
-from backend.app.modules.radar1_markets.policy import source_role, relevant, detail_url
-from backend.app.modules.radar1_markets.parser import normalize_hit
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
-from backend.app.integrations.openai.base import SearchResponse
-from backend.app.core.review import page as review_page
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.validation import today_in_morocco
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import extract_rows, dce_metadata, verify_detail
+from app.integrations.http.html import PublicPages
+from app.modules.radar1_markets.policy import source_role, relevant, detail_url
+from app.modules.radar1_markets.parser import normalize_hit
+from app.db.extensions import db
+from app.db.models import Result
+from app.integrations.openai.base import SearchResponse
+from app.core.review import page as review_page
 from test_phase3 import hit, URL, CODE, execute
 
 RADAR = RADAR_AGENT_REGISTRY.resolve(CODE)
@@ -171,7 +171,7 @@ def test_memory_skips_detail_and_ai_before_resolution(app, rejected):
     def build(*args):
         return MarketsCollector(provider, app.config, pages=pages)
     with patch('app.core.orchestrator.build_collector', side_effect=build):
-        from backend.scripts.test_agent import MockAnalyzer
+        from scripts.test_agent import MockAnalyzer
         engine = AgentOrchestrator(app, analyzer=MockAnalyzer())
         assert engine.run_radar(CODE).new_results_count == 1
         with app.app_context():

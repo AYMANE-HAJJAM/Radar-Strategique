@@ -1,12 +1,12 @@
 from datetime import timedelta
 
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar3_institutions.service import InstitutionsRadarAgent
-from backend.app.modules.radar3_institutions.collector import InstitutionsCollector
-from backend.app.modules.radar3_institutions.policy import classify, public_excerpt
-from backend.app.integrations.openai.base import SearchResponse
-from backend.app.core.dedup import identity_keys
-from backend.app.core.review import ResultWorkflowService
+from app.core.validation import today_in_morocco
+from app.modules.radar3_institutions.service import InstitutionsRadarAgent
+from app.modules.radar3_institutions.collector import InstitutionsCollector
+from app.modules.radar3_institutions.policy import classify, public_excerpt
+from app.integrations.openai.base import SearchResponse
+from app.core.dedup import identity_keys
+from app.core.review import ResultWorkflowService
 
 
 class NoSearch:

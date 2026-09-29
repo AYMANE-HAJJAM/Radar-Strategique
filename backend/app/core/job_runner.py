@@ -25,5 +25,5 @@ class LocalJobRunner:
         future.add_done_callback(lambda _: self.slots.release())
         return future
 
-    def shutdown(self):
-        self.executor.shutdown(wait=True)
+    def shutdown(self, wait=True, cancel_futures=False):
+        self.executor.shutdown(wait=wait, cancel_futures=cancel_futures)

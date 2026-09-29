@@ -5,13 +5,13 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-from backend.app.core.agent_schemas import RunSummary, RunStatus, Stage
-from backend.app.bot.handlers.common import fallback, start, on_callback
-from backend.app.bot.handlers.jobs import notify_when_finished
-from backend.app.bot.keyboards.main import COMPLETION_LABELS, radar_keyboard
-from backend.app.bot.state import UIState, set_state
-from backend.app.core.agent_job_service import JobTicket
-from backend.tests.bot.test_bot import fixture_update
+from app.core.agent_schemas import RunSummary, RunStatus, Stage
+from app.bot.handlers.common import fallback, start, on_callback
+from app.bot.handlers.jobs import notify_when_finished
+from app.bot.keyboards.main import COMPLETION_LABELS, radar_keyboard
+from app.bot.state import UIState, set_state
+from app.core.agent_job_service import JobTicket
+from tests.bot.test_bot import fixture_update
 
 
 async def test_start_sets_main_menu_and_stray_text_redisplays(app):

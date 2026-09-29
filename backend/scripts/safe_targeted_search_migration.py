@@ -10,9 +10,9 @@ from datetime import datetime, timezone
 
 from sqlalchemy import MetaData, inspect, select, func, text
 
-from backend.app import create_app
-from backend.app.db.extensions import db
-from backend.scripts.reset_radar_data import snapshot_rows, decode
+from app import create_app
+from app.db.extensions import db
+from scripts.reset_radar_data import snapshot_rows, decode
 
 HEAD = 'f19a7c4d2e61'
 EXPECTED_BEFORE = 'c83d2e5f9a31'

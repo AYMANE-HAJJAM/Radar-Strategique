@@ -3,8 +3,12 @@
 Listing and detail entrypoints live here. HTTP fetch is injected via a pages reader
 (see app.integrations.http.html); this module does not open network connections.
 """
+import logging
+import math
 import re
 from urllib.parse import urljoin, urlsplit
+
+logger = logging.getLogger(__name__)
 
 from app.modules.radar1_markets.policy import folded, detail_url, aggregate_title
 from app.integrations.openai.base import SearchHit
@@ -161,6 +165,107 @@ def _amount(value):
     return amount * multiplier, currency
 
 
+def _finite_amount(value):
+    """Keep a real non-negative number. Booleans, NaN, infinities and negatives are not amounts."""
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        return None
+    number = float(value)
+    if not math.isfinite(number) or number < 0:
+        return None
+    return number
+
+
+def _tax_mode(text):
+    hint = folded(text or '')
+    if re.search(r'\bttc\b', hint):
+        return 'TTC'
+    if re.search(r'\bht\b', hint):
+        return 'HT'
+    return None
+
+
+def _currency_token(text):
+    match = re.search(r'\b(mad|dh|dhs|eur|usd)\b', str(text or ''), re.I)
+    if not match:
+        return None
+    token = match.group(1).lower()
+    return 'MAD' if token in {'mad', 'dh', 'dhs'} else token.upper()
+
+
+def normalize_estimate(value, *, official=False, source=None):
+    """Canonical estimate normalization. Never raises and never invents a number.
+
+    Valid integers, floats, French-formatted strings and structured dicts become
+    a non-negative amount. Placeholders such as ``* TTC MAD`` become ``amount=None``
+    while currency and tax wording from the same text are kept. A missing amount
+    is never marked verified and is never filled from a caution provisoire.
+    """
+    if isinstance(value, dict):
+        inner = normalize_estimate(
+            value.get('amount', value.get('estimated_amount')),
+            official=False,
+            source=value.get('source') or source)
+        currency = _currency_token(value.get('currency')) or inner['currency']
+        tax = _tax_mode(value.get('tax_mode') or value.get('tax_basis') or '') or inner['tax_mode']
+        amount = inner['amount']
+        if amount is not None and tax is None:
+            tax = 'UNKNOWN'
+        verified_in = value.get('verified')
+        verified = bool(amount is not None and (official if verified_in is None else verified_in))
+        return {
+            'amount': amount,
+            'currency': currency,
+            'tax_mode': tax,
+            'verified': verified,
+            'source': value.get('source') or source,
+        }
+    amount = _finite_amount(value)
+    text = '' if amount is not None else ' '.join(str(value or '').replace('\u00a0', ' ').split())
+    currency = None
+    tax = None
+    if amount is None and text:
+        parsed, currency = _amount(text)
+        amount = _finite_amount(parsed)
+        if currency is None:
+            currency = _currency_token(text)
+        tax = _tax_mode(text)
+        if amount is not None and tax is None:
+            tax = 'UNKNOWN'
+        elif amount is None:
+            logger.debug('estimate_not_numeric raw=%r', text[:120])
+    return {
+        'amount': amount,
+        'currency': currency,
+        'tax_mode': tax,
+        'verified': bool(amount is not None and official),
+        'source': source,
+    }
+
+
+def coerce_estimate_fields(fields, *, official=False, source=None):
+    """Write canonical estimate/budget values onto a field dict before model validation."""
+    if not isinstance(fields, dict):
+        return fields
+    if 'estimated_amount' in fields:
+        parsed = normalize_estimate(fields.get('estimated_amount'), official=official, source=source)
+        currency = fields.get('estimated_currency') or parsed['currency']
+        if parsed['amount'] is not None and not currency and official:
+            currency = 'MAD'
+        tax = fields.get('estimated_amount_tax_mode') or parsed['tax_mode']
+        fields['estimated_amount'] = parsed['amount']
+        fields['estimated_amount_verified'] = False if parsed['amount'] is None else bool(
+            fields['estimated_amount_verified'] if 'estimated_amount_verified' in fields else parsed['verified'])
+        if currency:
+            fields['estimated_currency'] = currency
+        if tax:
+            fields['estimated_amount_tax_mode'] = tax
+        if source and not fields.get('estimated_amount_source'):
+            fields['estimated_amount_source'] = source
+    if 'budget' in fields:
+        fields['budget'] = normalize_estimate(fields.get('budget')).get('amount')
+    return fields
+
+
 def _amount_context_hints(label_text, value_text):
     """Merge TTC/HT/MAD hints from the PMMP label into the value for downstream parse."""
     hint = folded(label_text or '')
@@ -190,15 +295,20 @@ def procurement_metadata(page, url):
     result = {}
     estimate_text = fields.get('estimated_amount')
     if estimate_text:
-        amount, currency = _amount(estimate_text)
-        if amount is not None:
-            tax = ('TTC' if re.search(r'\bttc\b', folded(estimate_text)) else
-                   'HT' if re.search(r'\bht\b', folded(estimate_text)) else 'UNKNOWN')
-            if currency is None and re.search(r'\b(mad|dh|dhs)\b', folded(estimate_text)):
-                currency = 'MAD'
-            result.update(estimated_amount=amount, estimated_currency=currency or ('MAD' if official else None),
-                          estimated_amount_tax_mode=tax,
-                          estimated_amount_source=source, estimated_amount_verified=official)
+        parsed = normalize_estimate(estimate_text, official=official, source=source)
+        currency = parsed['currency']
+        if parsed['amount'] is not None and currency is None and official:
+            currency = 'MAD'
+        # Always overwrite the raw label, including placeholders, so ``* TTC MAD``
+        # cannot remain a string on the candidate.
+        result['estimated_amount'] = parsed['amount']
+        result['estimated_amount_verified'] = parsed['verified']
+        if currency:
+            result['estimated_currency'] = currency
+        if parsed['tax_mode']:
+            result['estimated_amount_tax_mode'] = parsed['tax_mode']
+        if parsed['amount'] is not None or currency or parsed['tax_mode']:
+            result['estimated_amount_source'] = source
     bond_text = fields.get('provisional_bond')
     if bond_text is not None and str(bond_text).strip() != '':
         amount, currency = _amount(bond_text)
@@ -256,12 +366,19 @@ def build_pmmp_detail(fields, url, page_text=''):
     elif re.search(r'reserve(?:e)? (?:aux )?tpe|reserve(?:e)? (?:aux )?pme', text):
         sme_flag = True
     estimate = None
-    if fields.get('estimated_amount') is not None:
+    raw_estimate = fields.get('estimated_amount')
+    has_estimate_meta = (
+        raw_estimate is not None or fields.get('estimated_currency') or fields.get('estimated_amount_tax_mode'))
+    if has_estimate_meta:
+        parsed = normalize_estimate(
+            raw_estimate, official=bool(fields.get('estimated_amount_verified')),
+            source=fields.get('estimated_amount_source'))
+        amount = parsed['amount']
         estimate = {
-            'amount': fields.get('estimated_amount'),
-            'currency': fields.get('estimated_currency'),
-            'tax_basis': fields.get('estimated_amount_tax_mode'),
-            'verified': bool(fields.get('estimated_amount_verified')),
+            'amount': amount,
+            'currency': fields.get('estimated_currency') or parsed['currency'],
+            'tax_basis': fields.get('estimated_amount_tax_mode') or parsed['tax_mode'],
+            'verified': bool(amount is not None and fields.get('estimated_amount_verified')),
             'source': fields.get('estimated_amount_source'),
         }
     bond = None
@@ -433,6 +550,8 @@ def enrich_detail(candidate, pages):
                 'plan_price_amount', 'plan_price_currency', 'detail_enrichment_status',
                 'documents_notice', 'meeting', 'site_visit', 'variant', 'admin_contact'):
         fields.pop(key, None)
+    official = is_direct_notice(url) or is_pmmp(url)
+    coerce_estimate_fields(fields, official=official, source=official_source)
     return candidate.model_copy(update=fields)
 
 

@@ -1,14 +1,14 @@
 from datetime import timedelta
 from unittest.mock import Mock
 
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.validation import today_in_morocco
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, ResultAuditEvent
-from backend.app.core.review import page, decide, run_page
-from backend.app.core.review import DiscoveryStatus, ReviewStatus
-from backend.app.bot.routing import parse_callback
-from backend.scripts.test_agent import MockAnalyzer
+from app.core.orchestrator import AgentOrchestrator
+from app.core.validation import today_in_morocco
+from app.db.extensions import db
+from app.db.models import Result, ResultAuditEvent
+from app.core.review import page, decide, run_page
+from app.core.review import DiscoveryStatus, ReviewStatus
+from app.bot.routing import parse_callback
+from scripts.test_agent import MockAnalyzer
 from test_agent import candidate
 from test_phase3 import CODE, execute
 

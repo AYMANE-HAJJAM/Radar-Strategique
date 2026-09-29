@@ -5,19 +5,19 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from backend.app.core.agent_errors import InvalidCandidateError
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY, RadarAgentRegistry, UnknownRadarError
-from backend.app.modules.radar1_markets.service import MarketsRadarAgent
-from backend.app.modules.radar2_projects.service import ProjectsRadarAgent
-from backend.app.modules.radar3_institutions.service import InstitutionsRadarAgent
-from backend.app.modules.radar4_policies.service import PoliciesRadarAgent
-from backend.app.modules.radar5_funding.service import FundingRadarAgent
-from backend.app.core.agent_schemas import AnalysisResponse, TokenUsage
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, ResultObservation, SearchRun
-from backend.app.integrations.openai.client import OpenAIService
-from backend.scripts.test_agent import MockAnalyzer
+from app.core.agent_errors import InvalidCandidateError
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY, RadarAgentRegistry, UnknownRadarError
+from app.modules.radar1_markets.service import MarketsRadarAgent
+from app.modules.radar2_projects.service import ProjectsRadarAgent
+from app.modules.radar3_institutions.service import InstitutionsRadarAgent
+from app.modules.radar4_policies.service import PoliciesRadarAgent
+from app.modules.radar5_funding.service import FundingRadarAgent
+from app.core.agent_schemas import AnalysisResponse, TokenUsage
+from app.db.extensions import db
+from app.db.models import Result, ResultObservation, SearchRun
+from app.integrations.openai.client import OpenAIService
+from scripts.test_agent import MockAnalyzer
 
 TODAY = date(2026, 9, 9)
 AGENTS = (MarketsRadarAgent, ProjectsRadarAgent, InstitutionsRadarAgent, PoliciesRadarAgent, FundingRadarAgent)
@@ -65,7 +65,7 @@ def test_unknown_run_creates_no_database_record(app):
 
 def test_market_deadline_and_commercial_priority():
     agent = MarketsRadarAgent()
-    from backend.tests.integration.test_agent import candidate as fixture_candidate
+    from tests.integration.test_agent import candidate as fixture_candidate
     candidate = fixture_candidate(title='Étude et suivi de restauration du patrimoine historique bâti', deadline=TODAY, publication_date=TODAY, procedure_type='consultation')
     assert agent.validate_candidate(candidate, as_of=TODAY).accepted
     result = agent.validated_analysis(candidate, analysis(agent, commercial_fit='direct'), as_of=TODAY)
@@ -166,7 +166,7 @@ def test_specialized_field_change_updates_same_row(app):
 
 
 def test_expired_after_rediscovery_revalidates_without_ai(app):
-    from backend.tests.integration.test_agent import candidate
+    from tests.integration.test_agent import candidate
     items = [candidate(deadline=TODAY, publication_date=TODAY).model_dump()]
     engine = AgentOrchestrator(app, collector=lambda radar: items, analyzer=MockAnalyzer())
     with patch('app.core.orchestrator.today_in_morocco', return_value=TODAY):

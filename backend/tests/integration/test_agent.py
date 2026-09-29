@@ -5,15 +5,15 @@ from unittest.mock import Mock, patch
 import pytest
 from sqlalchemy.exc import IntegrityError, OperationalError
 
-from backend.app.core.agent_errors import ActiveRunError, InvalidAnalysisError, OpenAITimeoutError
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.agent_schemas import AnalysisResponse, Candidate, Stage, TokenUsage
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, ResultObservation, SearchRun
-from backend.app.core.dedup import canonical_url
-from backend.scripts.test_agent import MockAnalyzer
-from backend.app.modules.radar1_markets.schemas import MarketCandidate
-from backend.app.core.validation import today_in_morocco
+from app.core.agent_errors import ActiveRunError, InvalidAnalysisError, OpenAITimeoutError
+from app.core.orchestrator import AgentOrchestrator
+from app.core.agent_schemas import AnalysisResponse, Candidate, Stage, TokenUsage
+from app.db.extensions import db
+from app.db.models import Result, ResultObservation, SearchRun
+from app.core.dedup import canonical_url
+from scripts.test_agent import MockAnalyzer
+from app.modules.radar1_markets.schemas import MarketCandidate
+from app.core.validation import today_in_morocco
 from datetime import timedelta
 
 CODE = 'RADAR_1_MARKETS'

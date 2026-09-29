@@ -5,11 +5,11 @@ from unittest.mock import AsyncMock, patch
 import pytest
 from telegram.error import BadRequest
 
-from backend.app.bot.handlers.common import on_callback
-from backend.app.bot.handlers.markets import handle, parse_market_callback, show_page
-from backend.app.bot.queue_view import QUEUE_VIEW_KEY, cleanup_queue_view, render_queue_slots
-from backend.app.core.review import CODE
-from backend.tests.bot.test_bot import fixture_update
+from app.bot.handlers.common import on_callback
+from app.bot.handlers.markets import handle, parse_market_callback, show_page
+from app.bot.queue_view import QUEUE_VIEW_KEY, cleanup_queue_view, render_queue_slots
+from app.core.review import CODE
+from tests.bot.test_bot import fixture_update
 from test_market_usability import review_rows
 
 

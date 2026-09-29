@@ -2,9 +2,9 @@
 from pathlib import Path
 from unittest.mock import Mock
 
-from backend.app.bot.presenters.result_presenter import format_result_card
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import (
+from app.bot.presenters.result_presenter import format_result_card
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import (
     _amount, build_pmmp_detail, enrich_detail, field_name, labelled_fields,
     procurement_metadata,
 )
@@ -104,7 +104,7 @@ def test_one_detail_fetch_via_page_cache():
     html = FIXTURE.read_text(encoding='utf-8')
     reader = Mock()
     reader.get.return_value = (URL, Page(html))
-    from backend.app.integrations.http.html import AccessLimitedPages
+    from app.integrations.http.html import AccessLimitedPages
     limited = AccessLimitedPages(reader, metrics={'http_403': 0, 'http_429': 0})
     first = enrich_detail(
         candidate(url=URL, official_url=URL, title='Réhabilitation SIDI IFNI',

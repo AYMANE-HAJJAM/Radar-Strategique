@@ -4,10 +4,10 @@ from unittest.mock import AsyncMock, patch
 import pytest
 from telegram.error import NetworkError
 
-from backend.app.bot import build_application
-from backend.app.bot.routing import parse_callback
-from backend.app.bot.handlers.common import fallback, on_callback, on_error, start
-from backend.app.bot.keyboards.main import main_keyboard, radar_keyboard
+from app.bot import build_application
+from app.bot.routing import parse_callback
+from app.bot.handlers.common import fallback, on_callback, on_error, start
+from app.bot.keyboards.main import main_keyboard, radar_keyboard
 
 
 def fixture_update(app, user_id=123, data=None, chat_type='private'):
@@ -114,7 +114,7 @@ async def test_error_handler_survives_telegram_outage(app, caplog):
 
 
 def test_keyboards_and_application_build(app):
-    from backend.app.bot import handlers
+    from app.bot import handlers
     assert not hasattr(handlers, 'myid')
     keyboard = main_keyboard()
     assert len(keyboard.inline_keyboard) == 6

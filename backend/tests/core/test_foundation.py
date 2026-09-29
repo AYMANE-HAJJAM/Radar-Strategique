@@ -3,11 +3,11 @@ from unittest.mock import patch
 import pytest
 from sqlalchemy.exc import IntegrityError, OperationalError
 
-from backend.app.db.extensions import db
-from backend.app.db.models import Radar, Result, SearchRun
-from backend.app.core.radar_registry import RADARS
-from backend.app.core.dedup import fingerprint
-from backend.app.db.repositories.radars import RadarServiceError, radar_action, seed_radars
+from app.db.extensions import db
+from app.db.models import Radar, Result, SearchRun
+from app.core.radar_registry import RADARS
+from app.core.dedup import fingerprint
+from app.db.repositories.radars import RadarServiceError, radar_action, seed_radars
 
 CODE = 'RADAR_1_MARKETS'
 
@@ -23,7 +23,7 @@ def test_health_and_database_outage(app):
 
 
 def test_seed_history_and_empty_collectors(app):
-    from backend.app.core.orchestrator import AgentOrchestrator
+    from app.core.orchestrator import AgentOrchestrator
     with app.app_context():
         seed_radars()
         assert db.session.scalar(db.select(db.func.count()).select_from(Radar)) == 5

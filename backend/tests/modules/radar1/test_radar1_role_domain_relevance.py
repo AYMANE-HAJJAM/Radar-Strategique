@@ -1,6 +1,6 @@
 """Radar 1 role+domain relevance regressions (études+suivi alone is not enough)."""
 import pytest
-from backend.app.modules.radar1_markets.policy import (
+from app.modules.radar1_markets.policy import (
     evaluate_relevance, REASON_ACCEPT_HERITAGE, REASON_REJECT_EXECUTION,
     REASON_REJECT_INFRA, REASON_ACCEPT_CONCOURS, REASON_ACCEPT_MAJOR,
 )

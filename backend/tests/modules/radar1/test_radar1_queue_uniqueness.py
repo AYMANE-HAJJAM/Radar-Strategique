@@ -4,15 +4,15 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-from backend.app.bot.handlers.common import on_callback
-from backend.app.bot.handlers.markets import handle, parse_market_callback, show_page
-from backend.app.modules.radar1_markets.policy import evaluate_relevance, relevant
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, Radar
-from backend.app.core.review import page, _unique_eligible, CODE
-from backend.app.core.review import ReviewStatus
+from app.bot.handlers.common import on_callback
+from app.bot.handlers.markets import handle, parse_market_callback, show_page
+from app.modules.radar1_markets.policy import evaluate_relevance, relevant
+from app.db.extensions import db
+from app.db.models import Result, Radar
+from app.core.review import page, _unique_eligible, CODE
+from app.core.review import ReviewStatus
 from test_bot import fixture_update
-from backend.tests.modules.radar1.test_market_usability import review_rows
+from tests.modules.radar1.test_market_usability import review_rows
 from test_phase3 import execute
 from test_agent import candidate
 
@@ -72,7 +72,7 @@ def test_architecture_mixed_with_topography_without_heritage_rejected(title):
     'Études architecturales',
 ])
 def test_bare_architectural_study_without_project_family_is_rejected(title):
-    from backend.app.modules.radar1_markets.policy import REASON_REJECT_GENERIC
+    from app.modules.radar1_markets.policy import REASON_REJECT_GENERIC
     result = evaluate_relevance(title)
     assert result['decision'] == 'reject'
     assert result['reason_code'] == REASON_REJECT_GENERIC
@@ -186,7 +186,7 @@ async def test_pagination_callbacks_preserve_pending_status(app):
     assert nav_edits[-1].kwargs['reply_markup'].inline_keyboard[0][0].callback_data == 'm:pending:0'
 
 def test_discovery_coverage_sector_unchanged(app):
-    from backend.app.modules.radar1_markets.discovery_strategies import direct_discovery_plan
+    from app.modules.radar1_markets.discovery_strategies import direct_discovery_plan
     plan = direct_discovery_plan(app.config)
     assert any(item.url.endswith('services-architecturales-et-topographiques') for item in plan)
 

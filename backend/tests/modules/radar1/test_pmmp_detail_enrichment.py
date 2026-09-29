@@ -2,9 +2,9 @@
 from datetime import timedelta
 from unittest.mock import Mock
 
-from backend.app.core.validation import today_in_morocco
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import (
+from app.core.validation import today_in_morocco
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import (
     enrich_detail, procurement_metadata, build_pmmp_detail, labelled_fields)
 from test_agent import candidate
 from test_phase3 import URL

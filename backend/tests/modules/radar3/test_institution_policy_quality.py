@@ -1,15 +1,15 @@
 from datetime import timedelta
 from unittest.mock import Mock
 import pytest
-from backend.app.modules.radar3_institutions.collector import InstitutionsCollector
-from backend.app.modules.radar4_policies.collector import PoliciesCollector
-from backend.app.modules.radar4_policies.policy import classify
-from backend.app.modules.radar3_institutions.institution_policy_source import PolicySourceAdapter, InstitutionSourceAdapter
-from backend.app.integrations.http.adapters import SourceDefinition, normalized_item_hash
-from backend.app.core.validation import today_in_morocco
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
+from app.modules.radar3_institutions.collector import InstitutionsCollector
+from app.modules.radar4_policies.collector import PoliciesCollector
+from app.modules.radar4_policies.policy import classify
+from app.modules.radar3_institutions.institution_policy_source import PolicySourceAdapter, InstitutionSourceAdapter
+from app.integrations.http.adapters import SourceDefinition, normalized_item_hash
+from app.core.validation import today_in_morocco
+from app.core.orchestrator import AgentOrchestrator
+from app.db.extensions import db
+from app.db.models import Result
 
 
 @pytest.mark.parametrize('title,evidence', [

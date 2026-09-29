@@ -9,12 +9,16 @@ depends_on = None
 
 
 def upgrade():
-    op.add_column('search_runs', sa.Column('launched_by_user_id', sa.Integer(), nullable=True))
-    op.create_foreign_key('fk_search_runs_launched_by_user', 'search_runs', 'users', ['launched_by_user_id'], ['id'])
-    op.create_index('ix_search_runs_launched_by_user_id', 'search_runs', ['launched_by_user_id'])
+    # SQLite cannot ALTER a foreign key in place. Batch mode recreates the table
+    # and still emits a normal foreign key on PostgreSQL.
+    with op.batch_alter_table('search_runs') as batch:
+        batch.add_column(sa.Column('launched_by_user_id', sa.Integer(), nullable=True))
+        batch.create_foreign_key('fk_search_runs_launched_by_user', 'users', ['launched_by_user_id'], ['id'])
+        batch.create_index('ix_search_runs_launched_by_user_id', ['launched_by_user_id'])
 
 
 def downgrade():
-    op.drop_index('ix_search_runs_launched_by_user_id', table_name='search_runs')
-    op.drop_constraint('fk_search_runs_launched_by_user', 'search_runs', type_='foreignkey')
-    op.drop_column('search_runs', 'launched_by_user_id')
+    with op.batch_alter_table('search_runs') as batch:
+        batch.drop_index('ix_search_runs_launched_by_user_id')
+        batch.drop_constraint('fk_search_runs_launched_by_user', type_='foreignkey')
+        batch.drop_column('launched_by_user_id')

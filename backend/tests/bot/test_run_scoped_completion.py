@@ -4,18 +4,18 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock
 import pytest
 
-from backend.app.core.agent_schemas import RunSummary, RunStatus, Stage
-from backend.app.bot.handlers.jobs import notify_when_finished
-from backend.app.bot.keyboards.main import COMPLETION_LABELS, radar_keyboard
-from backend.app.db.extensions import db
-from backend.app.db.models import Radar, Result, ResultObservation, SearchRun, utcnow
-from backend.app.core.agent_job_service import JobTicket
-from backend.app.core.review import page, run_result_page, run_actionable_count, detail
-from backend.app.bot.handlers.markets import parse_market_callback
-from backend.app.bot.handlers.projects import parse_project_callback
-from backend.app.bot.handlers.institutions import parse_institution_callback
-from backend.app.bot.handlers.policies import parse_policy_callback
-from backend.app.bot.handlers.funding import parse_funding_callback
+from app.core.agent_schemas import RunSummary, RunStatus, Stage
+from app.bot.handlers.jobs import notify_when_finished
+from app.bot.keyboards.main import COMPLETION_LABELS, radar_keyboard
+from app.db.extensions import db
+from app.db.models import Radar, Result, ResultObservation, SearchRun, utcnow
+from app.core.agent_job_service import JobTicket
+from app.core.review import page, run_result_page, run_actionable_count, detail
+from app.bot.handlers.markets import parse_market_callback
+from app.bot.handlers.projects import parse_project_callback
+from app.bot.handlers.institutions import parse_institution_callback
+from app.bot.handlers.policies import parse_policy_callback
+from app.bot.handlers.funding import parse_funding_callback
 
 RADARS = [('RADAR_1_MARKETS', 'm', parse_market_callback), ('RADAR_2_PROJECTS', 'p', parse_project_callback), ('RADAR_3_INSTITUTIONS', 'i', parse_institution_callback), ('RADAR_4_POLICIES', 'l', parse_policy_callback), ('RADAR_5_FUNDING', 'f', parse_funding_callback)]
 

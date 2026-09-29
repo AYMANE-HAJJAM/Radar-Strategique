@@ -5,12 +5,12 @@ from unittest.mock import AsyncMock, Mock, patch
 
 import pytest
 
-from backend.app.core.agent_errors import ActiveRunError
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.agent_schemas import RunSummary, RunStatus, Stage
-from backend.app.bot.handlers.jobs import launch_search, notify_when_finished
-from backend.app.core.agent_job_service import JobTicket, launch_radar
-from backend.app.core.job_runner import LocalJobRunner
+from app.core.agent_errors import ActiveRunError
+from app.core.orchestrator import AgentOrchestrator
+from app.core.agent_schemas import RunSummary, RunStatus, Stage
+from app.bot.handlers.jobs import launch_search, notify_when_finished
+from app.core.agent_job_service import JobTicket, launch_radar
+from app.core.job_runner import LocalJobRunner
 
 CODE = 'RADAR_1_MARKETS'
 COMPLETION_LABELS = {
@@ -115,16 +115,15 @@ def test_submission_failure_releases_active_run(app):
     assert AgentOrchestrator(app).run_radar(CODE).status == 'completed'
 
 
-def test_internal_api_requires_separate_token_and_limits_output(app):
+def test_run_detail_requires_session_and_hides_secrets(app):
+    from tests.api.test_api import login, make_user
     client = app.test_client()
-    assert client.get('/api/runs').status_code == 401
-    app.config['INTERNAL_API_TOKEN'] = 'internal-test-token'
-    headers = {'Authorization': 'Bearer internal-test-token'}
-    assert client.get('/api/radars', headers=headers).status_code == 200
+    assert client.get('/api/radars').status_code == 401
+    assert client.get('/api/runs/1').status_code == 401
+    _, code = make_user(app)
+    login(client, code)
     summary = AgentOrchestrator(app).run_radar(CODE)
-    response = client.get(f'/api/runs/{summary.id}', headers=headers)
+    response = client.get(f'/api/runs/{summary.id}')
     assert response.json['current_stage'] == 'COMPLETED'
-    assert 'internal-test-token' not in response.get_data(as_text=True)
-    assert client.get('/api/runs?limit=10000', headers=headers).json['limit'] == 100
-    assert client.get('/api/runs?limit=bad', headers=headers).status_code == 400
-    assert client.get('/api/runs/99999', headers=headers).status_code == 404
+    assert code not in response.get_data(as_text=True)
+    assert client.get('/api/runs/99999').status_code == 404

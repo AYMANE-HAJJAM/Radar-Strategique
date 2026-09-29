@@ -3,20 +3,20 @@ from unittest.mock import Mock
 
 import pytest
 
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, MarketReview
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar1_markets.parser import normalize_hit
-from backend.app.modules.radar1_markets.official_link_resolver import OfficialLinkResolver
-from backend.app.core.review import page, decide, best_link, CODE
-from backend.app.bot.handlers.common import on_callback
-from backend.app.bot.keyboards.main import radar_keyboard
-from backend.app.bot.handlers.markets import parse_market_callback
+from app.db.extensions import db
+from app.db.models import Result, MarketReview
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.validation import today_in_morocco
+from app.modules.radar1_markets.parser import normalize_hit
+from app.modules.radar1_markets.official_link_resolver import OfficialLinkResolver
+from app.core.review import page, decide, best_link, CODE
+from app.bot.handlers.common import on_callback
+from app.bot.keyboards.main import radar_keyboard
+from app.bot.handlers.markets import parse_market_callback
 from test_bot import fixture_update
 from test_phase3 import hit, execute, URL
 from test_agent import candidate
-from backend.scripts.test_agent import MockAnalyzer
+from scripts.test_agent import MockAnalyzer
 
 
 def review_rows(app, count=1):

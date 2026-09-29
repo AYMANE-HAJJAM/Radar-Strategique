@@ -1,9 +1,9 @@
 """Summarize persisted radar usage without making network calls."""
 from collections import defaultdict
 
-from backend.app import create_app
-from backend.app.db.extensions import db
-from backend.app.db.models import Radar, SearchRun
+from app import create_app
+from app.db.extensions import db
+from app.db.models import Radar, SearchRun
 
 
 def main():

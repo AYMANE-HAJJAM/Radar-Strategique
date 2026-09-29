@@ -4,21 +4,21 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from backend.app.core.conditions import ConfidenceRules
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.validation import today_in_morocco
-from backend.app.core.collector_base import ProviderUnavailable
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.integrations.pmmp.client import is_direct_notice
-from backend.app.modules.radar1_markets.parser import normalize_hit
-from backend.app.core.collector_registry import COLLECTORS, build_collector
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, SearchRun
-from backend.app.integrations.openai.base import SearchHit, SearchOutput, SearchProviderError, SearchResponse
-from backend.app.integrations.openai.search import OpenAISearchProvider
-from backend.scripts.test_agent import MockAnalyzer
-from backend.tests.integration.test_agent import candidate
+from app.core.conditions import ConfidenceRules
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.validation import today_in_morocco
+from app.core.collector_base import ProviderUnavailable
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.integrations.pmmp.client import is_direct_notice
+from app.modules.radar1_markets.parser import normalize_hit
+from app.core.collector_registry import COLLECTORS, build_collector
+from app.db.extensions import db
+from app.db.models import Result, SearchRun
+from app.integrations.openai.base import SearchHit, SearchOutput, SearchProviderError, SearchResponse
+from app.integrations.openai.search import OpenAISearchProvider
+from scripts.test_agent import MockAnalyzer
+from tests.integration.test_agent import candidate
 
 CODE = 'RADAR_1_MARKETS'
 URL = 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseDetailsConsultation&refConsultation=123'
@@ -131,7 +131,7 @@ def test_query_limit_failure_isolation_and_candidate_limit(app):
     app.config.update(RADAR1_MAX_QUERIES_PER_RUN=3, RADAR1_MAX_CANDIDATES=2)
     provider = Mock()
     provider.search.side_effect = [SearchProviderError('temporary'), SearchResponse([hit(), hit(reference='REF-2'), hit(reference='REF-3')]), SearchResponse([])]
-    from backend.app.integrations.http.html import Page
+    from app.integrations.http.html import Page
     pages = Mock()
     pages.get.return_value = (URL, Page('Restauration du patrimoine Buyer REF-1 REF-2 ' + hit().deadline))
     collector = MarketsCollector(provider, app.config, pages=pages)
@@ -152,7 +152,7 @@ def test_provider_unavailable_fails_run_and_records_queries(app):
 
 
 def test_analysis_limit_and_transient_candidate_isolation(app):
-    from backend.app.core.agent_errors import OpenAITimeoutError
+    from app.core.agent_errors import OpenAITimeoutError
     app.config['RADAR1_MAX_AI_ANALYSES'] = 1
     analyzer = Mock()
     analyzer.analyze_candidate.side_effect = OpenAITimeoutError('timeout', attempts=3)

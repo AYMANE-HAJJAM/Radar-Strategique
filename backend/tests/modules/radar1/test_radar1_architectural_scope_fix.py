@@ -4,15 +4,15 @@ from datetime import timedelta
 
 import pytest
 
-from backend.app.integrations.pmmp.parser import enrich_detail
-from backend.app.modules.radar1_markets.policy import (
+from app.integrations.pmmp.parser import enrich_detail
+from app.modules.radar1_markets.policy import (
     evaluate_relevance, preliminary_plausible,
     REASON_ACCEPT_CONCOURS, REASON_ACCEPT_HERITAGE, REASON_ACCEPT_MAJOR,
     REASON_REJECT_EXECUTION, REASON_REJECT_GENERIC, REASON_REJECT_INFRA,
     REASON_REJECT_NO_DOMAIN,
 )
-from backend.app.modules.radar1_markets.schemas import MarketCandidate
-from backend.app.core.validation import today_in_morocco
+from app.modules.radar1_markets.schemas import MarketCandidate
+from app.core.validation import today_in_morocco
 
 
 def test_ancienne_medina_etudes_suivi_is_p1_heritage():

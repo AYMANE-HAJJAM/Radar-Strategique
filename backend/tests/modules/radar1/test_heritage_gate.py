@@ -3,10 +3,10 @@ from unittest.mock import Mock
 
 import pytest
 
-from backend.app.modules.radar1_markets.policy import evaluate_relevance, folded
-from backend.app.modules.radar1_markets.service import MarketsRadarAgent
-from backend.app.core.review import _unique_eligible
-from backend.scripts.test_agent import MockAnalyzer
+from app.modules.radar1_markets.policy import evaluate_relevance, folded
+from app.modules.radar1_markets.service import MarketsRadarAgent
+from app.core.review import _unique_eligible
+from scripts.test_agent import MockAnalyzer
 from test_agent import candidate
 from test_phase3 import execute
 from types import SimpleNamespace
@@ -102,7 +102,7 @@ def test_generic_rejected_before_ai(app, title):
 
 @pytest.mark.parametrize('title', GENERIC_ARCHITECTURE_REJECTED)
 def test_ordinary_architectural_studies_rejected_before_ai(app, title):
-    from backend.app.modules.radar1_markets.policy import REASON_REJECT_GENERIC
+    from app.modules.radar1_markets.policy import REASON_REJECT_GENERIC
     analyzer = Mock()
     result = evaluate_relevance(title)
     assert result['decision'] == 'reject'

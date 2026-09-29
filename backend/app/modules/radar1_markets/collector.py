@@ -16,7 +16,8 @@ from app.modules.radar1_markets.policy import (
 )
 from app.integrations.http.html import PublicPages, AccessLimitedPages
 from app.integrations.pmmp.parser import (
-    extract_rows, verify_detail, enrich_detail, labelled_fields, procurement_metadata, _amount)
+    extract_rows, verify_detail, enrich_detail, labelled_fields, procurement_metadata, _amount,
+    normalize_estimate)
 from app.integrations.pmmp.client import detail_from_official_identity, canonical_detail_url
 from app.modules.radar1_markets.resolution import VERIFIED, CREDIBLE, UNRESOLVED, strong_identity, credible_fallback, with_resolution
 from app.integrations.openai.base import SearchHit, SearchProviderError
@@ -352,13 +353,15 @@ class MarketsCollector:
         role = source_role(hit.url, self.config) or 'DISCOVERY_ONLY'
         procurement = {}
         if hit.estimated_amount:
-            amount, currency = _amount(hit.estimated_amount)
-            if amount is not None:
-                procurement.update(estimated_amount=amount, estimated_currency=currency,
-                    estimated_amount_tax_mode='TTC' if 'ttc' in folded(hit.estimated_amount) else
-                    'HT' if 'ht' in folded(hit.estimated_amount).split() else 'UNKNOWN',
-                    estimated_amount_source='MARCHE_FACILE' if 'marchefacile' in normalize_domain(hit.url) else 'SECONDARY',
+            source = 'MARCHE_FACILE' if 'marchefacile' in normalize_domain(hit.url) else 'SECONDARY'
+            parsed = normalize_estimate(hit.estimated_amount, official=False, source=source)
+            if parsed['amount'] is not None or parsed['currency'] or parsed['tax_mode']:
+                procurement.update(estimated_amount=parsed['amount'], estimated_amount_source=source,
                     estimated_amount_verified=False)
+                if parsed['currency']:
+                    procurement['estimated_currency'] = parsed['currency']
+                if parsed['tax_mode']:
+                    procurement['estimated_amount_tax_mode'] = parsed['tax_mode']
         if hit.provisional_bond:
             amount, currency = _amount(hit.provisional_bond)
             if amount is not None:

@@ -2,10 +2,10 @@ from unittest.mock import Mock
 
 import pytest
 
-from backend.app.bot.handlers.jobs import launch_search
-from backend.app.db.extensions import db
-from backend.app.db.models import SearchRun
-from backend.app.db.repositories.search_runs import SearchRunService
+from app.bot.handlers.jobs import launch_search
+from app.db.extensions import db
+from app.db.models import SearchRun
+from app.db.repositories.search_runs import SearchRunService
 from test_bot import fixture_update
 
 

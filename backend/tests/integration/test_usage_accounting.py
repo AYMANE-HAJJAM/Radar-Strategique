@@ -1,10 +1,10 @@
 from unittest.mock import Mock,patch
 import pytest
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.agent_schemas import TokenUsage
-from backend.app.core.collector_registry import COLLECTORS
-from backend.app.integrations.openai.base import SearchResponse,SearchProviderError
-from backend.app.integrations.http.html import PublicPages
+from app.core.orchestrator import AgentOrchestrator
+from app.core.agent_schemas import TokenUsage
+from app.core.collector_registry import COLLECTORS
+from app.integrations.openai.base import SearchResponse,SearchProviderError
+from app.integrations.http.html import PublicPages
 
 @pytest.mark.parametrize('code',list(COLLECTORS)[1:])
 def test_failed_paid_search_usage_is_persisted(app,code):
@@ -35,8 +35,8 @@ def test_failed_direct_request_counted_but_cache_hit_not_counted():
 
 
 def test_project_resolution_failures_consume_budget(app):
-    from backend.app.modules.radar2_projects.collector import ProjectsCollector
-    from backend.app.modules.radar2_projects.service import ProjectsRadarAgent
+    from app.modules.radar2_projects.collector import ProjectsCollector
+    from app.modules.radar2_projects.service import ProjectsRadarAgent
     provider=Mock();provider.search.side_effect=SearchProviderError('timeout')
     app.config['RADAR2_RESOLUTION_MAX_SEARCHES']=1
     collector=ProjectsCollector(provider,app.config)

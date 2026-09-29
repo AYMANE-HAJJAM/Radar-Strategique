@@ -1,14 +1,14 @@
 from datetime import timedelta
 from unittest.mock import Mock
 
-from backend.app.core.validation import today_in_morocco
-from backend.app.bot.presenters.result_presenter import format_result_card, format_result_details
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import enrich_detail, procurement_metadata
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
-from backend.app.core.review import page as review_page, decide
-from backend.app.modules.radar1_markets.official_link_resolver import OfficialLinkResolver
+from app.core.validation import today_in_morocco
+from app.bot.presenters.result_presenter import format_result_card, format_result_details
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import enrich_detail, procurement_metadata
+from app.db.extensions import db
+from app.db.models import Result
+from app.core.review import page as review_page, decide
+from app.modules.radar1_markets.official_link_resolver import OfficialLinkResolver
 from test_agent import candidate
 from test_phase3 import execute, URL
 

@@ -1,16 +1,16 @@
-﻿﻿"""Bounded direct-only live dry-runs, then offline replay in disposable databases."""
+﻿"""Bounded direct-only live dry-runs, then offline replay in disposable databases."""
 import json
 import logging
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from unittest.mock import patch
 
-from backend.app import create_app
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, Radar
-from backend.app.core.collector_registry import build_collector
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.db.repositories.radars import seed_radars
+from app import create_app
+from app.db.extensions import db
+from app.db.models import Result, Radar
+from app.core.collector_registry import build_collector
+from app.core.orchestrator import AgentOrchestrator
+from app.db.repositories.radars import seed_radars
 
 
 def main():

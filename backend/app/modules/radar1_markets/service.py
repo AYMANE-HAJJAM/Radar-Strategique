@@ -1,4 +1,5 @@
 from app.core.radar_agent_base import BaseRadarAgent
+from app.integrations.pmmp.parser import normalize_estimate
 from .constants import RULES, SOURCES, CONDITIONS
 from .prompts import PROMPT
 from .schemas import MarketCandidate, MarketAnalysis
@@ -15,6 +16,29 @@ class MarketsRadarAgent(BaseRadarAgent):
     rules, source_strategy, prompt = RULES, SOURCES, PROMPT
     conditions = CONDITIONS
     candidate_schema, analysis_schema = MarketCandidate, MarketAnalysis
+
+    def normalize_candidate(self, item):
+        """Sanitize optional estimate text before the base serializer and strict model."""
+        if not isinstance(item, dict):
+            updates = {}
+            amount = getattr(item, 'estimated_amount', None)
+            if isinstance(amount, bool) or (amount is not None and not isinstance(amount, (int, float))):
+                parsed = normalize_estimate(
+                    amount, official=bool(getattr(item, 'estimated_amount_verified', False)),
+                    source=getattr(item, 'estimated_amount_source', None))
+                updates['estimated_amount'] = parsed['amount']
+                updates['estimated_amount_verified'] = False if parsed['amount'] is None else bool(
+                    getattr(item, 'estimated_amount_verified', False))
+                if parsed['currency'] and not getattr(item, 'estimated_currency', None):
+                    updates['estimated_currency'] = parsed['currency']
+                if parsed['tax_mode'] and not getattr(item, 'estimated_amount_tax_mode', None):
+                    updates['estimated_amount_tax_mode'] = parsed['tax_mode']
+            budget = getattr(item, 'budget', None)
+            if isinstance(budget, bool) or (budget is not None and not isinstance(budget, (int, float))):
+                updates['budget'] = normalize_estimate(budget)['amount']
+            if updates:
+                item = item.model_copy(update=updates)
+        return super().normalize_candidate(item)
 
     def validate_specific(self, candidate, *, as_of=None):
         return validators.validate(candidate, as_of)

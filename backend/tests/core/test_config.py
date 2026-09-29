@@ -1,7 +1,7 @@
 import pytest
 
-from backend.app import create_app
-from backend.app.config import load_config
+from app import create_app
+from app.config import load_config
 
 
 @pytest.mark.parametrize('value', ['abc', '123,bad', '-1', '0'])

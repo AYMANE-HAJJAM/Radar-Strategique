@@ -37,7 +37,17 @@ def load_config():
         if url.startswith(prefix):
             url = 'postgresql+psycopg://' + url[len(prefix):]
     production = os.getenv('FLASK_ENV', 'development') == 'production' or bool(os.getenv('RENDER'))
+    allow_raw = os.getenv('ALLOWED_TELEGRAM_USER_IDS', '')
+    allowlist = set()
+    for piece in allow_raw.split(','):
+        piece = piece.strip()
+        if not piece:
+            continue
+        if not piece.isdigit() or int(piece) < 1:
+            raise ValueError('ALLOWED_TELEGRAM_USER_IDS must be a comma-separated list of positive integers.')
+        allowlist.add(int(piece))
     return dict(
+        ALLOWED_TELEGRAM_USER_IDS=frozenset(allowlist),
         SECRET_KEY=os.getenv('SECRET_KEY'),
         FLASK_ENV=os.getenv('FLASK_ENV', 'development'),
         SQLALCHEMY_DATABASE_URI=url,

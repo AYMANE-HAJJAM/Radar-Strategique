@@ -2,15 +2,15 @@
 import json
 from datetime import timedelta
 
-from backend.app import create_app
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.integrations.http.html import Page
-from backend.app.db.extensions import db
-from backend.app.integrations.openai.base import SearchHit, SearchResponse
-from backend.app.db.repositories.radars import seed_radars
+from app import create_app
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.core.validation import today_in_morocco
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.integrations.http.html import Page
+from app.db.extensions import db
+from app.integrations.openai.base import SearchHit, SearchResponse
+from app.db.repositories.radars import seed_radars
 
 CODE = 'RADAR_1_MARKETS'
 LIST = 'https://marchesfaciles.ma/services/al-hoceima'

@@ -1,17 +1,17 @@
 from unittest.mock import Mock
 
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.modules.radar1_markets.discovery_strategies import (
+from app.core.orchestrator import AgentOrchestrator
+from app.core.radar_registry import RADAR_AGENT_REGISTRY
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.modules.radar1_markets.discovery_strategies import (
     FAMILY_TERMS, build_discovery_plan, direct_discovery_plan)
-from backend.app.integrations.http.html import Page
-from backend.app.integrations.pmmp.parser import extract_rows
-from backend.app.integrations.pmmp.client import is_direct_notice
-from backend.app.db.extensions import db
-from backend.app.db.models import Radar, SearchRun
-from backend.app.integrations.openai.base import SearchHit, SearchResponse
-from backend.tests.modules.radar1.test_collection_diagnostics import LIVE_URL, official_page
+from app.integrations.http.html import Page
+from app.integrations.pmmp.parser import extract_rows
+from app.integrations.pmmp.client import is_direct_notice
+from app.db.extensions import db
+from app.db.models import Radar, SearchRun
+from app.integrations.openai.base import SearchHit, SearchResponse
+from tests.modules.radar1.test_collection_diagnostics import LIVE_URL, official_page
 from test_phase3 import CODE
 
 RADAR = RADAR_AGENT_REGISTRY.resolve(CODE)

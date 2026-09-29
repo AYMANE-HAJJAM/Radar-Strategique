@@ -2,8 +2,8 @@
 from types import SimpleNamespace
 from unittest.mock import Mock
 
-from backend.app.modules.radar1_markets.policy import evaluate_relevance
-from backend.app.modules.radar1_markets.feedback import (
+from app.modules.radar1_markets.policy import evaluate_relevance
+from app.modules.radar1_markets.feedback import (
     Radar1FeedbackService, extract_features, MIN_FEATURE_SUPPORT)
 
 

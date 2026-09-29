@@ -1,7 +1,7 @@
 """Offline comparison of old/new business gates on the SAME titles; no API or DB."""
 import json
 from pathlib import Path
-from backend.app.modules.radar1_markets.policy import contains, evaluate_relevance
+from app.modules.radar1_markets.policy import contains, evaluate_relevance
 
 
 def compare(titles):

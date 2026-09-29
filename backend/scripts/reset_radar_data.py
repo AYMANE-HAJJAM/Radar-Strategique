@@ -9,8 +9,8 @@ import os
 from pathlib import Path
 
 from sqlalchemy import MetaData, inspect, select, func, text
-from backend.app import create_app
-from backend.app.db.extensions import db
+from app import create_app
+from app.db.extensions import db
 
 TARGETS = ('targeted_search_feedback', 'targeted_search_result_links', 'targeted_search_brief_versions',
            'targeted_search_sessions', 'result_observations', 'market_reviews', 'result_audit_events',

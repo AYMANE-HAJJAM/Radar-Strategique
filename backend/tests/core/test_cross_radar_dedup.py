@@ -1,14 +1,14 @@
 from datetime import timedelta
 
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.modules.radar2_projects.service import ProjectsRadarAgent
-from backend.app.modules.radar3_institutions.service import InstitutionsRadarAgent
-from backend.app.modules.radar4_policies.service import PoliciesRadarAgent
-from backend.app.modules.radar5_funding.service import FundingRadarAgent
-from backend.app.core.validation import today_in_morocco
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, ResultObservation, utcnow
-from backend.app.core.review import ResultWorkflowService, ReviewStatus
+from app.core.orchestrator import AgentOrchestrator
+from app.modules.radar2_projects.service import ProjectsRadarAgent
+from app.modules.radar3_institutions.service import InstitutionsRadarAgent
+from app.modules.radar4_policies.service import PoliciesRadarAgent
+from app.modules.radar5_funding.service import FundingRadarAgent
+from app.core.validation import today_in_morocco
+from app.db.extensions import db
+from app.db.models import Result, ResultObservation, utcnow
+from app.core.review import ResultWorkflowService, ReviewStatus
 
 
 URL = 'https://example.org/medina-program'

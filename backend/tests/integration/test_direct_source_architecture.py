@@ -2,7 +2,7 @@ import json
 from email.message import Message
 from urllib.error import HTTPError
 
-from backend.app.integrations.http.adapters import BaseSourceAdapter, SourceDefinition, normalized_item_hash
+from app.integrations.http.adapters import BaseSourceAdapter, SourceDefinition, normalized_item_hash
 
 
 class Response:

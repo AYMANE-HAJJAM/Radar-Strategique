@@ -4,22 +4,22 @@ from urllib.error import HTTPError
 
 import pytest
 
-from backend.app.modules.radar1_markets.service import MarketsRadarAgent
-from backend.app.core.validation import today_in_morocco
-from backend.app.modules.radar1_markets.collector import MarketsCollector
-from backend.app.integrations.http.html import AccessLimitedPages
-from backend.app.integrations.pmmp.client import canonical_detail_url, is_direct_notice
-from backend.app.modules.radar1_markets.resolution import CREDIBLE, VERIFIED, with_resolution
-from backend.app.integrations.openai.base import SearchHit, SearchResponse
-from backend.app.core.review import page, decide
-from backend.app.modules.radar1_markets.official_link_resolver import OfficialLinkResolver
-from backend.app.bot.presenters.result_presenter import format_result_card, format_result_details
-from backend.app.bot.handlers.markets import result_keyboard
-from backend.app.db.extensions import db
-from backend.app.db.models import Result
+from app.modules.radar1_markets.service import MarketsRadarAgent
+from app.core.validation import today_in_morocco
+from app.modules.radar1_markets.collector import MarketsCollector
+from app.integrations.http.html import AccessLimitedPages
+from app.integrations.pmmp.client import canonical_detail_url, is_direct_notice
+from app.modules.radar1_markets.resolution import CREDIBLE, VERIFIED, with_resolution
+from app.integrations.openai.base import SearchHit, SearchResponse
+from app.core.review import page, decide
+from app.modules.radar1_markets.official_link_resolver import OfficialLinkResolver
+from app.bot.presenters.result_presenter import format_result_card, format_result_details
+from app.bot.handlers.markets import result_keyboard
+from app.db.extensions import db
+from app.db.models import Result
 from test_agent import candidate
 from test_phase3 import execute
-from backend.tests.modules.radar1.test_collection_diagnostics import official_page, LIVE_URL
+from tests.modules.radar1.test_collection_diagnostics import official_page, LIVE_URL
 
 SECONDARY = 'https://cpmaroc.com/appels-offres/12345'
 

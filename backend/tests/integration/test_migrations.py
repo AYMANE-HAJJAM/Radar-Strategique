@@ -4,10 +4,10 @@ from flask_migrate import downgrade, upgrade
 from sqlalchemy import inspect
 from sqlalchemy import text
 
-from backend.app import create_app
-from backend.app.db.extensions import db
-from backend.app.db.models import Radar
-from backend.app.db.repositories.radars import seed_radars
+from app import create_app
+from app.db.extensions import db
+from app.db.models import Radar
+from app.db.repositories.radars import seed_radars
 
 
 def test_migration_round_trip(tmp_path):

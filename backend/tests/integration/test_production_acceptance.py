@@ -10,19 +10,19 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from backend.app import create_app
-from backend.app.core.agent_errors import ActiveRunError
-from backend.app.core.orchestrator import AgentOrchestrator
-from backend.app.bot.handlers.common import on_callback, start
-from backend.app.db.extensions import db
-from backend.app.db.models import Result, SearchRun, MarketReview, ResultAuditEvent, utcnow
-from backend.app.core.review import page, detail, decide, run_page
-from backend.app.db.repositories.radars import seed_radars
-from backend.app.db.repositories.source_state import SourceStateService
-from backend.app.integrations.http.adapters import SourceDefinition, SourceFetch
+from app import create_app
+from app.core.agent_errors import ActiveRunError
+from app.core.orchestrator import AgentOrchestrator
+from app.bot.handlers.common import on_callback, start
+from app.db.extensions import db
+from app.db.models import Result, SearchRun, MarketReview, ResultAuditEvent, utcnow
+from app.core.review import page, detail, decide, run_page
+from app.db.repositories.radars import seed_radars
+from app.db.repositories.source_state import SourceStateService
+from app.integrations.http.adapters import SourceDefinition, SourceFetch
 from test_bot import fixture_update
 from test_market_usability import review_rows
-from backend.tests.integration.test_agent import candidate
+from tests.integration.test_agent import candidate
 
 CODE = 'RADAR_1_MARKETS'
 EVIDENCE = {}
@@ -140,8 +140,8 @@ async def test_local_action_timings(app):
     item=page(app,'pending',0)[0][0]
     begin=perf_counter(); decide(app,item['id'],item['version'],'rejected',123)
     timings['reject_db_ms']=round((perf_counter()-begin)*1000,3)
-    from backend.app.bot.handlers.jobs import launch_search
-    from backend.app.core.agent_job_service import JobTicket
+    from app.bot.handlers.jobs import launch_search
+    from app.core.agent_job_service import JobTicket
     update,context=fixture_update(app,data='search:'+CODE)
     context.application.bot_data['job_runner']=Mock()
     tasks=[]; context.application.create_task=tasks.append
@@ -161,9 +161,9 @@ def test_write_acceptance_evidence():
 
 @pytest.mark.parametrize('number',[1,2,3,4,5])
 def test_all_radar_second_snapshot_preserves_human_review(app,number):
-    from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
-    from backend.app.core.collector_registry import COLLECTORS
-    from backend.app.core.validation import today_in_morocco
+    from app.core.radar_registry import RADAR_AGENT_REGISTRY
+    from app.core.collector_registry import COLLECTORS
+    from app.core.validation import today_in_morocco
     code=list(RADAR_AGENT_REGISTRY.catalog())[number-1]
     collector=COLLECTORS[code](Mock(),app.config)
     today=today_in_morocco()
@@ -202,7 +202,7 @@ def test_all_radar_second_snapshot_preserves_human_review(app,number):
 @pytest.mark.parametrize('prefix,code,module',[('p','RADAR_2_PROJECTS','projects'),
     ('i','RADAR_3_INSTITUTIONS','institutions'),('l','RADAR_4_POLICIES','policies'),('f','RADAR_5_FUNDING','funding')])
 async def test_nonmarket_queue_replacement_and_details_back(app,prefix,code,module):
-    from backend.app.bot.handlers import compact_review
+    from app.bot.handlers import compact_review
     item={'id':1,'title':'Public project','url':'https://example.com/item','version':'a'*12}
     update,context=fixture_update(app,data='pending:'+code)
     with patch.object(compact_review,'page',return_value=([item],False,1)),\
@@ -221,13 +221,13 @@ async def test_nonmarket_queue_replacement_and_details_back(app,prefix,code,modu
 
 @pytest.mark.parametrize('value,expected',[('123',{123}),('123, 456, ,789,',{123,456,789})])
 def test_multiuser_config_spaces_and_empty_entries(monkeypatch,value,expected):
-    from backend.app.config import load_config
+    from app.config import load_config
     monkeypatch.setenv('ALLOWED_TELEGRAM_USER_IDS',value)
     assert load_config()['ALLOWED_TELEGRAM_USER_IDS']==frozenset(expected)
 
 
 def test_missing_startup_settings_fail_clearly(app):
-    from backend.app.bot import build_application
+    from app.bot import build_application
     app.config['TELEGRAM_BOT_TOKEN']=''
     with pytest.raises(ValueError,match='TELEGRAM_BOT_TOKEN'): build_application(app)
     with pytest.raises(ValueError,match='DATABASE_URL'):
@@ -239,7 +239,8 @@ async def test_inflight_callback_stays_deduplicated_after_debounce(app):
     entered,release=asyncio.Event(),asyncio.Event()
     async def slow(*args): entered.set(); await release.wait()
     with patch('app.bot.handlers.common.launch_search',side_effect=slow) as launch:
-        task=asyncio.create_task(on_callback(update,context)); await entered.wait()
+        task=asyncio.create_task(on_callback(update,context))
+        await asyncio.wait_for(entered.wait(), timeout=2)
         # Simulate elapsed debounce TTL while the original action remains in flight.
         context.application.bot_data['callback_debounce']={}
         await on_callback(update,context)
@@ -250,7 +251,7 @@ async def test_inflight_callback_stays_deduplicated_after_debounce(app):
 @pytest.mark.parametrize('code',[403,429,500,None])
 def test_source_failures_are_isolated(app,code):
     from urllib.error import HTTPError
-    from backend.app.integrations.http.adapters import BaseSourceAdapter
+    from app.integrations.http.adapters import BaseSourceAdapter
     opener=Mock()
     opener.open.side_effect=TimeoutError() if code is None else HTTPError('https://example.gov.ma/index',code,'failure',{},None)
     result=BaseSourceAdapter(SourceDefinition('Failure','https://example.gov.ma/index'),
@@ -260,8 +261,8 @@ def test_source_failures_are_isolated(app,code):
 
 
 def test_cached_source_does_not_trigger_paid_gap_search(app):
-    from backend.app.core.collector_registry import COLLECTORS
-    from backend.app.core.radar_registry import RADAR_AGENT_REGISTRY
+    from app.core.collector_registry import COLLECTORS
+    from app.core.radar_registry import RADAR_AGENT_REGISTRY
     for code in list(COLLECTORS)[1:]:
         provider=Mock()
         collector=COLLECTORS[code](provider,app.config)
@@ -273,7 +274,7 @@ def test_cached_source_does_not_trigger_paid_gap_search(app):
 
 
 def test_production_low_cost_budget_is_preserved(app):
-    from backend.app.core.collector_registry import build_collector
+    from app.core.collector_registry import build_collector
     config=dict(app.config,SEARCH_PROVIDER='openai',OPENAI_API_KEY='offline-placeholder')
     market=build_collector(CODE,config)
     assert market.config['RADAR1_DISCOVERY_MAX_CALLS']==2
@@ -283,7 +284,7 @@ def test_production_low_cost_budget_is_preserved(app):
 
 @pytest.mark.parametrize('code',['RADAR_1_MARKETS','RADAR_2_PROJECTS','RADAR_3_INSTITUTIONS','RADAR_4_POLICIES','RADAR_5_FUNDING'])
 def test_five_unique_ids_per_page_for_each_team_queue(app,code):
-    from backend.app.db.models import Radar
+    from app.db.models import Radar
     review_rows(app,12)
     with app.app_context():
         radar_id=db.session.scalar(db.select(Radar.id).where(Radar.code==code))

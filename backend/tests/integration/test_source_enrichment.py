@@ -1,13 +1,13 @@
 from datetime import date
 from unittest.mock import Mock
 import pytest
-from backend.app.modules.radar3_institutions.curated_sources import role_items, normalize_role, scoped_page, source_records
-from backend.app.modules.radar4_policies.curated_legal import arabic_publication_sections, LEGAL_REGISTRY, HERITAGE_BO
-from backend.app.modules.radar3_institutions.leadership import RoleEvidence, resolve, role_valid
-from backend.app.modules.radar4_policies.status_verification import reference, publication_evidence, apply_publication
-from backend.app.modules.radar4_policies.collector import PoliciesCollector
-from backend.app.modules.radar3_institutions.institution_policy_source import PolicySourceAdapter
-from backend.app.integrations.http.adapters import SourceDefinition
+from app.modules.radar3_institutions.curated_sources import role_items, normalize_role, scoped_page, source_records
+from app.modules.radar4_policies.curated_legal import arabic_publication_sections, LEGAL_REGISTRY, HERITAGE_BO
+from app.modules.radar3_institutions.leadership import RoleEvidence, resolve, role_valid
+from app.modules.radar4_policies.status_verification import reference, publication_evidence, apply_publication
+from app.modules.radar4_policies.collector import PoliciesCollector
+from app.modules.radar3_institutions.institution_policy_source import PolicySourceAdapter
+from app.integrations.http.adapters import SourceDefinition
 
 def html(body,title='Partenariat patrimoine'):
     return f'<nav>12 septembre 2026</nav><h1>{title}</h1>{body}<footer>12 septembre 2026</footer>'.encode()
@@ -82,7 +82,7 @@ def test_registry_excludes_unreliable_archive_and_keeps_weekly_refresh():
     ('Texte adopté définitivement par les deux chambres','PARLIAMENT_ADOPTED'),
     ('Texte non adopté par la Chambre','PRESENTED'),('Examen en commission','COMMITTEE')])
 def test_explicit_parliamentary_stage_is_preserved(wording,stage):
-    from backend.app.modules.radar4_policies.legislative_progress import parliament_items
+    from app.modules.radar4_policies.legislative_progress import parliament_items
     items=parliament_items(html('13 avril 2026 '+wording,'Projet de loi n° 33/22 relatif au patrimoine'),
         'https://chambredesrepresentants.ma/fr/texte')
     assert items[0]['reference']=='33.22' and items[0]['parliamentary_stage']==stage
