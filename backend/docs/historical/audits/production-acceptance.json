@@ -52,40 +52,40 @@
   },
   "performance": {
     "start": {
-      "median_ms": 0.183,
-      "max_ms": 0.224
+      "median_ms": 0.159,
+      "max_ms": 0.276
     },
     "radar_menu": {
-      "median_ms": 0.593,
-      "max_ms": 0.866
+      "median_ms": 0.474,
+      "max_ms": 0.491
     },
     "pending": {
-      "median_ms": 96.478,
-      "max_ms": 100.313
+      "median_ms": 101.112,
+      "max_ms": 106.484
     },
     "approved": {
-      "median_ms": 2.663,
-      "max_ms": 4.124
+      "median_ms": 2.144,
+      "max_ms": 3.529
     },
     "rejected": {
-      "median_ms": 1.891,
-      "max_ms": 2.207
+      "median_ms": 1.941,
+      "max_ms": 2.655
     },
     "details": {
-      "median_ms": 2.623,
-      "max_ms": 4.905
+      "median_ms": 2.236,
+      "max_ms": 3.569
     },
     "pagination": {
-      "median_ms": 101.19,
-      "max_ms": 125.525
+      "median_ms": 98.462,
+      "max_ms": 100.526
     },
     "history": {
-      "median_ms": 2.481,
-      "max_ms": 5.401
+      "median_ms": 2.277,
+      "max_ms": 4.325
     },
-    "approve_db_ms": 15.16,
-    "reject_db_ms": 3.213,
-    "search_ack_ms": 0.501
+    "approve_db_ms": 19.713,
+    "reject_db_ms": 2.666,
+    "search_ack_ms": 0.376
   },
   "memory_radar1": {
     "first_new": 1,

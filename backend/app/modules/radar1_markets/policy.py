@@ -120,8 +120,7 @@ NATURAL_ONLY_CONTEXT = ('patrimoine naturel', 'patrimoine vegetal', 'patrimoine 
 
 ARCHITECTURAL_COMPETITION = ('concours architectural', 'concours d architecture',
     'concours de conception architecturale', 'concours pour la conception architecturale',
-    'concours de conception', 'consultation architecturale', 'consultations architecturales',
-    'architectural competition', 'architectural consultation')
+    'concours de conception', 'architectural competition')
 ARCHITECTURAL_SCOPE = ('architecture', 'architectural', 'architecturale', 'architecturales',
     'conception', 'design', 'conception architecturale', 'etude architecturale', 'etudes architecturales',
     'maitrise d oeuvre', 'mission d architecte', 'mission de conception',
@@ -197,6 +196,28 @@ INFRASTRUCTURE_ONLY = (
     'rue', 'rues',
 )
 DEFAULT_MAJOR_PROJECT_ESTIMATE_THRESHOLD_MAD = 20_000_000
+# Ordinary buildings stay out even when the notice says "études architecturales"
+# or the procedure is a competition. A real heritage object or major/strategic
+# evidence can still carry them.
+ORDINARY_FACILITY = (
+    'ecole', 'ecoles', 'lycee', 'lycees', 'college', 'colleges', 'ofppt', 'ista', 'istas',
+    'internat', 'internats', 'logement de fonction', 'logements de fonction',
+    'residence de fonction', 'groupe scolaire', 'groupes scolaires',
+    'etablissement scolaire', 'etablissements scolaires', 'ecole primaire',
+    'centre de formation professionnelle', 'formation professionnelle',
+    'petit batiment', 'petit batiment administratif', 'batiment administratif',
+)
+# Project words that prove a heritage object. A bare "patrimoine" category label
+# (PMMP activity domain) is not enough to rescue a school or OFPPT notice.
+ORDINARY_HERITAGE_RESCUE = (
+    'patrimoine bati', 'patrimoine culturel', 'patrimoine historique',
+    'ancienne medina', 'medina', 'medinas', 'centre historique', 'centres historiques',
+    'monument', 'monuments', 'rempart', 'remparts', 'muraille', 'murailles',
+    'fortification', 'fortifications', 'bastion', 'bastions', 'kasbah', 'kasbahs',
+    'ksar', 'ksour', 'fondouk', 'fondouks', 'site archeologique', 'sites archeologiques',
+    'facade historique', 'facades historiques', 'architecture traditionnelle',
+    'quartier historique', 'ville ancienne', 'vieille ville', 'bati ancien',
+)
 
 # Explainable reason codes (hard policy). Adaptive feedback never invents these.
 REASON_ACCEPT_HERITAGE = 'ACCEPT_HERITAGE_PROFESSIONAL_SERVICE'
@@ -283,10 +304,39 @@ def is_out_of_scope_infrastructure(text, *, heritage_keep=False):
     return True
 
 
+def is_ordinary_facility(text):
+    return bool(_hits(text, ORDINARY_FACILITY))
+
+
+def explicit_heritage_project(text):
+    """Heritage object in the project itself, not a loose category label."""
+    return bool(_hits(text, ORDINARY_HERITAGE_RESCUE))
+
+
 def is_architectural_competition(text, *, procedure_type=None):
-    architecture = _hits(text, ARCHITECTURAL_SCOPE)
+    architecture = _hits(text, ARCHITECTURAL_SCOPE) or _hits(text, ARCHITECTURAL_ROLE_SIGNALS)
     return bool(_hits(text, ARCHITECTURAL_COMPETITION) or
                 (procedure_type == 'competition' and architecture))
+
+
+def competition_is_relevant(text, *, heritage_project, major_proven, major_review,
+                            estimated_amount=None, amount_verified=False,
+                            threshold_mad=DEFAULT_MAJOR_PROJECT_ESTIMATE_THRESHOLD_MAD):
+    """Architectural competitions stay only when the project is actually in scope.
+
+    Procedure = competition is not enough for a school, OFPPT centre, staff
+    housing, or other ordinary local building.
+    """
+    infra = bool(_hits(text, INFRASTRUCTURE_ONLY) or _hits(text, TOPOGRAPHY_ONLY))
+    if infra and not heritage_project:
+        return False
+    high_budget = bool(amount_verified and estimated_amount is not None and
+                       estimated_amount >= threshold_mad and not infra)
+    strategic = bool(major_proven or _hits(text, MAJOR_SCALE) or high_budget)
+    if is_ordinary_facility(text) and not (heritage_project or strategic):
+        return False
+    return bool(heritage_project or major_proven or major_review or strategic or
+                _hits(text, MAJOR_ASSETS))
 
 
 def is_major_architectural_service(text, *, estimated_amount=None, amount_verified=False,
@@ -477,8 +527,13 @@ def evaluate_relevance(title, groups=None, scope=None, *, estimated_amount=None,
         result['domain_fit'] = False
         return result
 
+    ordinary = is_ordinary_facility(text)
+    heritage_project = explicit_heritage_project(text)
+    # A PMMP category word such as "Patrimoine" must not rescue an ordinary school.
+    heritage_track = heritage_ok and (not ordinary or heritage_project)
+
     # 3. Track A — Heritage / patrimonial professional service
-    if heritage_ok:
+    if heritage_track:
         category = 'P1_HERITAGE' if heritage['decision'] == 'keep' else 'P2_REVIEW'
         result = {**heritage, 'business_category': category, 'business_tracks': ['HERITAGE'],
                   'reason_code': REASON_ACCEPT_HERITAGE if category == 'P1_HERITAGE' else REASON_REVIEW,
@@ -486,8 +541,11 @@ def evaluate_relevance(title, groups=None, scope=None, *, estimated_amount=None,
                   'domain_fit': True}
         return result
 
-    # 4. Track B — Architectural competition / consultation
-    if competition:
+    # 4. Track B — relevant architectural competition, not every concours
+    if competition and competition_is_relevant(
+            text, heritage_project=heritage_project, major_proven=major_proven,
+            major_review=major_review, estimated_amount=estimated_amount,
+            amount_verified=amount_verified, threshold_mad=threshold_mad):
         result = _decision('keep', business_category='P1_CONCOURS', reason_code=REASON_ACCEPT_CONCOURS,
                            business_tracks=['CONCOURS'], signals={**major_signals, 'COMPETITION': True})
         result['role_fit'] = True

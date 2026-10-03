@@ -230,9 +230,12 @@ def test_realistic_enriched_keep_metadata_size_near_production():
     assert radar.normalize_candidate(item).reference == item.reference
 
 
+_KEEP_TITLE = "Études et suivi des travaux de restauration des remparts de la médina"
+
+
 def test_orchestrator_persists_enriched_keep_without_candidate_error(app):
     """Run #28+ fix: collector keep → Result + Observation, zero candidate_errors."""
-    item = enriched_keep(mutate_inplace=True, bloated_attempts=5)
+    item = enriched_keep(mutate_inplace=True, bloated_attempts=5, title=_KEEP_TITLE)
     summary = AgentOrchestrator(
         app, collector=lambda radar: [item], analyzer=MockAnalyzer(),
     ).run_radar(CODE)
@@ -251,7 +254,7 @@ def test_orchestrator_persists_multiple_keeps(app):
     """Three valid keeps must all persist; one failure must not block the others."""
     items = [
         enriched_keep(mutate_inplace=True, reference=f'10{i}/2026/OFPPT',
-                      title=f'Études architecturales ISTA lot {i}',
+                      title=f'{_KEEP_TITLE} lot {i}',
                       url=PMMP_URL + f'&lot={i}')
         for i in (1, 2, 3)
     ]
@@ -266,7 +269,7 @@ def test_orchestrator_persists_multiple_keeps(app):
 
 def test_candidate_error_logging_includes_diagnostics(app, caplog):
     """Forced persistence failure must log run_id, stage, type, message (no secrets)."""
-    item = enriched_keep(mutate_inplace=True)
+    item = enriched_keep(mutate_inplace=True, title=_KEEP_TITLE)
 
     class BoomResults:
         def save(self, *args, **kwargs):

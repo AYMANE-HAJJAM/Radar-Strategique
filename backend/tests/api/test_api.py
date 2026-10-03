@@ -5,7 +5,7 @@ from werkzeug.security import check_password_hash
 from app.api.auth import failed_attempts
 from app.core.agent_errors import ActiveRunError
 from app.db.extensions import db
-from app.db.models import AuthAuditEvent, Radar, SearchRun, User
+from app.db.models import AuthAuditEvent, Radar, Result, ResultObservation, SearchRun, User
 from app.modules.auth import AccessService
 
 
@@ -297,3 +297,233 @@ def test_results_pagination(app):
     _, code = make_user(app); client = app.test_client(); login(client, code)
     response = client.get('/api/radars/1/results?status=pending&page=1&page_size=20')
     assert response.status_code == 200
+
+
+def _pending_result(radar_id, title, fingerprint, *, review='PENDING', discovery='NEW', content_hash=None):
+    row = Result(radar_id=radar_id, title=title, fingerprint=fingerprint, status='new',
+                 discovery_status=discovery, review_status=review, priority='2', source_status='open',
+                 content_hash=content_hash or f'{fingerprint}-hash',
+                 radar_metadata={'detail_verified': True, 'official_confirmation': True,
+                                 'morocco_related': True, 'current_evidence': True})
+    db.session.add(row)
+    db.session.flush()
+    return row
+
+
+def test_result_rows_use_the_observation_launcher(app):
+    aymane_id, aymane_code = make_user(app, 'Aymane', 'ADMIN')
+    emmanuel_id, _emmanuel_code = make_user(app, 'Emmanuel', 'USER')
+    with app.app_context():
+        codes = ('RADAR_1_MARKETS', 'RADAR_2_PROJECTS', 'RADAR_3_INSTITUTIONS', 'RADAR_4_POLICIES', 'RADAR_5_FUNDING')
+        ids = {code: _radar_id(app, code) for code in codes}
+        aymane_markets = SearchRun(radar_id=ids['RADAR_1_MARKETS'], status='completed', current_stage='COMPLETED', launched_by_user_id=aymane_id)
+        old_markets = SearchRun(radar_id=ids['RADAR_1_MARKETS'], status='completed', current_stage='COMPLETED')
+        aymane_projects = SearchRun(radar_id=ids['RADAR_2_PROJECTS'], status='completed', current_stage='COMPLETED', launched_by_user_id=aymane_id)
+        emmanuel_projects = SearchRun(radar_id=ids['RADAR_2_PROJECTS'], status='completed', current_stage='COMPLETED', launched_by_user_id=emmanuel_id)
+        anonymous_projects = SearchRun(radar_id=ids['RADAR_2_PROJECTS'], status='completed', current_stage='COMPLETED')
+        owned = {
+            'RADAR_3_INSTITUTIONS': SearchRun(radar_id=ids['RADAR_3_INSTITUTIONS'], status='completed', current_stage='COMPLETED', launched_by_user_id=emmanuel_id),
+            'RADAR_4_POLICIES': SearchRun(radar_id=ids['RADAR_4_POLICIES'], status='completed', current_stage='COMPLETED', launched_by_user_id=emmanuel_id),
+            'RADAR_5_FUNDING': SearchRun(radar_id=ids['RADAR_5_FUNDING'], status='completed', current_stage='COMPLETED', launched_by_user_id=aymane_id),
+        }
+        db.session.add_all([aymane_markets, old_markets, aymane_projects, emmanuel_projects, anonymous_projects, *owned.values()])
+        db.session.flush()
+        market = _pending_result(ids['RADAR_1_MARKETS'], 'Étude de restauration du monument historique Aymane', 'fp-markets-aymane')
+        old = _pending_result(ids['RADAR_1_MARKETS'], 'Étude de restauration du monument historique ancien', 'fp-markets-old')
+        shared = _pending_result(ids['RADAR_2_PROJECTS'], 'Projet observé par deux recherches', 'fp-projects-shared')
+        others = {
+            code: _pending_result(ids[code], f'Signal {code}', f'fp-{code}')
+            for code in ('RADAR_3_INSTITUTIONS', 'RADAR_4_POLICIES', 'RADAR_5_FUNDING')
+        }
+        db.session.add_all([
+            ResultObservation(run_id=aymane_markets.id, result_id=market.id, state='new', snapshot={}),
+            ResultObservation(run_id=old_markets.id, result_id=old.id, state='new', snapshot={}),
+            ResultObservation(run_id=aymane_projects.id, result_id=shared.id, state='new', snapshot={}),
+            ResultObservation(run_id=emmanuel_projects.id, result_id=shared.id, state='updated', snapshot={}),
+            ResultObservation(run_id=anonymous_projects.id, result_id=shared.id, state='unchanged', snapshot={}),
+            *[ResultObservation(run_id=owned[code].id, result_id=others[code].id, state='new', snapshot={})
+              for code in others],
+        ])
+        db.session.commit()
+        run_ids = {
+            'aymane_markets': aymane_markets.id, 'old_markets': old_markets.id,
+            'aymane_projects': aymane_projects.id, 'emmanuel_projects': emmanuel_projects.id,
+            'anonymous_projects': anonymous_projects.id,
+        }
+    client = app.test_client()
+    login(client, aymane_code)
+
+    def rows(code, run_id=None):
+        suffix = f'&run_id={run_id}' if run_id else ''
+        response = client.get(f'/api/radars/{ids[code]}/results?status=pending&page_size=50{suffix}')
+        assert response.status_code == 200
+        return response.get_json()['items']
+
+    markets = {item['title']: item for item in rows('RADAR_1_MARKETS')}
+    assert markets['Étude de restauration du monument historique Aymane']['launched_by'] == {'id': aymane_id, 'name': 'Aymane'}
+    assert markets['Étude de restauration du monument historique ancien']['launched_by'] is None
+    assert 'access_code_hash' not in markets['Étude de restauration du monument historique Aymane']['launched_by']
+    assert {item['launched_by']['name'] for item in rows('RADAR_1_MARKETS', run_ids['aymane_markets'])} == {'Aymane'}
+    assert all(item['launched_by'] is None for item in rows('RADAR_1_MARKETS', run_ids['old_markets']))
+
+    emmanuel = {'id': emmanuel_id, 'name': 'Emmanuel'}
+    aymane = {'id': aymane_id, 'name': 'Aymane'}
+    assert rows('RADAR_3_INSTITUTIONS')[0]['launched_by'] == emmanuel
+    assert rows('RADAR_4_POLICIES')[0]['launched_by'] == emmanuel
+    assert rows('RADAR_5_FUNDING')[0]['launched_by'] == aymane
+    assert rows('RADAR_2_PROJECTS')[0]['launched_by'] == emmanuel
+    assert rows('RADAR_2_PROJECTS', run_ids['aymane_projects'])[0]['launched_by'] == aymane
+    assert rows('RADAR_2_PROJECTS', run_ids['emmanuel_projects'])[0]['launched_by'] == emmanuel
+    assert rows('RADAR_2_PROJECTS', run_ids['anonymous_projects']) == []
+
+
+def test_run_view_is_actionable_pending_for_every_radar(app):
+    user_id, code = make_user(app, 'Aymane', 'ADMIN')
+    codes = ('RADAR_1_MARKETS', 'RADAR_2_PROJECTS', 'RADAR_3_INSTITUTIONS', 'RADAR_4_POLICIES', 'RADAR_5_FUNDING')
+    with app.app_context():
+        ids = {radar_code: _radar_id(app, radar_code) for radar_code in codes}
+        seeded = {}
+        for radar_code in codes:
+            radar_id = ids[radar_code]
+            run = SearchRun(radar_id=radar_id, status='completed', current_stage='COMPLETED', launched_by_user_id=user_id)
+            empty = SearchRun(radar_id=radar_id, status='completed', current_stage='COMPLETED', launched_by_user_id=user_id)
+            db.session.add_all([run, empty])
+            db.session.flush()
+            older = [_pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} {n}', f'{radar_code}-old-{n}') for n in range(5)]
+            updated = _pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} maj', f'{radar_code}-updated', discovery='UPDATED')
+            created = [_pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} nouveau {n}', f'{radar_code}-new-{n}', content_hash=f'{radar_code}-new-{n}-hash') for n in range(2)]
+            approved = _pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} validé', f'{radar_code}-approved', review='APPROVED')
+            rejected = _pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} rejeté', f'{radar_code}-rejected', review='REJECTED')
+            db.session.add_all([
+                ResultObservation(run_id=run.id, result_id=created[0].id, state='new', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=created[0].id, state='new', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=created[1].id, state='new', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=updated.id, state='updated', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=older[0].id, state='unchanged', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=approved.id, state='new', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=rejected.id, state='new', snapshot={}),
+                ResultObservation(run_id=empty.id, result_id=older[1].id, state='unchanged', snapshot={}),
+            ])
+            seeded[radar_code] = {'run': run.id, 'empty': empty.id, 'approve': created[0].id, 'version': created[0].content_hash[:12]}
+        db.session.commit()
+    client = app.test_client()
+    csrf = login(client, code)
+    for radar_code, radar_id in ids.items():
+        run_id = seeded[radar_code]['run']
+        scoped = client.get(f'/api/radars/{radar_id}/results?status=pending&run_id={run_id}&page_size=50')
+        assert scoped.status_code == 200
+        body = scoped.get_json()
+        assert body['run_total'] == 3 and body['total'] == 3 and body['pending_total'] == 8
+        assert len(body['items']) == 3
+        assert len({item['id'] for item in body['items']}) == 3
+        assert sorted(item['run_observation'] for item in body['items']) == ['new', 'new', 'updated']
+        assert all('NEW' != item['run_observation'] for item in body['items'])
+        backlog = client.get(f'/api/radars/{radar_id}/results?status=pending&page_size=50').get_json()
+        assert backlog['total'] == 8 and backlog['pending_total'] == 8 and 'run_id' not in backlog
+        assert backlog['total'] == body['pending_total']
+        assert len(backlog['items']) == backlog['total']
+        assert all('run_observation' not in item for item in backlog['items'])
+        assert (body['total'] == 0) == (body['items'] == [])
+        empty = client.get(f"/api/radars/{radar_id}/results?status=pending&run_id={seeded[radar_code]['empty']}&page_size=50").get_json()
+        assert empty['items'] == [] and empty['run_total'] == 0 and empty['pending_total'] == 8
+        approved = client.post(f"/api/results/{seeded[radar_code]['approve']}/approve",
+                               json={'version': seeded[radar_code]['version']}, headers={'X-CSRF-Token': csrf})
+        assert approved.status_code == 200, approved.get_json()
+        after = client.get(f'/api/radars/{radar_id}/results?status=pending&run_id={run_id}&page_size=50').get_json()
+        assert after['run_total'] == 2 and after['total'] == 2 and after['pending_total'] == 7
+        assert len(after['items']) == after['total']
+        assert seeded[radar_code]['approve'] not in {item['id'] for item in after['items']}
+
+
+def _assert_view_agrees(body):
+    assert body['total'] >= len(body['items'])
+    if body['page'] == 1 and body['total'] <= body['page_size']:
+        assert len(body['items']) == body['total']
+    if body['total'] == 0:
+        assert body['items'] == []
+
+
+def test_empty_run_does_not_return_older_pending_rows(app):
+    """Run with no NEW/UPDATED observations must not render the existing backlog."""
+    user_id, code = make_user(app, 'Aymane', 'ADMIN')
+    codes = ('RADAR_1_MARKETS', 'RADAR_2_PROJECTS', 'RADAR_3_INSTITUTIONS', 'RADAR_4_POLICIES', 'RADAR_5_FUNDING')
+    with app.app_context():
+        ids = {radar_code: _radar_id(app, radar_code) for radar_code in codes}
+        runs = {}
+        old_ids = {}
+        for radar_code in codes:
+            radar_id = ids[radar_code]
+            earlier = SearchRun(radar_id=radar_id, status='completed', current_stage='COMPLETED')
+            current = SearchRun(radar_id=radar_id, status='completed', current_stage='COMPLETED', launched_by_user_id=user_id)
+            db.session.add_all([earlier, current])
+            db.session.flush()
+            older = [_pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} stock {n}', f'{radar_code}-stock-{n}') for n in range(2)]
+            db.session.add_all([
+                ResultObservation(run_id=earlier.id, result_id=older[0].id, state='new', snapshot={}),
+                ResultObservation(run_id=earlier.id, result_id=older[1].id, state='new', snapshot={}),
+                ResultObservation(run_id=current.id, result_id=older[0].id, state='unchanged', snapshot={}),
+                ResultObservation(run_id=current.id, result_id=older[1].id, state='unchanged', snapshot={}),
+            ])
+            runs[radar_code] = current.id
+            old_ids[radar_code] = {row.id for row in older}
+        db.session.commit()
+    client = app.test_client()
+    login(client, code)
+    for radar_code, radar_id in ids.items():
+        scoped = client.get(f"/api/radars/{radar_id}/results?status=pending&run_id={runs[radar_code]}&page_size=50").get_json()
+        backlog = client.get(f'/api/radars/{radar_id}/results?status=pending&page_size=50').get_json()
+        _assert_view_agrees(scoped)
+        _assert_view_agrees(backlog)
+        assert scoped['total'] == 0 and scoped['run_total'] == 0 and scoped['items'] == []
+        assert scoped['pending_total'] == 2
+        assert backlog['total'] == 2 and backlog['pending_total'] == 2
+        assert {item['id'] for item in backlog['items']} == old_ids[radar_code]
+        assert backlog['total'] == scoped['pending_total']
+
+
+def test_run_membership_and_backlog_are_separate_filters(app):
+    user_id, code = make_user(app, 'Aymane', 'ADMIN')
+    codes = ('RADAR_1_MARKETS', 'RADAR_2_PROJECTS', 'RADAR_3_INSTITUTIONS', 'RADAR_4_POLICIES', 'RADAR_5_FUNDING')
+    with app.app_context():
+        ids = {radar_code: _radar_id(app, radar_code) for radar_code in codes}
+        seeded = {}
+        for radar_code in codes:
+            radar_id = ids[radar_code]
+            run = SearchRun(radar_id=radar_id, status='completed', current_stage='COMPLETED', launched_by_user_id=user_id)
+            db.session.add(run)
+            db.session.flush()
+            old = [_pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} ancien {n}', f'{radar_code}-avant-{n}') for n in range(2)]
+            updated = _pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} mis à jour', f'{radar_code}-maj', discovery='UPDATED', content_hash=f'{radar_code}-maj-hashxx')
+            created = [_pending_result(radar_id, f'Étude de restauration du monument historique {radar_code} neuf {n}', f'{radar_code}-neuf-{n}') for n in range(2)]
+            db.session.add_all([
+                ResultObservation(run_id=run.id, result_id=old[0].id, state='unchanged', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=created[0].id, state='new', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=created[1].id, state='new', snapshot={}),
+                ResultObservation(run_id=run.id, result_id=updated.id, state='updated', snapshot={}),
+            ])
+            seeded[radar_code] = {'run': run.id, 'old': {row.id for row in old}, 'found': {created[0].id, created[1].id, updated.id}, 'drop': created[0].id, 'version': created[0].content_hash[:12]}
+        db.session.commit()
+    client = app.test_client()
+    csrf = login(client, code)
+    for radar_code, radar_id in ids.items():
+        run_id = seeded[radar_code]['run']
+        scoped = client.get(f'/api/radars/{radar_id}/results?status=pending&run_id={run_id}&page_size=50').get_json()
+        backlog = client.get(f'/api/radars/{radar_id}/results?status=pending&page_size=50').get_json()
+        _assert_view_agrees(scoped)
+        _assert_view_agrees(backlog)
+        assert scoped['total'] == 3 and scoped['run_total'] == 3 and len(scoped['items']) == 3
+        assert {item['id'] for item in scoped['items']} == seeded[radar_code]['found']
+        assert not seeded[radar_code]['old'] & {item['id'] for item in scoped['items']}
+        assert backlog['total'] == 5 and len(backlog['items']) == 5
+        assert seeded[radar_code]['old'] <= {item['id'] for item in backlog['items']}
+        assert backlog['total'] == scoped['pending_total']
+        approved = client.post(f"/api/results/{seeded[radar_code]['drop']}/approve", json={'version': seeded[radar_code]['version']}, headers={'X-CSRF-Token': csrf})
+        assert approved.status_code == 200, approved.get_json()
+        after_run = client.get(f'/api/radars/{radar_id}/results?status=pending&run_id={run_id}&page_size=50').get_json()
+        after_backlog = client.get(f'/api/radars/{radar_id}/results?status=pending&page_size=50').get_json()
+        _assert_view_agrees(after_run)
+        _assert_view_agrees(after_backlog)
+        assert after_run['total'] == 2 and after_run['run_total'] == 2
+        assert after_backlog['total'] == 4 and after_run['pending_total'] == 4
+        assert seeded[radar_code]['drop'] not in {item['id'] for item in after_run['items']}
+        assert seeded[radar_code]['drop'] not in {item['id'] for item in after_backlog['items']}

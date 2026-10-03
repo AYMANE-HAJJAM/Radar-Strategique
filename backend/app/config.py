@@ -46,6 +46,9 @@ def load_config():
         if not piece.isdigit() or int(piece) < 1:
             raise ValueError('ALLOWED_TELEGRAM_USER_IDS must be a comma-separated list of positive integers.')
         allowlist.add(int(piece))
+    discovery_mode = os.getenv('RADAR1_DISCOVERY_MODE', 'legacy').strip().lower()
+    if discovery_mode not in {'legacy', 'pmmp_index'}:
+        raise ValueError('RADAR1_DISCOVERY_MODE must be legacy or pmmp_index.')
     return dict(
         ALLOWED_TELEGRAM_USER_IDS=frozenset(allowlist),
         SECRET_KEY=os.getenv('SECRET_KEY'),
@@ -99,6 +102,8 @@ def load_config():
         RADAR1_ZERO_YIELD_QUERY_LIMIT=positive('RADAR1_ZERO_YIELD_QUERY_LIMIT', 4),
         RADAR1_QUERY_OBSERVATION_LIMIT=positive('RADAR1_QUERY_OBSERVATION_LIMIT', 20),
         RADAR1_MAX_CANDIDATES=positive('RADAR1_MAX_CANDIDATES', 100),
+        RADAR1_PMMP_OVERLAP_PAGES=positive('RADAR1_PMMP_OVERLAP_PAGES', 3),
+        RADAR1_DISCOVERY_MODE=discovery_mode,
         RADAR1_MAX_AI_ANALYSES=positive('RADAR1_MAX_AI_ANALYSES', 40),
         RADAR1_MIN_DISCOVERIES=positive('RADAR1_MIN_DISCOVERIES', 10),
         RADAR1_SOURCE_WHITELIST=tuple(d.strip().lower() for d in os.getenv('RADAR1_SOURCE_WHITELIST', 'marchespublics.gov.ma,cpmaroc.com,marchefacile.ma,borjmarchepublic.ma,marchesfaciles.ma,culture.gov.ma,alomrane.gov.ma').split(',') if d.strip()),

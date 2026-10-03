@@ -150,9 +150,13 @@ def test_config_cannot_rescue_generic_architecture():
 
 
 def test_architectural_competition_is_an_independent_track():
-    result = evaluate_relevance('Concours architectural pour équipements publics',
-                                procedure_type='competition')
+    result = evaluate_relevance(
+        'Concours architectural pour la conception d’un grand musée',
+        procedure_type='competition')
     assert (result['decision'], result['business_category']) == ('keep', 'P1_CONCOURS')
+    school = evaluate_relevance(
+        'Concours architectural pour un lycée communal', procedure_type='competition')
+    assert school['decision'] == 'reject'
 
 
 def test_complete_procurement_context_can_establish_heritage_relevance():

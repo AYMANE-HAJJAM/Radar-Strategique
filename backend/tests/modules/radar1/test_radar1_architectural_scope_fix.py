@@ -106,6 +106,64 @@ def test_corniche_without_competition_uses_major_track_not_generic_accept():
     assert result['reason_code'] != REASON_REJECT_GENERIC
 
 
+@pytest.mark.parametrize('title', [
+    'Étude de valorisation du patrimoine culturel',
+    'Études et suivi des travaux de réhabilitation de l’ancienne médina',
+    'Étude de restauration d’un monument historique',
+])
+def test_required_heritage_cases_are_accepted(title):
+    result = evaluate_relevance(title)
+    assert result['decision'] == 'keep'
+    assert result['reason_code'] == REASON_ACCEPT_HERITAGE
+
+
+def test_meaningful_architectural_competition_is_accepted():
+    result = evaluate_relevance(
+        'Concours architectural pour la conception d’un grand musée national')
+    assert result['decision'] == 'keep'
+    assert result['reason_code'] == REASON_ACCEPT_CONCOURS
+
+
+def test_major_public_complex_is_accepted():
+    result = evaluate_relevance(
+        'Études architecturales d’un grand centre culturel structurant')
+    assert result['decision'] == 'keep'
+    assert result['reason_code'] == REASON_ACCEPT_MAJOR
+
+
+@pytest.mark.parametrize('title', [
+    'Consultation architecturale pour la construction d’un lycée ordinaire',
+    'Études architecturales et suivi des travaux de construction d’un centre OFPPT',
+    "Études architecturales pour l'ISTA et son internat",
+    'Étude architecturale d’un logement de fonction',
+    'Concours architectural pour la construction d’un lycée communal',
+    'Études architecturales et suivi des travaux de construction d’une école primaire',
+])
+def test_ordinary_school_ofppt_and_school_competition_are_rejected(title):
+    result = evaluate_relevance(title, procedure_type='competition')
+    assert result['decision'] == 'reject'
+    assert result['reason_code'] == REASON_REJECT_GENERIC
+
+
+def test_school_competition_can_pass_when_major_evidence_exists():
+    result = evaluate_relevance(
+        'Concours architectural pour un nouveau campus universitaire structurant',
+        estimated_amount=80_000_000, amount_verified=True)
+    assert result['decision'] == 'keep'
+    assert result['reason_code'] == REASON_ACCEPT_CONCOURS
+
+
+def test_patrimoine_category_label_does_not_rescue_an_ofppt_school():
+    result = evaluate_relevance(
+        "Études architecturales et la conduite des travaux de démolition "
+        "et reconstruction de l'ISTA TAHANNAOUT et son Internat.",
+        scope='Services d’architecture Patrimoine OFPPT',
+        procedure_type='competition',
+        estimated_amount=3_552_000, amount_verified=True)
+    assert result['decision'] == 'reject'
+    assert result['reason_code'] == REASON_REJECT_GENERIC
+
+
 def test_corniche_with_competition_is_concours():
     result = evaluate_relevance(
         "Études architecturales et suivi des travaux d’aménagement de la corniche",
@@ -144,7 +202,7 @@ def test_detail_enrichment_can_upgrade_listing_to_competition():
 
     page_text = """
     Référence: 99/2026/TEST
-    Objet: Élaboration des études et suivi des travaux de construction
+    Objet: Élaboration des études et suivi des travaux d’aménagement de la corniche
     Procédure: Concours Architectural
     Domaines d'activité: Services d'architecture
     Lieu d'exécution: Rabat, Maroc

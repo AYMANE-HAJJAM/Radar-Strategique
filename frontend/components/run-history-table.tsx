@@ -2,7 +2,7 @@ import Link from "next/link";
 import { launcherName, runStatusLabel } from "@/components/run-status-banner";
 import type { Run } from "@/types";
 
-export function RunHistoryTable({ radarId, runs }: { radarId: string; runs: Run[] }) {
+export function RunHistoryTable({ radarId, runs, historyHref = "?view=history" }: { radarId: string; runs: Run[]; historyHref?: string }) {
   return (
     <div className="table-wrap">
       <table>
@@ -11,7 +11,7 @@ export function RunHistoryTable({ radarId, runs }: { radarId: string; runs: Run[
           {runs.map((run) => (
             <tr key={run.id}>
               <td>
-                <Link href={`/radars/${radarId}?run_id=${run.id}`}>{new Date(run.started_at).toLocaleString("fr-FR")}</Link>
+                <Link href={`/radars/${radarId}${historyHref}&run_id=${run.id}`}>{new Date(run.started_at).toLocaleString("fr-FR")}</Link>
                 <small className="run-id">#{run.id}</small>
               </td>
               <td><span className="badge">{runStatusLabel(run.status)}</span></td>

@@ -79,8 +79,11 @@ def test_bare_architectural_study_without_project_family_is_rejected(title):
 
 
 def test_architectural_competition_is_now_first_class():
-    result = evaluate_relevance('Concours architectural pour un équipement public')
+    result = evaluate_relevance(
+        'Concours architectural pour l’aménagement de la corniche de Sidi Ifni')
     assert result['business_category'] == 'P1_CONCOURS'
+    ordinary = evaluate_relevance('Concours architectural pour un lycée communal')
+    assert ordinary['decision'] == 'reject'
     assert result['architecture_scope'] is True
 
 

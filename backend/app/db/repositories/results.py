@@ -5,6 +5,7 @@ from app.core.dedup import (content_hash, digest, fingerprint, identity_keys,
     source_content_fingerprint, source_identity_metadata)
 from app.core.review import ResultWorkflowService
 from sqlalchemy.orm.attributes import flag_modified
+from app.core.review_changes import business_snapshot, candidate_snapshot, business_changes
 
 
 class ResultService:
@@ -53,6 +54,9 @@ class ResultService:
             raise TypeError('Persistence requires a validated BaseAnalysis instance.')
         analysis = type(analysis).model_validate(analysis.model_dump())
         changed_fields = self.workflow.changed_fields(existing, candidate) if workflow_enabled and existing else []
+        review_changes = None
+        if workflow_enabled and existing and hasattr(candidate, 'estimated_amount_verified'):
+            review_changes = business_changes(business_snapshot(existing), candidate_snapshot(candidate))
         state = ResultState.REJECTED if not analysis.relevant else (
             ResultState.MANUAL_REVIEW if analysis.needs_manual_review else
             ResultState.UPDATED if existing is not None else ResultState.NEW)
@@ -86,7 +90,7 @@ class ResultService:
         db.session.flush()
         if workflow_enabled:
             self.workflow.apply_saved_result(row, is_new=existing is None,
-                relevant=analysis.relevant, changed_fields=changed_fields)
+                relevant=analysis.relevant, changed_fields=changed_fields, review_changes=review_changes)
         self.observe(run.id, row, state)
         return state
 

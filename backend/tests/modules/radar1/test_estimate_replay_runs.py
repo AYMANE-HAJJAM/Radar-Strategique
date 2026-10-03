@@ -121,10 +121,13 @@ def test_run_35_placeholders_normalize_and_persist(app):
         assert outcome['currency'] == 'MAD'
         assert outcome['tax'] == 'TTC'
         assert outcome['bond'] == 70_000
+        if outcome['reference'] == '101/2026/OFPPT':
+            assert outcome['policy'] == 'reject'
+            assert outcome['reason_code'] == 'REJECT_GENERIC_ARCHITECTURE_NOT_STRATEGIC'
+            continue
         assert outcome['policy'] in {'keep', 'review'}
         assert outcome['discovery_status'] == 'NEW'
     by_ref = {item['reference']: item for item in outcomes}
-    assert by_ref['101/2026/OFPPT']['policy'] == 'keep'
     assert by_ref['04/2026/CA/BR/RGON']['policy'] == 'keep'
     assert by_ref['03/2026']['policy'] in {'keep', 'review'}
 
@@ -140,5 +143,9 @@ def test_run_33_placeholders_replay_without_normalization_error(app):
     assert {item['reference'] for item in outcomes} == {'101/2026/OFPPT', '04/2026/CA/BR/RGON'}
     for outcome in outcomes:
         assert outcome['amount'] is None
+        if outcome['reference'] == '101/2026/OFPPT':
+            assert outcome['policy'] == 'reject'
+            assert outcome['reason_code'] == 'REJECT_GENERIC_ARCHITECTURE_NOT_STRATEGIC'
+            continue
         assert outcome['discovery_status'] == 'UNCHANGED', outcome
         assert outcome['policy'] == 'keep'

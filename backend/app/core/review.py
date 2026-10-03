@@ -4,6 +4,7 @@ from enum import StrEnum
 from app.db.extensions import db
 from app.db.models import ResultAuditEvent
 from app.core.dedup import canonical_url, normalize_text
+from app.core.review_changes import business_snapshot, review_context
 
 
 class DiscoveryStatus(StrEnum):
@@ -81,6 +82,13 @@ class ResultWorkflowService:
             for field in group:
                 if _meta_changed(old_meta, new_fields, field, normalize=True):
                     changed.append(field)
+        # Procurement fields absent from the historical comparison still need to
+        # reach persistence (notably location, guarantees and tender documents).
+        if hasattr(candidate, 'estimated_amount_verified'):
+            from app.core.review_changes import business_changes, candidate_snapshot
+            for change in business_changes(business_snapshot(existing), candidate_snapshot(candidate)):
+                if change['field'] not in changed:
+                    changed.append(change['field'])
         return changed
 
     def is_meaningful_update(self, existing, candidate):
@@ -89,7 +97,7 @@ class ResultWorkflowService:
     def mark_unchanged(self, row):
         row.discovery_status = DiscoveryStatus.UNCHANGED
 
-    def apply_saved_result(self, row, *, is_new, relevant, changed_fields):
+    def apply_saved_result(self, row, *, is_new, relevant, changed_fields, review_changes=None):
         if is_new:
             row.discovery_status = DiscoveryStatus.NEW
             if relevant:
@@ -98,14 +106,21 @@ class ResultWorkflowService:
             self.audit(row, 'DISCOVERED', {'review_status': row.review_status})
             return
         row.discovery_status = DiscoveryStatus.UPDATED
-        row.update_reason = {'changed_fields': changed_fields}
         previous = row.review_status
-        if relevant:
+        material = bool(changed_fields) if review_changes is None else bool(review_changes)
+        # Discovery may be UPDATED for technical evidence or classifier changes.
+        # A human decision only reopens for a business amendment.
+        if material:
+            row.update_reason = {'changed_fields': changed_fields}
+            if review_changes is not None:
+                row.update_reason['changes'] = review_changes
+        if relevant and material:
             row.review_status = ReviewStatus.PENDING
             event = 'REOPENED' if previous in {ReviewStatus.APPROVED, ReviewStatus.REJECTED} else 'UPDATED'
         else:
             event = 'UPDATED'
-        self.audit(row, event, {'changed_fields': changed_fields, 'previous_review_status': previous})
+        self.audit(row, event, {'changed_fields': changed_fields, 'previous_review_status': previous,
+                               'material_review_update': material, 'changes': review_changes})
 
     def audit(self, row, event_type, metadata=None, performed_by=None):
         db.session.add(ResultAuditEvent(result_id=row.id, event_type=event_type,
@@ -118,7 +133,8 @@ class ResultWorkflowService:
         self.audit(row, status.value, {'previous_review_reason': previous_reason,
             'discovery_status': row.discovery_status, 'content_hash': row.content_hash,
             'radar': radar_code, 'decision': decision,
-            'previous_status': str(previous_status), 'new_status': status.value}, user_id)
+            'previous_status': str(previous_status), 'new_status': status.value,
+            'business_snapshot': business_snapshot(row)}, user_id)
 
 
 """Shared result queue browsing and audited human decisions (all radars); no network calls."""
@@ -251,7 +267,7 @@ def best_link(row, domains=()):
     return url, label
 
 
-def card(row, domains=(), code=CODE):
+def card(row, domains=(), code=CODE, *, review_data=None):
     metadata = row.radar_metadata or {}
     pmmp = metadata.get('pmmp') or {}
     estimate = pmmp.get('estimate') if isinstance(pmmp.get('estimate'), dict) else {}
@@ -271,6 +287,7 @@ def card(row, domains=(), code=CODE):
         url, label = best_link(row, domains)
     reason = metadata.get('review_reason') or (row.analysis or {}).get('review_reason') or ''
     return dict(id=row.id, version=(row.content_hash or '')[:12], title=row.title,
+                **(review_context(row) if review_data is None else review_data),
                 discovery_status=row.discovery_status, review_status=row.review_status,
                 business_category=metadata.get('business_category'),
                 institution=row.institution, city=(metadata.get('location_evidence') or metadata.get('location') or
@@ -486,7 +503,8 @@ def decide(app, result_id, version, decision, user_id, code=CODE, run_id=None):
         db.session.add(MarketReview(result_id=row.id, content_hash=row.content_hash, decision=decision,
             reviewed_by=user_id, reviewed_at=now, previous_review_reason=reason,
             snapshot={'status': row.status, 'analysis': row.analysis, 'radar_metadata': row.radar_metadata,
-                      'title': row.title, 'url': row.url, 'source_status': row.source_status}))
+                      'title': row.title, 'url': row.url, 'source_status': row.source_status,
+                      'business_snapshot': business_snapshot(row)}))
         metadata = {**row.radar_metadata, 'needs_manual_review': False, 'review_reason': None, 'relevant': decision == 'approved',
             'manual_review_status': decision, 'reviewed_by': user_id, 'reviewed_at': now.isoformat(),
             'previous_review_reason': reason}

@@ -669,6 +669,83 @@ class MarketsCollector:
         self._trace(hit, 'verified_offer' if candidate.resolution_state == VERIFIED else 'credible_fallback', candidate, discovery, stats)
 
     def collect(self, radar):
+        """Production entry. Mode is selected by RADAR1_DISCOVERY_MODE."""
+        mode = self.config.get('RADAR1_DISCOVERY_MODE', 'legacy')
+        self.report.metrics['discovery_mode'] = mode
+        if mode == 'pmmp_index':
+            return self.pmmp_index_discovery(radar)
+        return self.legacy_discovery(radar)
+
+    def pmmp_index_discovery(self, radar):
+        """Incremental PMMP board sync, then existing policy/detail pipeline.
+
+        Only NEW and UPDATED durable listings continue. Legacy keyword search and
+        Marché Facile are not used in this mode. Paid search is not used for
+        discovery; existing detail-resolution lookup may still call the provider.
+        """
+        from app.db.extensions import db
+        from app.db.models.pmmp_listing_index import PmmpListingIndex
+        from app.modules.radar1_markets.pmmp_listing_index import sync_listings
+        from app.modules.radar1_markets.pmmp_listing_collector import NEW, UPDATED, DUPLICATE, UNCHANGED
+
+        indexed = db.session.scalar(db.select(db.func.count()).select_from(PmmpListingIndex)) or 0
+        self.report.metrics['pmmp_index_size_before'] = indexed
+        if indexed == 0:
+            self._warn('pmmp_index_empty_run_baseline_first')
+            logger.info('pmmp_index_discovery skipped: durable index is empty')
+            return []
+        overlap = self.config.get('RADAR1_PMMP_OVERLAP_PAGES', 3)
+        sync = sync_listings(
+            mode='incremental', overlap_pages=overlap, commit=False,
+            http=getattr(self, 'listing_http', None),
+            delay_seconds=0 if getattr(self, 'listing_http', None) is not None else 0.35)
+        self.report.metrics.update({
+            'pmmp_sync_mode': sync.mode,
+            'pmmp_sync_stop_reason': sync.stop_reason,
+            'pmmp_sync_pages': sync.pages_fetched,
+            'pmmp_sync_declared_pages': sync.declared_pages,
+            'pmmp_sync_declared_results': sync.declared_results,
+            'pmmp_sync_new': sync.counts.get(NEW, 0),
+            'pmmp_sync_updated': sync.counts.get(UPDATED, 0),
+            'pmmp_sync_unchanged': sync.counts.get(UNCHANGED, 0),
+            'pmmp_sync_duplicate': sync.counts.get(DUPLICATE, 0),
+            'pmmp_actionable': len(sync.actionable),
+        })
+        self.report.metrics['raw_results'] += sum(
+            1 for item in sync.observations if item.state != DUPLICATE)
+        stats = {**dict.fromkeys(COUNTERS, 0), 'query_index': None,
+                 'source_strategy': 'PMMP_INDEX', 'query_family': 'incremental',
+                 'query_text': 'pmmp_listing_index', 'domains': list(self.pmmp_domains),
+                 'recency_days': None, 'new_identity': 0, 'blocked': 0,
+                 'parser_failures': 0, 'billable_search': False}
+        self.report.query_metrics.append(stats)
+        self.active_stats = stats
+        try:
+            for item in sync.actionable:
+                hit = listing_to_search_hit(item.listing)
+                if not hit.url:
+                    self._reject(stats, 'parser', hit, 'pmmp_listing_missing_detail_url', discovery=None)
+                    continue
+                self._process(hit, radar, stats, hit.url)
+        finally:
+            self._finish_query(stats)
+            self.active_stats = None
+        kept = len(self.report.candidates)
+        if not self.report.metrics['usable_results']:
+            self._warn('zero_usable_observations')
+        elif not self.report.metrics['relevant_candidates']:
+            self._warn('zero_relevant_observations')
+        if self.report.candidates and self.report.health == 'DEGRADED':
+            self.report.health = 'PARTIAL'
+        self.report.metrics['final_kept_per_search_call'] = None
+        self.report.metrics['relevant_observations_per_search_call'] = None
+        self.report.candidates.sort(
+            key=lambda c: (c.resolution_state == VERIFIED, c.publication_date or date.min), reverse=True)
+        logger.info('pmmp_index_discovery stop=%s actionable=%s kept=%s',
+                    sync.stop_reason, len(sync.actionable), kept)
+        return self.report.candidates
+
+    def legacy_discovery(self, radar):
         control = self.config.get('RADAR1_CONTROL_REFERENCE')
         if control:
             # Development-only opt-in, no hard-coded references in production.
@@ -786,3 +863,30 @@ class MarketsCollector:
             logger.info('collection_totals health=%s metrics=%s reasons=%s', self.report.health,
                         self.report.metrics, self.report.health_reasons)
             self.on_progress()
+
+
+def legacy_discovery(collector, radar):
+    """Run the existing keyword and Marché Facile discovery without replacing it.
+
+    Production still calls MarketsCollector.collect, which delegates here when
+    RADAR1_DISCOVERY_MODE=legacy. The PMMP index path is selected separately.
+    """
+    return collector.legacy_discovery(radar)
+
+
+def listing_to_search_hit(listing):
+    """Map a durable PMMP listing into the existing Radar 1 SearchHit shape."""
+    return SearchHit(
+        title=listing.title or listing.reference or 'Consultation PMMP',
+        url=listing.detail_url or '',
+        kind='tender',
+        evidence=listing.title or '',
+        institution=listing.buyer,
+        reference=listing.reference,
+        publication_date=listing.publication_date,
+        deadline=listing.deadline,
+        location=listing.location,
+        status='open',
+        procedure_type=listing.procedure or 'unknown',
+        official_notice=bool(listing.detail_url),
+    )

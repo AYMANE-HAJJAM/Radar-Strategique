@@ -84,7 +84,9 @@ def test_meaningful_update_reopens_and_preserves_approval_audit(app):
         row = db.session.get(Result, result_id)
         assert row.discovery_status == DiscoveryStatus.UPDATED
         assert row.review_status == ReviewStatus.PENDING
-        assert row.update_reason == {'changed_fields': ['deadline']}
+        assert row.update_reason['changed_fields'] == ['deadline']
+        assert row.update_reason['changes'] == [{'field': 'deadline',
+            'before': item.deadline.isoformat(), 'after': updated.deadline.isoformat()}]
         assert [event.event_type for event in db.session.scalars(db.select(ResultAuditEvent)
             .where(ResultAuditEvent.result_id == result_id).order_by(ResultAuditEvent.id)).all()] == [
                 'DISCOVERED', 'APPROVED', 'REOPENED']

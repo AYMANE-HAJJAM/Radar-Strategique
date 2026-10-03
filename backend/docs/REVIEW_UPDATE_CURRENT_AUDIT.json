@@ -1,0 +1,277 @@
+[
+  {
+    "id": 103,
+    "title": "L'élaboration des études architecturales et suivi des travaux d'aménagement de la corniche de SIDI IFNI.",
+    "reference": "04/2026/CA/BR/RGON",
+    "review_status": "PENDING",
+    "discovery_status": "UPDATED",
+    "update_reason": {
+      "changed_fields": [
+        "estimated_currency",
+        "estimated_amount_tax_mode",
+        "estimated_amount_source"
+      ]
+    },
+    "current_business_fields": {
+      "title": "L'élaboration des études architecturales et suivi des travaux d'aménagement de la corniche de SIDI IFNI.",
+      "institution": "RGON / RGON - REGION DE GUELMIM - OUED NOUN",
+      "reference": "04/2026/CA/BR/RGON",
+      "publication_date": "2026-09-09",
+      "deadline": "2026-10-22",
+      "source_status": "open",
+      "procedure_type": "competition",
+      "location_evidence": "SIDI IFNI",
+      "location": null,
+      "city_region": null,
+      "territory": null,
+      "deadline_time": "11:00",
+      "estimated_amount": null,
+      "estimated_currency": "MAD",
+      "estimated_amount_tax_mode": "TTC",
+      "estimated_lots": [],
+      "provisional_bond_amount": 0.0,
+      "provisional_bond_currency": "MAD",
+      "competition_prize_amount": null,
+      "competition_prize_currency": null,
+      "eligibility_conditions": null,
+      "competition_regulation_available": false,
+      "document_types": [
+        "DCE",
+        "PLANS"
+      ]
+    },
+    "reviews": [
+      {
+        "decision": "approved",
+        "at": "2026-09-14T16:48:28.455946+00:00"
+      },
+      {
+        "decision": "rejected",
+        "at": "2026-09-16T12:26:21.484511+00:00"
+      },
+      {
+        "decision": "rejected",
+        "at": "2026-09-30T17:32:59.899515+00:00"
+      }
+    ],
+    "reopens": [
+      {
+        "at": "2026-09-15T08:20:25.998692+00:00",
+        "previous_review": "APPROVED",
+        "detected_fields": [],
+        "business_changes": [],
+        "materially_justified": false
+      },
+      {
+        "at": "2026-09-19T22:32:41.175200+00:00",
+        "previous_review": "REJECTED",
+        "detected_fields": [
+          "business_category"
+        ],
+        "business_changes": [],
+        "materially_justified": false
+      },
+      {
+        "at": "2026-10-02T23:08:53.498674+00:00",
+        "previous_review": "REJECTED",
+        "detected_fields": [
+          "estimated_currency",
+          "estimated_amount_tax_mode",
+          "estimated_amount_source"
+        ],
+        "business_changes": [],
+        "materially_justified": false
+      }
+    ]
+  },
+  {
+    "id": 109,
+    "title": "MAITRISE D’ŒUVRE POUR LE CONTROLE ET SUIVI DES TRAVAUX DE MISE A NIVEAU DES ENTREES DE LA VILLE DE GUELMIM RACCORDEES À LA VOIE EXPRESS TIZNIT-LAÂYOUNE : VIA LA COMMUNE DE TAGANT ET VIA LA RP 1300.",
+    "reference": "DPARN1/04/2026/CFR",
+    "review_status": "PENDING",
+    "discovery_status": "NEW",
+    "update_reason": {
+      "changed_fields": []
+    },
+    "current_business_fields": {
+      "title": "MAITRISE D’ŒUVRE POUR LE CONTROLE ET SUIVI DES TRAVAUX DE MISE A NIVEAU DES ENTREES DE LA VILLE DE GUELMIM RACCORDEES À LA VOIE EXPRESS TIZNIT-LAÂYOUNE : VIA LA COMMUNE DE TAGANT ET VIA LA RP 1300.",
+      "institution": "M3 / DPARNTD - DIRECTION PROVISOIRE D'AMENAGEMENT DE LA RN1 ENTRE TIZNIT ET DAKHLA",
+      "reference": "DPARN1/04/2026/CFR",
+      "publication_date": "2026-08-19",
+      "deadline": "2026-09-17",
+      "source_status": "open",
+      "procedure_type": "tender",
+      "location_evidence": "GUELMIM",
+      "location": null,
+      "city_region": null,
+      "territory": null,
+      "deadline_time": null,
+      "estimated_amount": null,
+      "estimated_currency": null,
+      "estimated_amount_tax_mode": null,
+      "estimated_lots": null,
+      "provisional_bond_amount": null,
+      "provisional_bond_currency": null,
+      "competition_prize_amount": null,
+      "competition_prize_currency": null,
+      "eligibility_conditions": null,
+      "competition_regulation_available": null,
+      "document_types": null
+    },
+    "reviews": [],
+    "reopens": []
+  },
+  {
+    "id": 138,
+    "title": "REALISATION DES ETUDES ET SUIVI DES TRAVAUX DE REHABILITATION DE L'ANCIENNE MEDINA DE LA VILLE DE GUELMIM -PROVINCE DE GUELMIM",
+    "reference": "36/BR/RGON/2026",
+    "review_status": "PENDING",
+    "discovery_status": "UPDATED",
+    "update_reason": {
+      "changed_fields": [
+        "estimated_currency",
+        "estimated_amount_tax_mode",
+        "estimated_amount_source",
+        "business_category"
+      ]
+    },
+    "current_business_fields": {
+      "title": "REALISATION DES ETUDES ET SUIVI DES TRAVAUX DE REHABILITATION DE L'ANCIENNE MEDINA DE LA VILLE DE GUELMIM -PROVINCE DE GUELMIM",
+      "institution": "RGON / RGON - REGION DE GUELMIM - OUED NOUN",
+      "reference": "36/BR/RGON/2026",
+      "publication_date": "2026-09-15",
+      "deadline": "2026-10-13",
+      "source_status": "open",
+      "procedure_type": "tender",
+      "location_evidence": "GUELMIM",
+      "location": null,
+      "city_region": null,
+      "territory": null,
+      "deadline_time": "10:30",
+      "estimated_amount": null,
+      "estimated_currency": "MAD",
+      "estimated_amount_tax_mode": "TTC",
+      "estimated_lots": [],
+      "provisional_bond_amount": 70000.0,
+      "provisional_bond_currency": "MAD",
+      "competition_prize_amount": null,
+      "competition_prize_currency": null,
+      "eligibility_conditions": null,
+      "competition_regulation_available": false,
+      "document_types": [
+        "DCE",
+        "PLANS"
+      ]
+    },
+    "reviews": [
+      {
+        "decision": "rejected",
+        "at": "2026-09-18T09:23:35.102608+00:00"
+      }
+    ],
+    "reopens": [
+      {
+        "at": "2026-10-02T23:08:59.564293+00:00",
+        "previous_review": "REJECTED",
+        "detected_fields": [
+          "estimated_currency",
+          "estimated_amount_tax_mode",
+          "estimated_amount_source",
+          "business_category"
+        ],
+        "business_changes": [
+          {
+            "field": "provisional_bond_amount",
+            "before": 7000000.0,
+            "after": 70000.0
+          }
+        ],
+        "materially_justified": true
+      }
+    ]
+  },
+  {
+    "id": 139,
+    "title": "Concours architectural pour la conception et le suivi des travaux de construction de l’annexe du siège de la Région Guelmim Oued Noun",
+    "reference": "06/2026/CA/BR/RGON",
+    "review_status": "APPROVED",
+    "discovery_status": "NEW",
+    "update_reason": {
+      "changed_fields": []
+    },
+    "current_business_fields": {
+      "title": "Concours architectural pour la conception et le suivi des travaux de construction de l’annexe du siège de la Région Guelmim Oued Noun",
+      "institution": "REGION DE GUELMIM - OUED NOUN",
+      "reference": "06/2026/CA/BR/RGON",
+      "publication_date": null,
+      "deadline": "2026-11-03",
+      "source_status": "open",
+      "procedure_type": "unknown",
+      "location_evidence": null,
+      "location": null,
+      "city_region": null,
+      "territory": null,
+      "deadline_time": null,
+      "estimated_amount": null,
+      "estimated_currency": null,
+      "estimated_amount_tax_mode": null,
+      "estimated_lots": [],
+      "provisional_bond_amount": null,
+      "provisional_bond_currency": null,
+      "competition_prize_amount": null,
+      "competition_prize_currency": null,
+      "eligibility_conditions": null,
+      "competition_regulation_available": false,
+      "document_types": []
+    },
+    "reviews": [
+      {
+        "decision": "approved",
+        "at": "2026-09-18T09:23:23.129814+00:00"
+      }
+    ],
+    "reopens": []
+  },
+  {
+    "id": 161,
+    "title": "ETUDES ARCHITECTURALES ET SUIVI DES TRAVAUX DE CONSTRUCTION DE L’ECOLE AL GARGARATE RELEVANT DE LA DIRECTION PROVINCIALE DE GUELMIM -AREF GON",
+    "reference": "CA/07/2026/INV/GUELMIM",
+    "review_status": "PENDING",
+    "discovery_status": "UPDATED",
+    "update_reason": {
+      "changed_fields": [
+        "business_category"
+      ]
+    },
+    "current_business_fields": {
+      "title": "ETUDES ARCHITECTURALES ET SUIVI DES TRAVAUX DE CONSTRUCTION DE L’ECOLE AL GARGARATE RELEVANT DE LA DIRECTION PROVINCIALE DE GUELMIM -AREF GON",
+      "institution": "MENESFC / AREFGESDMG - DIRECTION PROVINCIALE DE L’EDUCATION NATIONALE DE GUELMIM",
+      "reference": "CA/07/2026/INV/GUELMIM",
+      "publication_date": "2026-09-30",
+      "deadline": "2026-10-23",
+      "source_status": "open",
+      "procedure_type": "architectural_consultation",
+      "location_evidence": "GUELMIM",
+      "location": null,
+      "city_region": null,
+      "territory": null,
+      "deadline_time": "10:00",
+      "estimated_amount": null,
+      "estimated_currency": "MAD",
+      "estimated_amount_tax_mode": "TTC",
+      "estimated_lots": [],
+      "provisional_bond_amount": 0.0,
+      "provisional_bond_currency": "MAD",
+      "competition_prize_amount": null,
+      "competition_prize_currency": null,
+      "eligibility_conditions": null,
+      "competition_regulation_available": false,
+      "document_types": [
+        "DCE",
+        "PLANS"
+      ]
+    },
+    "reviews": [],
+    "reopens": []
+  }
+]

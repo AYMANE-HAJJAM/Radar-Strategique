@@ -97,7 +97,7 @@ def test_saved_generic_snapshot_replay_is_selective():
     rows = json.loads(Path('tests/fixtures/manual_market_relevance.json').read_text(encoding='utf-8'))
     decisions = [evaluate_relevance(row['title']) for row in rows]
     assert sum(row['business_category'] == 'P1_HERITAGE' for row in decisions) == 0
-    assert sum(row['business_category'] == 'P1_CONCOURS' for row in decisions) == 2
-    # Only plausible major/heritage-adjacent cases stay P2 — not ordinary écoles/logements.
+    assert sum(row['business_category'] == 'P1_CONCOURS' for row in decisions) == 0
+    # Vague concours and ordinary études stay rejected. Médina / siège / complexe stay P2.
     assert sum(row['business_category'] == 'P2_REVIEW' for row in decisions) == 4
-    assert sum(row['business_category'] == 'REJECT' for row in decisions) == 6
+    assert sum(row['business_category'] == 'REJECT' for row in decisions) == 8

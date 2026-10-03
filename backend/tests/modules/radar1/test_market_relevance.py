@@ -52,7 +52,7 @@ def test_obvious_noise_rejected(title):
     assert evaluate_relevance(title)['decision'] == 'reject'
 
 
-@pytest.mark.parametrize('example', [EXAMPLES[2], EXAMPLES[10]])
+@pytest.mark.parametrize('example', [EXAMPLES[2]])
 def test_all_priorities_enter_pending_workflow(app, example):
     summary = execute(app, [candidate(title=example['title'])])
     assert summary.new_results_count == 1
