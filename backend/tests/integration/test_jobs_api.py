@@ -127,3 +127,39 @@ def test_run_detail_requires_session_and_hides_secrets(app):
     assert response.json['current_stage'] == 'COMPLETED'
     assert code not in response.get_data(as_text=True)
     assert client.get('/api/runs/99999').status_code == 404
+
+
+def test_web_run_continues_without_browser_polling(app, monkeypatch):
+    from threading import Event
+    from app.db.extensions import db
+    from app.db.models import SearchRun
+    from tests.api.test_api import login, make_user
+
+    started, resume = Event(), Event()
+    execute = AgentOrchestrator.execute
+
+    def paused_execute(agent, run_id):
+        started.set()
+        assert resume.wait(timeout=5)
+        return execute(agent, run_id)
+
+    monkeypatch.setattr(AgentOrchestrator, 'execute', paused_execute)
+    _, code = make_user(app)
+    client = app.test_client()
+    csrf = login(client, code)
+    try:
+        response = client.post('/api/radars/1/runs', json={}, headers={'X-CSRF-Token': csrf})
+        assert response.status_code == 201
+        run_id = response.get_json()['run_id']
+        assert started.wait(timeout=2)
+        # No browser polling is needed for the worker to finish this reserved run.
+        resume.set()
+        app.extensions['radar_job_runner'].shutdown(wait=True)
+        restored = client.get(f'/api/runs/{run_id}')
+        assert restored.status_code == 200
+        assert restored.get_json()['id'] == run_id
+        assert restored.get_json()['status'] == 'completed'
+        with app.app_context():
+            assert db.session.scalar(db.select(db.func.count(SearchRun.id))) == 1
+    finally:
+        resume.set()

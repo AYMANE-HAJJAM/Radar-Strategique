@@ -60,6 +60,12 @@ def current_user_id():
 
 
 def register(bp):
+    @bp.after_request
+    def disable_auth_cache(response):
+        if request.path.startswith('/api/auth/'):
+            response.headers['Cache-Control'] = 'no-store'
+        return response
+
     @bp.route('/auth/access', methods=['POST'], provide_automatic_options=False)
     def access():
         key, now = _client_key(), utcnow()
@@ -89,5 +95,10 @@ def register(bp):
     @bp.post('/auth/logout')
     @require_auth
     def logout():
+        # Signed cookies must also become invalid on the backend, including copies
+        # held by other tabs or requests already in flight.
+        user = current_user()
+        user.session_version += 1
+        db.session.commit()
         session.clear()
         return '', 204
