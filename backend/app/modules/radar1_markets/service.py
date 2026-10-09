@@ -7,7 +7,7 @@ from . import validators
 
 
 class MarketsRadarAgent(BaseRadarAgent):
-    rules_version = '10'
+    rules_version = '11'
     workflow_enabled = True
     analysis_limit_setting = 'RADAR1_MAX_AI_ANALYSES'
     code, number, emoji = 'RADAR_1_MARKETS', 1, '🔎'
@@ -16,6 +16,9 @@ class MarketsRadarAgent(BaseRadarAgent):
     rules, source_strategy, prompt = RULES, SOURCES, PROMPT
     conditions = CONDITIONS
     candidate_schema, analysis_schema = MarketCandidate, MarketAnalysis
+
+    def uses_paid_services(self, config):
+        return config.get('RADAR1_DISCOVERY_MODE') != 'pmmp_index'
 
     def bind_processing_run(self, collector, run_id, *, dry_run=False):
         if not dry_run:
@@ -30,8 +33,23 @@ class MarketsRadarAgent(BaseRadarAgent):
         return can_persist(candidate, run_id)
 
     def finish_processing_run(self, run_id, reason='business_persistence_not_completed'):
-        from .processing import release_run
+        from .processing import release_run, pending_rows, listing_gate
         release_run(run_id, reason)
+        from app.db.extensions import db
+        from app.db.models import SearchRun, utcnow
+        from .pmmp_listing_index import listing_from_record
+        run = db.session.get(SearchRun, run_id)
+        metadata = dict(run.run_metadata or {})
+        metrics = dict(metadata.get('collector_metrics') or {})
+        progress = dict(metrics.get('radar1_progress') or {})
+        if progress:
+            progress.update(pending=sum(listing_gate(listing_from_record(row))['decision'] == 'continue'
+                                        for row in pending_rows()),
+                            phase='batch_finished', updated_at=utcnow().isoformat())
+            metrics['radar1_progress'] = progress
+            metadata['collector_metrics'] = metrics
+            run.run_metadata = metadata
+            db.session.commit()
 
     def normalize_candidate(self, item):
         """Sanitize optional estimate text before the base serializer and strict model."""

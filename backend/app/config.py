@@ -46,7 +46,7 @@ def load_config():
         if not piece.isdigit() or int(piece) < 1:
             raise ValueError('ALLOWED_TELEGRAM_USER_IDS must be a comma-separated list of positive integers.')
         allowlist.add(int(piece))
-    discovery_mode = os.getenv('RADAR1_DISCOVERY_MODE', 'legacy').strip().lower()
+    discovery_mode = os.getenv('RADAR1_DISCOVERY_MODE', 'pmmp_index').strip().lower()
     if discovery_mode not in {'legacy', 'pmmp_index'}:
         raise ValueError('RADAR1_DISCOVERY_MODE must be legacy or pmmp_index.')
     return dict(
@@ -105,6 +105,8 @@ def load_config():
         RADAR1_PMMP_OVERLAP_PAGES=positive('RADAR1_PMMP_OVERLAP_PAGES', 3),
         RADAR1_PMMP_RECONCILIATION_HOURS=positive('RADAR1_PMMP_RECONCILIATION_HOURS', 24),
         RADAR1_DISCOVERY_MODE=discovery_mode,
+        RADAR1_PROCESSING_BATCH_SIZE=positive('RADAR1_PROCESSING_BATCH_SIZE', 25),
+        RADAR1_PROCESSING_MAX_SECONDS=positive('RADAR1_PROCESSING_MAX_SECONDS', 120),
         RADAR1_DISCOVERY_MODE_SOURCE=('environment_or_dotenv' if 'RADAR1_DISCOVERY_MODE' in os.environ else 'default'),
         RADAR1_MAX_AI_ANALYSES=positive('RADAR1_MAX_AI_ANALYSES', 40),
         RADAR1_MIN_DISCOVERIES=positive('RADAR1_MIN_DISCOVERIES', 10),

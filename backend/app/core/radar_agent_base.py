@@ -44,6 +44,10 @@ class BaseRadarAgent(ABC):
     analysis_limit_setting = 'AGENT_MAX_CANDIDATES'
     workflow_enabled = False
 
+    def uses_paid_services(self, config):
+        """Whether this agent's selected flow permits search/AI consumption."""
+        return True
+
     def bind_processing_run(self, collector, run_id, *, dry_run=False):
         """Optional durable discovery handoff, owned by the specialized agent."""
 

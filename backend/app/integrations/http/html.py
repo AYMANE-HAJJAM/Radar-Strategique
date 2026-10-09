@@ -3,6 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urljoin, urlsplit
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
+from time import monotonic
 
 from app.modules.radar1_markets.policy import domain_match
 
@@ -115,9 +116,10 @@ class NoRedirect(HTTPRedirectHandler):
 
 
 class PublicPages:
-    def __init__(self, domains, timeout=20):
+    def __init__(self, domains, timeout=20, *, elapsed_limit=None):
         self.domains = domains
         self.timeout = timeout
+        self.elapsed_limit = elapsed_limit
         self.cache = {}
         self.request_attempts = 0
 
@@ -125,15 +127,31 @@ class PublicPages:
         if url in self.cache:
             return self.cache[url]
         original = url
+        started = monotonic()
         for _ in range(4):
             if not domain_match(url, self.domains) or urlsplit(url).scheme not in {'https', 'http'}:
                 raise ValueError('Page outside whitelist')
             try:
                 self.request_attempts += 1
-                with build_opener(NoRedirect).open(Request(url, headers={'User-Agent': 'ArcheritageRadar/1.0'}), timeout=self.timeout) as response:
+                remaining = self.elapsed_limit - (monotonic() - started) if self.elapsed_limit else self.timeout
+                if remaining <= 0:
+                    raise TimeoutError('Public detail elapsed limit reached')
+                with build_opener(NoRedirect).open(Request(url, headers={'User-Agent': 'ArcheritageRadar/1.0'}), timeout=min(self.timeout, remaining)) as response:
                     if 'html' not in response.headers.get('Content-Type', ''):
                         raise ValueError('Only public HTML inspected')
-                    raw = response.read(2_000_001)
+                    if self.elapsed_limit:
+                        chunks, size = [], 0
+                        while size <= 2_000_000:
+                            if monotonic() - started >= self.elapsed_limit:
+                                raise TimeoutError('Public detail elapsed limit reached')
+                            chunk = response.read1(min(8192, 2_000_001 - size))
+                            if not chunk:
+                                break
+                            chunks.append(chunk)
+                            size += len(chunk)
+                        raw = b''.join(chunks)
+                    else:
+                        raw = response.read(2_000_001)
                     if len(raw) > 2_000_000:
                         raise ValueError('Page exceeds limit')
                     page = Page(raw.decode(response.headers.get_content_charset() or 'utf-8', errors='replace'))

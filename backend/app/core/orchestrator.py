@@ -158,6 +158,11 @@ class AgentOrchestrator:
                         } for event in report.usage_events if event],
                         dry_run=self.dry_run)
         # Compatibility for existing operations tooling; new code should use collector_metrics.
+        if run.radar_id and 'radar1_progress' in report.metrics:
+            from copy import deepcopy
+            # JSON columns do not track nested mutations. Each heartbeat must
+            # hold an independent snapshot so SQLAlchemy writes the next update.
+            metadata['collector_metrics'] = deepcopy(report.metrics)
         if getattr(report, 'metrics', None) is not None and run.agent_name == 'MarketRadarAgent':
             metadata['procurement_metrics'] = report.metrics
         run.run_metadata = metadata
@@ -178,7 +183,7 @@ class AgentOrchestrator:
             else:
                 collector_config = dict(self.app.config)
                 cap = self.app.config['MAX_DAILY_SEARCH_CALLS']
-                if cap:
+                if cap and radar.uses_paid_services(collector_config):
                     used = db.session.scalar(db.select(db.func.coalesce(db.func.sum(SearchRun.search_calls), 0)).where(
                         db.func.date(SearchRun.started_at) == run.started_at.date(), SearchRun.id != run.id)) or 0
                     remaining = max(0, cap - used)
@@ -404,6 +409,7 @@ class AgentOrchestrator:
                     logger.info('run_id=%s agent=%s candidate_index=%s decision=rejected_before_ai reasons=%s',
                                 run.id, type(radar).__name__, index, ','.join(decision.reasons))
                 elif not unchanged and (not needs_ai or self.dry_run or self.no_ai or
+                        not radar.uses_paid_services(self.app.config) or
                         (not self.analyzer_supplied and self.app.config.get(f'RADAR{radar.number}_AI_ENABLED', 'conditional') == 'false')):
                     reason = ('NO_AI_MODE' if self.no_ai else 'DRY_RUN' if self.dry_run else
                               'AI_DISABLED_FOR_RADAR' if self.app.config.get(f'RADAR{radar.number}_AI_ENABLED') == 'false'

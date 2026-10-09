@@ -18,6 +18,10 @@ ACTIVE = (RunStatus.INITIALIZED, RunStatus.RUNNING)
 class SearchRunService:
     def _recover_stale(self, radar_id):
         """Release process-safe run locks left behind by a dead worker."""
+        if db.session.scalar(db.select(Radar.code).where(Radar.id == radar_id)) == 'RADAR_1_MARKETS':
+            # Age is not proof of worker death. Explicit operator recovery is
+            # required, especially for pre-upgrade reconciliation runs like #59.
+            return
         from flask import current_app
         cutoff = utcnow() - timedelta(minutes=current_app.config['SEARCH_RUN_STALE_MINUTES'])
         rows = db.session.scalars(db.select(SearchRun).where(
@@ -54,7 +58,9 @@ class SearchRunService:
             raise AgentError('Radar non configuré ou désactivé.')
         radar_id = radar.id
         self._recover_stale(radar_id)
-        self._enforce_daily_caps()
+        from flask import current_app
+        if agent.uses_paid_services(current_app.config):
+            self._enforce_daily_caps()
         if db.session.scalar(db.select(SearchRun.id).where(SearchRun.radar_id == radar_id, SearchRun.status.in_(ACTIVE))):
             db.session.rollback()
             raise ActiveRunError('Une recherche est déjà en cours pour ce radar.')

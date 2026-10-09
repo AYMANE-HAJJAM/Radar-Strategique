@@ -99,7 +99,7 @@ def test_unchanged_unprocessed_is_persisted_once_on_repeated_launches(app, monke
         assert count(ResultObservation) == 1
     second = AgentOrchestrator(app, no_ai=True).run_radar(CODE)
     assert second.status == 'completed'
-    assert created[-1].report.metrics['pmmp_sync_unchanged'] == 1
+    assert created[-1].report.metrics['pmmp_sync_pages'] == 0
     assert created[-1].report.metrics['pmmp_evaluated'] == 0
     with app.app_context():
         assert count(Result) == 1
@@ -350,9 +350,9 @@ def test_runtime_mode_and_strategy_reported(app, monkeypatch):
         run = db.session.get(SearchRun, result.id)
         metrics = run.run_metadata['collector_metrics']
         assert metrics['discovery_mode'] == 'pmmp_index'
-        assert metrics['pmmp_sync_mode'] == 'reconciliation'
-        assert metrics['pmmp_sync_complete'] is True
-        assert metrics['pmmp_discovery_strategy'] == 'complete_board_comparison'
+        assert metrics['pmmp_sync_mode'] == 'not_requested'
+        assert metrics['pmmp_sync_complete'] is False
+        assert metrics['pmmp_discovery_strategy'] == 'indexed_title_batch'
         assert metrics['pmmp_index_size_before'] == metrics['pmmp_index_size_after'] == 1
         assert metrics['pmmp_evaluated'] == 1
 
@@ -384,8 +384,8 @@ def test_periodic_reconciliation_refresh_preserves_approved_decision(app, monkey
         run.started_at = run.finished_at = utcnow() - timedelta(days=2)
         db.session.commit()
     assert AgentOrchestrator(app, no_ai=True).run_radar(CODE).status == 'completed'
-    assert created[-1].report.metrics['pmmp_reconciliation_refresh_queued'] == 1
-    assert created[-1].report.metrics['pmmp_evaluated'] == 1
+    assert created[-1].report.metrics['pmmp_sync_pages'] == 0
+    assert created[-1].report.metrics['pmmp_evaluated'] == 0
     with app.app_context():
         assert db.session.scalar(db.select(Result.review_status)) == 'APPROVED'
         assert count(Result) == 1

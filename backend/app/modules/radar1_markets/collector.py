@@ -1,5 +1,7 @@
 """Radar 1 discovery observations are distinct from validated final offers."""
+from app.integrations.pmmp.client import is_pmmp
 import logging
+from time import monotonic
 from datetime import date
 from datetime import datetime
 from pydantic import ValidationError
@@ -57,7 +59,8 @@ class MarketsCollector:
                               {'OFFICIAL_PROCUREMENT', 'OFFICIAL_INSTITUTIONAL'})
         self.pmmp_domains = tuple(d for d in self.official if d == 'marchespublics.gov.ma')
         self.active_stats = None
-        self.pages = AccessLimitedPages(pages or PublicPages(self.domains, config['SOURCE_HTTP_TIMEOUT_SECONDS']), self.report.metrics,
+        self.pages = AccessLimitedPages(pages or PublicPages(self.domains, config['SOURCE_HTTP_TIMEOUT_SECONDS'],
+            elapsed_limit=config['SOURCE_HTTP_TIMEOUT_SECONDS'] if config.get('RADAR1_DISCOVERY_MODE') == 'pmmp_index' else None), self.report.metrics,
                                         self._record_page_error)
         self.lookup_cache = {}
         self.query_performance = {}
@@ -506,7 +509,7 @@ class MarketsCollector:
         return found.model_copy(update={'metadata': {**found.metadata, **candidate.metadata,
             'observed_official_url': found.metadata.get('observed_official_url'), 'official_resolved_from': url}})
 
-    def _process(self, hit, radar, stats, discovery=None):
+    def _process(self, hit, radar, stats, discovery=None, *, indexed=False):
         self.last_processing_outcome = ('FAILED_RETRYABLE', 'no_successful_business_outcome')
         signature = (folded(hit.reference or ''), folded(hit.institution or ''),
                      folded(hit.title or ''))
@@ -520,6 +523,27 @@ class MarketsCollector:
         candidate = self._observe(hit, stats, discovery)
         if candidate is None:
             return
+        if indexed:
+            # The listing title may stop mid-sentence. Decide business scope only
+            # after the actual PMMP object and independently verified deadline.
+            try:
+                if not is_pmmp(candidate.url) or not detail_url(candidate.url):
+                    raise ValueError('indexed_notice_requires_pmmp_detail')
+                candidate = enrich_detail(candidate, self.pages)
+                if not candidate.deadline_verified or not candidate.deadline:
+                    raise ValueError('official_deadline_missing')
+                if candidate.source_status in {'closed', 'expired', 'awarded', 'cancelled'} or candidate.deadline < today_in_morocco():
+                    self._reject(stats, 'freshness', hit, 'closed_or_expired', candidate, discovery)
+                    return
+                _, official_page = self.pages.get(candidate.official_url)
+                object_title = labelled_fields(official_page).get('title')
+                if not object_title or len(folded(object_title)) < 20 or object_title.rstrip().endswith(('...', '…')):
+                    raise ValueError('official_object_incomplete')
+                candidate = verify_detail(candidate, self.pages)
+            except (OSError, ValueError, TimeoutError) as error:
+                self._reject(stats, 'resolution', hit,
+                    'official_detail_pending:' + type(error).__name__ + ':' + str(error)[:80], candidate, discovery)
+                return
         keys = {(i, key) for i, key in enumerate(identity_keys(candidate)) if key and
                 (i != 0 or (detail_url(candidate.url) and candidate.source_type in {'OFFICIAL_PROCUREMENT', 'OFFICIAL_INSTITUTIONAL'})) and (i != 2 or candidate.institution)}
         seen = bool(keys & self.seen)
@@ -582,6 +606,8 @@ class MarketsCollector:
                     candidate = enrich_detail(candidate, self.pages)
                     logger.info('radar1_detail_enrichment=ok url=%s', (candidate.official_url or '')[:120])
                 except (OSError, ValueError, TimeoutError) as error:
+                    if indexed:
+                        raise
                     if 'mismatch' in str(error).lower():
                         raise
                     errors.append(str(error)[:150])
@@ -617,7 +643,7 @@ class MarketsCollector:
             # Explicit contradictions or closed official evidence never become fallback.
             contradicted = any(word in str(error).lower() for word in ('mismatch', 'closed procurement'))
             fallback = original
-            if not contradicted and credible_fallback(fallback, self.config):
+            if not indexed and not contradicted and credible_fallback(fallback, self.config):
                 candidate = with_resolution(fallback, CREDIBLE, error='; '.join(errors), attempts=[query['query_text'] for query in self.report.query_metrics[query_start:]])
                 self._warn('official_verification_pending')
             else:
@@ -689,167 +715,118 @@ class MarketsCollector:
         return self.legacy_discovery(radar)
 
     def pmmp_index_discovery(self, radar):
-        """Complete listing comparison, then a durable, capped business queue."""
+        """Select existing indexed titles, then verify a bounded durable batch."""
         from app.db.extensions import db
-        from app.db.models.pmmp_listing_index import PmmpListingIndex
-        from app.modules.radar1_markets.pmmp_listing_index import sync_listings
-        from app.modules.radar1_markets.pmmp_listing_collector import NEW, UPDATED, DUPLICATE, UNCHANGED
-        from app.modules.radar1_markets.pmmp_listing_index import listing_from_record
-        from app.modules.radar1_markets import processing
+        from app.db.models import SearchRun, utcnow
+        from app.db.models.pmmp_listing_index import PmmpListingIndex as Listing
+        from .pmmp_listing_index import listing_from_record
+        from . import processing
 
-        indexed = db.session.scalar(db.select(db.func.count()).select_from(PmmpListingIndex)) or 0
-        self.report.metrics['pmmp_index_size_before'] = indexed
-        if indexed == 0:
-            self._warn('pmmp_index_empty_run_baseline_first')
-            logger.info('pmmp_index_discovery skipped: durable index is empty')
-            return []
-        overlap = self.config.get('RADAR1_PMMP_OVERLAP_PAGES', 3)
         owner = getattr(self, 'processing_run_id', None)
-        mode = 'incremental'
+        indexed = db.session.scalar(db.select(db.func.count()).select_from(Listing)) or 0
+        self.report.metrics.update(pmmp_index_size_before=indexed, pmmp_index_size_after=indexed,
+            pmmp_discovery_strategy='indexed_title_batch', pmmp_sync_mode='not_requested',
+            pmmp_sync_pages=0, pmmp_sync_complete=False)
+        if not indexed:
+            self._warn('pmmp_index_empty_run_baseline_first')
         if owner is not None:
             processing.release_abandoned()
-            self.report.metrics['pmmp_recovery'] = processing.recover_legacy(
-                lambda listing: self._normalize(listing_to_search_hit(listing), listing.detail_url))
-            from app.db.models import SearchRun
-            owner_run = db.session.get(SearchRun, owner)
-            if processing.reconciliation_due(owner_run.radar_id,
-                    self.config.get('RADAR1_PMMP_RECONCILIATION_HOURS', 24)):
-                mode = 'reconciliation'
-            db.session.commit()
-        self.report.metrics.update(pmmp_sync_mode=mode, pmmp_sync_complete=False,
-                                   pmmp_discovery_strategy='complete_board_comparison')
-        from app.db.models import utcnow
-        scan_started_at = utcnow()
-        def page_progress():
-            self.report.metrics['pmmp_sync_pages'] = self.report.metrics.get('pmmp_sync_pages', 0) + 1
-            self.on_progress()
-        try:
-            sync = sync_listings(
-                mode=mode, overlap_pages=overlap, commit=False, independent=owner is not None,
-                on_page=page_progress,
-                http=getattr(self, 'listing_http', None),
-                delay_seconds=0 if getattr(self, 'listing_http', None) is not None else 0.35)
-        except Exception as error:
-            self.report.metrics['pmmp_sync_error_type'] = type(error).__name__
-            self.report.source_errors += 1
-            self._warn('pmmp_listing_sync_failed')
-            raise
-        self.report.metrics.update({
-            'pmmp_sync_mode': sync.mode,
-            'pmmp_sync_stop_reason': sync.stop_reason,
-            'pmmp_sync_pages': sync.pages_fetched,
-            'pmmp_sync_declared_pages': sync.declared_pages,
-            'pmmp_sync_declared_results': sync.declared_results,
-            'pmmp_sync_new': sync.counts.get(NEW, 0),
-            'pmmp_sync_updated': sync.counts.get(UPDATED, 0),
-            'pmmp_sync_unchanged': sync.counts.get(UNCHANGED, 0),
-            'pmmp_sync_duplicate': sync.counts.get(DUPLICATE, 0),
-            'pmmp_actionable': len(sync.actionable),
-            'pmmp_sync_complete': sync.stop_reason in {'final_page', 'empty_page'},
-        })
-        unique_count = sum(sync.counts.get(state, 0) for state in (NEW, UPDATED, UNCHANGED))
-        self.report.metrics['pmmp_sync_unique'] = unique_count
-        self.report.metrics['pmmp_sync_count_discrepancy'] = (
-            sync.declared_results - unique_count if sync.declared_results is not None else None)
-        if not self.report.metrics['pmmp_sync_complete']:
-            self.report.source_errors += 1
-            self._warn('pmmp_sync_incomplete:' + sync.stop_reason)
-        elif sync.declared_results is not None and unique_count < sync.declared_results:
-            self.report.metrics['pmmp_sync_complete'] = False
-            self._warn('pmmp_board_count_exceeds_observed_unique_rows')
-        if owner is None:
-            db.session.flush()
-        else:
-            db.session.expire_all()
-        self.report.metrics['pmmp_index_size_after'] = db.session.scalar(
-            db.select(db.func.count()).select_from(PmmpListingIndex)) or 0
-        if owner is not None and mode == 'reconciliation' and self.report.metrics['pmmp_sync_complete']:
-            self.report.metrics['pmmp_reconciliation_refresh_queued'] = processing.queue_reconciliation_refresh(
-                scan_started_at, self.config.get('RADAR1_PMMP_RECONCILIATION_HOURS', 24))
-        self.report.metrics['raw_results'] += sum(
-            1 for item in sync.observations if item.state != DUPLICATE)
+        selected, rejected = [], []
+        pending = processing.pending_rows()
+        for row in pending:
+            listing = listing_from_record(row)
+            gate = processing.listing_gate(listing)
+            item = (row.id, row.fingerprint, listing, gate)
+            (selected if gate['decision'] == 'continue' else rejected).append(item)
+        # pending_rows already prioritizes never-attempted work over retries;
+        # preserve that fairness, with heritage first inside each attempt tier.
+        attempts = {r.id: r.processing_attempts for r in pending}
+        selected.sort(key=lambda item: (attempts[item[0]], item[3]['priority'], item[0]))
+        progress = dict(indexed=indexed, selected=len(selected), processed=0, relevant=0,
+                        rejected=len(rejected), pending=len(selected), phase='selection',
+                        last_listing_id=None, updated_at=utcnow().isoformat())
+        self.report.metrics['radar1_progress'] = progress
+        self.report.metrics['pmmp_queued_before'] = len(selected)
         stats = {**dict.fromkeys(COUNTERS, 0), 'query_index': None,
-                 'source_strategy': 'PMMP_INDEX', 'query_family': 'incremental',
+                 'source_strategy': 'PMMP_INDEX', 'query_family': 'title_filter',
                  'query_text': 'pmmp_listing_index', 'domains': list(self.pmmp_domains),
                  'recency_days': None, 'new_identity': 0, 'blocked': 0,
                  'parser_failures': 0, 'billable_search': False}
         self.report.query_metrics.append(stats)
         self.active_stats = stats
-        queued = [(row.id, row.fingerprint, listing_from_record(row)) for row in processing.pending_rows()]
-        self.report.metrics['pmmp_queued_before'] = len(queued)
-        limit = min(self.config.get('RADAR1_MAX_CANDIDATES', 100),
+        # Persist at most 250 cheap scope decisions per launch, in one transaction.
+        # Unvisited rows remain eligible; never change another worker's claim.
+        if owner is not None:
+            live = db.session.scalar(db.select(SearchRun.status).where(SearchRun.id == owner).with_for_update())
+            if live != 'running':
+                db.session.rollback()
+                return []
+            for row_id, fingerprint, _, gate in rejected[:250]:
+                db.session.execute(db.update(Listing).where(Listing.id == row_id,
+                    Listing.fingerprint == fingerprint,
+                    db.or_(Listing.processing_state.is_(None), Listing.processing_state != processing.PROCESSING)
+                ).values(processing_state=processing.REJECTED, evaluated_fingerprint=fingerprint,
+                    evaluated_at=utcnow(), policy_version=processing.POLICY_VERSION,
+                    processing_reason='title_filter:' + gate['reason_code'],
+                    processing_run_id=None, processing_started_at=None))
+            db.session.commit()
+        self.on_progress()
+        limit = min(self.config.get('RADAR1_PROCESSING_BATCH_SIZE', 25),
+                    self.config.get('RADAR1_MAX_CANDIDATES', 100),
                     self.config.get('AGENT_MAX_CANDIDATES', 200))
-        evaluated = 0
-        completed_without_result = 0
-        # Queue processing must inspect official evidence, even for a known result.
-        # The persistence workflow decides whether a material change reopens review.
+        budget = self.config.get('RADAR1_PROCESSING_MAX_SECONDS', 120)
+        started, evaluated = monotonic(), 0
         previous_known = self.known_unchanged
         self.known_unchanged = lambda candidate: False
         try:
-            for row_id, fingerprint, listing in queued:
-                gate = processing.listing_gate(listing)
-                if gate['decision'] == 'reject':
-                    if owner is not None and processing.claim(row_id, fingerprint, owner):
-                        processing.finish(row_id, fingerprint, owner, processing.REJECTED,
-                                          'prefilter:' + str(gate['reason_code']))
-                        db.session.commit()
-                        completed_without_result += 1
-                    continue
-                if evaluated >= limit or self.examined >= self.config.get('RADAR1_MAX_CANDIDATES', 100):
+            for row_id, fingerprint, listing, gate in selected:
+                if evaluated >= limit or monotonic() - started >= budget:
                     self._truncate('pending_processing_limit')
                     break
                 if owner is not None and not processing.claim(row_id, fingerprint, owner):
                     continue
                 evaluated += 1
+                progress.update(phase='official_detail', last_listing_id=row_id,
+                                updated_at=utcnow().isoformat())
+                self.on_progress()
                 hit = listing_to_search_hit(listing)
                 before = len(self.report.candidates)
                 self.last_processing_outcome = (processing.RETRY, 'no_successful_business_outcome')
-                if not hit.url:
-                    self._reject(stats, 'parser', hit, 'pmmp_listing_missing_detail_url', discovery=None)
-                else:
-                    try:
-                        self._process(hit, radar, stats, hit.url)
-                    except Exception as error:
-                        self.report.metrics['pmmp_processing_error_type'] = type(error).__name__
-                        if owner is not None:
-                            db.session.rollback()
-                            processing.finish(row_id, fingerprint, owner, processing.RETRY,
-                                              'business_processing_exception')
-                            db.session.commit()
-                        raise
+                try:
+                    self._process(hit, radar, stats, hit.url, indexed=True)
+                except Exception as error:
+                    # An individual failure must not strand the rest of the batch.
+                    db.session.rollback()
+                    del self.report.candidates[before:]
+                    self.last_processing_outcome = (processing.RETRY, 'business_processing_exception:' + type(error).__name__)
+                    self.report.source_errors += 1
+                    self._warn(self.last_processing_outcome[1])
                 if len(self.report.candidates) > before:
+                    progress['relevant'] += 1
                     if owner is not None:
                         candidate = self.report.candidates[-1]
                         self.report.candidates[-1] = candidate.model_copy(update={'metadata': {
                             **candidate.metadata, 'pmmp_processing': {'id': row_id, 'fingerprint': fingerprint}}})
-                        # No acknowledgment here: the business save owns completion.
-                elif owner is not None:
+                        # Result + observation + acknowledgment commit atomically.
+                else:
                     state, reason = self.last_processing_outcome
-                    processing.finish(row_id, fingerprint, owner, state, reason)
-                    db.session.commit()
-                    completed_without_result += 1
+                    if state == processing.REJECTED:
+                        progress['rejected'] += 1
+                        progress['pending'] -= 1
+                    if owner is not None:
+                        processing.finish(row_id, fingerprint, owner, state, reason)
                 if owner is not None:
-                    db.session.commit()  # End feedback reads before the next HTTP request.
+                    db.session.commit()  # No transaction spans the next HTTP request.
+                progress.update(processed=evaluated, updated_at=utcnow().isoformat())
+                self.on_progress()
         finally:
             self.known_unchanged = previous_known
             self.report.metrics.update(pmmp_evaluated=evaluated,
-                                       pmmp_completed_without_result=completed_without_result)
-            self.report.metrics['pmmp_queued_after_collection'] = len(processing.pending_rows())
+                                       pmmp_queued_after_collection=progress['pending'])
+            progress.update(phase='business_persistence', updated_at=utcnow().isoformat())
             self._finish_query(stats)
             self.active_stats = None
-        kept = len(self.report.candidates)
-        if not self.report.metrics['usable_results']:
-            self._warn('zero_usable_observations')
-        elif not self.report.metrics['relevant_candidates']:
-            self._warn('zero_relevant_observations')
-        if self.report.candidates and self.report.health == 'DEGRADED':
-            self.report.health = 'PARTIAL'
-        self.report.metrics['final_kept_per_search_call'] = None
-        self.report.metrics['relevant_observations_per_search_call'] = None
-        self.report.candidates.sort(
-            key=lambda c: (c.resolution_state == VERIFIED, c.publication_date or date.min), reverse=True)
-        logger.info('pmmp_index_discovery stop=%s actionable=%s kept=%s',
-                    sync.stop_reason, len(sync.actionable), kept)
+            self.on_progress()
         return self.report.candidates
 
     def legacy_discovery(self, radar):

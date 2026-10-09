@@ -570,8 +570,11 @@ def dce_metadata(page, url):
 
 
 def verify_detail(candidate, pages):
+    from app.modules.radar1_markets.title_filter import normalize
     url, page = pages.get(candidate.official_url or candidate.url)
-    text = folded(page.text)
+    # Evidence matching must preserve Arabic literally. Semantic policy tokens
+    # are appended to a corpus and cannot prove a title/buyer occurs on the page.
+    text = normalize(page.text)
     identity = candidate.reference or candidate.title
     # Require independent page evidence for identity, buyer, and active deadline.
     dates = (candidate.deadline.isoformat(), candidate.deadline.strftime('%d/%m/%Y'),
@@ -585,11 +588,11 @@ def verify_detail(candidate, pages):
                                               'avis d appels d offres'} for heading in page.headings)
     if not is_direct_notice(url) and (len(row_refs) > 1 or generic_heading):
         raise ValueError('Institutional container is not an individual offer')
-    if (not detail_url(url) or not identity or folded(identity) not in text or
+    if (not detail_url(url) or not identity or normalize(identity) not in text or
             aggregate_title(' '.join(page.headings)) or
-            folded(candidate.title) not in text or
-            not candidate.institution or folded(candidate.institution) not in text or
-            not any(folded(value) in text for value in dates)):
+            normalize(candidate.title) not in text or
+            not candidate.institution or normalize(candidate.institution) not in text or
+            not any(normalize(value) in text for value in dates)):
         raise ValueError('Detail identity/buyer/deadline not verified')
     if re.search(r'\b(annule|attribue|cloture)\b', text):
         raise ValueError('Closed procurement notice')

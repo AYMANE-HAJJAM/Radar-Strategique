@@ -24,11 +24,11 @@ def listing_gate(listing):
     """Existing scope gate plus an unambiguous listing deadline, before HTTP/cap."""
     from app.core.validation import today_in_morocco
     from .parser import parse_date
-    from .pmmp_index_backfill import cheap_listing_prefilter
+    from .title_filter import select_title
     deadline = parse_date(listing.deadline)
     if deadline is not None and deadline < today_in_morocco():
-        return {'decision': 'reject', 'reason_code': 'closed_or_expired'}
-    return cheap_listing_prefilter(listing)
+        return {'decision': 'reject', 'reason_code': 'closed_or_expired', 'priority': 9}
+    return select_title(listing.title, listing.procedure, listing.category)
 
 
 def recover_legacy(snapshot_for):
@@ -140,6 +140,7 @@ def release_abandoned():
 def pending_rows():
     # New work wins over repeated transient failures; older work wins within a tier.
     return db.session.scalars(db.select(Listing).where(db.or_(
+        Listing.processing_state.is_(None),
         Listing.processing_state.in_((PENDING, RETRY)),
         db.and_(Listing.processing_state.in_(TERMINAL), db.or_(
             Listing.evaluated_fingerprint.is_(None),

@@ -27,12 +27,13 @@ SEARCH_LIMIT_SETTINGS = {
 
 def build_collector(code, config):
     collector_type = COLLECTORS.get(code)
-    if collector_type is None or (config['SEARCH_PROVIDER'] == 'disabled' and config.get('TESTING')):
+    indexed = code == 'RADAR_1_MARKETS' and config.get('RADAR1_DISCOVERY_MODE') == 'pmmp_index'
+    if collector_type is None or (not indexed and (config['SEARCH_PROVIDER'] == 'disabled' and config.get('TESTING'))):
         return None
     try:
         purpose = ('projects' if code == 'RADAR_2_PROJECTS' else 'institutions' if code == 'RADAR_3_INSTITUTIONS'
                    else 'policies' if code == 'RADAR_4_POLICIES' else 'funding' if code == 'RADAR_5_FUNDING' else 'procurement')
-        provider = (DisabledSearchProvider() if config['SEARCH_PROVIDER'] == 'disabled'
+        provider = (DisabledSearchProvider() if indexed or config['SEARCH_PROVIDER'] == 'disabled'
                     else build_search_provider(config, purpose=purpose))
         collector_config = dict(config)
         if code == 'RADAR_1_MARKETS':

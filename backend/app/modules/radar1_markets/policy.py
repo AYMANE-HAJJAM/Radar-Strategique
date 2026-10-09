@@ -36,7 +36,8 @@ WEIGHTS = {'HERITAGE_STRONG': 5, 'ARCHITECTURE': 4, 'TERRITORIAL': 4,
 
 
 def folded(value):
-    return fold_text(value, oe_ligature=True)
+    from .title_filter import policy_text
+    return fold_text(policy_text(value), oe_ligature=True, keep_arabic=True)
 
 
 def contains(text, term):

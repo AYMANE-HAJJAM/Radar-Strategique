@@ -79,12 +79,20 @@ def test_two_users_concurrent_database_lock_and_crash_recovery(tmp_path):
         assert db.session.scalar(db.select(db.func.count()).select_from(SearchRun)) == 1
         old = db.session.scalar(db.select(SearchRun)); old.started_at = utcnow()-timedelta(days=1)
         db.session.commit()
+    with pytest.raises(ActiveRunError):
+        AgentOrchestrator(application).reserve(CODE,456)
+    with application.app_context():
+        old = db.session.scalar(db.select(SearchRun))
+        assert old.status == 'initialized'
+        assert old.error_kind is None
+        # Fixture operator confirms worker death; age alone cannot recover Radar 1.
+        old.status = 'failed'; old.current_stage = 'FAILED'; db.session.commit()
     new_id = AgentOrchestrator(application).reserve(CODE,456)
     with application.app_context():
         old = db.session.scalar(db.select(SearchRun).where(SearchRun.id != new_id))
-        assert old.error_kind == 'stale_run_recovered'
+        assert old.status == 'failed' and old.error_kind is None
         db.session.remove(); db.engine.dispose()
-    EVIDENCE['concurrent_search']={'attempts':10,'users':2,'created_runs':1,'stale_recovery':True}
+    EVIDENCE['concurrent_search']={'attempts':10,'users':2,'created_runs':1,'age_only_recovery_blocked':True}
 
 
 def test_shared_queue_stale_decision_and_transaction_rollback(app):

@@ -161,57 +161,42 @@ def test_legacy_discovery_helper_still_available():
 def test_new_and_updated_listings_reach_downstream_policy(app, monkeypatch):
     processed = []
 
-    def fake_process(self, hit, radar, stats, discovery=None):
+    def fake_process(self, hit, radar, stats, discovery=None, *, indexed=False):
+        assert indexed is True
         processed.append((hit.reference, hit.url))
-        stats['new_identity'] = stats.get('new_identity', 0) + 1
-        self.report.metrics['relevant_candidates'] += 1
-        self.report.candidates.append(SimpleNamespace(
-            reference=hit.reference, resolution_state='VERIFIED',
-            publication_date=None))
+        self.report.candidates.append(SimpleNamespace(reference=hit.reference))
 
     monkeypatch.setattr(MarketsCollector, '_process', fake_process)
     with app.app_context():
-        import_baseline([listing()])
-        # Same fingerprint = UNCHANGED on next sync; change deadline for UPDATED.
-        http = ScriptedHttp([
-            result_page([listing(deadline='15/11/2026 18:00'),
+        # A separate ingestion already supplied both versions; launches never sync.
+        import_baseline([listing(deadline='15/11/2026 18:00'),
                          listing(consultation_id='999', organization='zzz',
-                                 reference='99/2026/NEW', title='Nouvelle etude patrimoniale',
-                                 buyer='Commune', detail_url=(
-                                     'https://www.marchespublics.gov.ma/index.php?'
-                                     'page=entreprise.EntrepriseDetailsConsultation'
-                                     '&refConsultation=999&orgAcronyme=zzz'))],
-                        state='s', pages=1),
-        ])
+                                 deadline='15/11/2026 18:00', reference='99/2026/NEW',
+                                 title='Nouvelle etude patrimoniale', buyer='Commune')])
         collector = MarketsCollector(Mock(), _config(RADAR1_DISCOVERY_MODE='pmmp_index'))
-        collector.listing_http = http
+        collector.listing_http = Mock(side_effect=AssertionError('No listing requests'))
         kept = collector.collect(AcceptingRadar())
         assert sorted(ref for ref, _ in processed) == ['04/2026/AUS', '99/2026/NEW']
-        assert collector.report.metrics['pmmp_sync_updated'] == 1
-        assert collector.report.metrics['pmmp_sync_new'] == 1
+        assert collector.report.metrics['pmmp_sync_pages'] == 0
         assert collector.report.metrics['discovery_mode'] == 'pmmp_index'
         assert len(kept) == 2
 
 
-def test_unchanged_listing_is_skipped(app, monkeypatch):
+def test_successfully_evaluated_unchanged_listing_is_skipped(app, monkeypatch):
     processed = []
-    monkeypatch.setattr(
-        MarketsCollector, '_process',
-        lambda self, hit, radar, stats, discovery=None: processed.append(hit.reference))
+    monkeypatch.setattr(MarketsCollector, '_process',
+        lambda self, hit, radar, stats, discovery=None, **kwargs: processed.append(hit.reference))
     with app.app_context():
         import_baseline([listing()])
         from app.modules.radar1_markets.processing import record_terminal, PROCESSED
         row = db.session.scalar(db.select(PmmpListingIndex))
         record_terminal(row, PROCESSED, 'fixture_successful_policy_processing')
         db.session.commit()
-        http = ScriptedHttp([result_page([listing()], state='s', pages=1)])
         collector = MarketsCollector(Mock(), _config(RADAR1_DISCOVERY_MODE='pmmp_index'))
-        collector.listing_http = http
         kept = collector.collect(AcceptingRadar())
-        assert processed == []
-        assert kept == []
-        assert collector.report.metrics['pmmp_sync_unchanged'] == 1
-        assert collector.report.metrics['pmmp_actionable'] == 0
+        assert processed == [] and kept == []
+        assert collector.report.metrics['pmmp_sync_pages'] == 0
+        assert collector.report.metrics['pmmp_queued_before'] == 0
 
 
 def test_empty_index_skips_pmmp_path_without_crawl(app, monkeypatch):
