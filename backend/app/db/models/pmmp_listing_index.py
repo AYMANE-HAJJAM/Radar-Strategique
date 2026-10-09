@@ -24,7 +24,20 @@ class PmmpListingIndex(db.Model):
     first_seen_at = db.Column(db.DateTime(timezone=True), nullable=False, default=utcnow)
     last_seen_at = db.Column(db.DateTime(timezone=True), nullable=False, default=utcnow)
     last_changed_at = db.Column(db.DateTime(timezone=True), nullable=False, default=utcnow)
+    # NULL is deliberately reserved for pre-ledger rows requiring evidence recovery.
+    processing_state = db.Column(db.String(24), default='PENDING_PROCESSING', index=True)
+    # Logical owner: the durable index must survive business/run archive/reset.
+    processing_run_id = db.Column(db.Integer)
+    processing_started_at = db.Column(db.DateTime(timezone=True))
+    evaluated_at = db.Column(db.DateTime(timezone=True))
+    evaluated_fingerprint = db.Column(db.String(64))
+    policy_version = db.Column(db.String(32))
+    processing_attempts = db.Column(db.Integer, nullable=False, default=0, server_default='0')
+    processing_reason = db.Column(db.String(255))
     __table_args__ = (
+        db.CheckConstraint("processing_state IS NULL OR processing_state IN "
+                           "('PENDING_PROCESSING','PROCESSING','PROCESSED','FAILED_RETRYABLE','REJECTED')",
+                           name='valid_pmmp_processing_state'),
         db.Index('ix_pmmp_listing_index_source_consultation', 'source', 'consultation_id'),
         db.Index(
             'uq_pmmp_listing_index_source_consultation',

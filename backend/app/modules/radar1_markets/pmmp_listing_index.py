@@ -33,11 +33,20 @@ class ListingSyncResult:
 class DurableListingIndex:
     """ListingIndex-compatible adapter that persists to pmmp_listing_index."""
 
+    def __init__(self, session=None, on_page=None):
+        self.session = session if session is not None else db.session
+        self.on_page = on_page
+
+    def finish_page(self):
+        if self.on_page:
+            self.session.commit()
+            self.on_page()
+
     def classify(self, listing):
         now = utcnow()
         row = self._find(listing)
         if row is None:
-            db.session.add(PmmpListingIndex(
+            self.session.add(PmmpListingIndex(
                 source=listing.source or SOURCE,
                 consultation_id=listing.consultation_id,
                 organization=listing.organization,
@@ -56,24 +65,24 @@ class DurableListingIndex:
                 last_seen_at=now,
                 last_changed_at=now,
             ))
-            db.session.flush()
+            self.session.flush()
             return NEW
         row.last_seen_at = now
         if row.fingerprint == listing.fingerprint:
-            db.session.flush()
+            self.session.flush()
             return UNCHANGED
         self._apply(row, listing, changed_at=now)
-        db.session.flush()
+        self.session.flush()
         return UPDATED
 
     def _find(self, listing):
         if listing.consultation_id:
-            row = db.session.scalar(db.select(PmmpListingIndex).where(
+            row = self.session.scalar(db.select(PmmpListingIndex).where(
                 PmmpListingIndex.source == (listing.source or SOURCE),
                 PmmpListingIndex.consultation_id == listing.consultation_id))
             if row is not None:
                 return row
-        return db.session.scalar(db.select(PmmpListingIndex).where(
+        return self.session.scalar(db.select(PmmpListingIndex).where(
             PmmpListingIndex.identity_key == listing.identity))
 
     def _apply(self, row, listing, *, changed_at):
@@ -90,6 +99,10 @@ class DurableListingIndex:
         row.fingerprint = listing.fingerprint
         row.identity_key = listing.identity
         row.last_changed_at = changed_at
+        row.processing_state = 'PENDING_PROCESSING'
+        row.processing_run_id = None
+        row.processing_started_at = None
+        row.processing_reason = 'listing_fingerprint_changed'
 
 
 def listing_from_record(record):
@@ -140,20 +153,32 @@ def import_baseline(records, *, commit=True):
 
 def sync_listings(*, mode='incremental', overlap_pages=None, http=None,
                   listing_url=LISTING_URL, delay_seconds=0.35, max_pages=None,
-                  commit=True):
-    """Run a crawl against the durable index. Production Radar 1 is not switched."""
+                  commit=True, independent=False, on_page=None):
+    """Compare the complete board; no ordering assumption or overlap stop.
+
+    A normal run uses a separate session and commits each page before the next
+    network request. Partial discovery is safe because each row remains pending.
+    Caller progress commits cannot certify or consume business processing.
+    """
     if mode not in {'full', 'incremental', 'reconciliation', 'baseline'}:
         raise ValueError('mode must be full, incremental, reconciliation, or baseline.')
     if mode == 'baseline':
         raise ValueError('Use import_baseline() for offline baseline import.')
     if overlap_pages is None:
         overlap_pages = _overlap_default()
-    crawl_mode = 'full' if mode == 'reconciliation' else mode
-    crawl = PmmpListingCollector(
-        http, listing_url=listing_url, delay_seconds=delay_seconds,
-    ).collect(
-        mode=crawl_mode, index=DurableListingIndex(),
-        overlap_pages=overlap_pages, max_pages=max_pages)
+    session = None
+    if independent:
+        from sqlalchemy.orm import Session
+        session = Session(db.engine, expire_on_commit=False)
+    try:
+        crawl = PmmpListingCollector(
+            http, listing_url=listing_url, delay_seconds=delay_seconds,
+        ).collect(
+            mode='full', index=DurableListingIndex(session, (on_page or (lambda: None)) if independent else None),
+            overlap_pages=overlap_pages, max_pages=max_pages)
+    finally:
+        if session is not None:
+            session.close()
     if commit:
         db.session.commit()
     else:

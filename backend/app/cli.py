@@ -128,7 +128,7 @@ from app.db.repositories.radars import RadarServiceError, seed_radars
 def register_radar1_pmmp_commands(app):
     @app.cli.command('radar1-pmmp-baseline')
     @click.option('--max-pages', type=int, default=None,
-                  help='Optional page cap for a shorter dry crawl (omit for full board).')
+                  help='Optional page cap for a partial index import; writes index rows (omit for full board).')
     def radar1_pmmp_baseline(max_pages):
         """Full PMMP crawl into pmmp_listing_index only. No Radar business results."""
         from app.db.extensions import db
@@ -143,7 +143,8 @@ def register_radar1_pmmp_commands(app):
             db.select(db.func.count()).select_from(PmmpListingIndex)) or 0
         started = time.perf_counter()
         click.echo(f'Baseline import starting (index rows before={before_index}).')
-        result = sync_listings(mode='full', max_pages=max_pages, commit=True)
+        db.session.commit()  # End count reads before long public HTTP.
+        result = sync_listings(mode='full', max_pages=max_pages, commit=False, independent=True)
         elapsed = time.perf_counter() - started
         after_results = db.session.scalar(db.select(db.func.count()).select_from(Result)) or 0
         after_index = db.session.scalar(
@@ -368,6 +369,8 @@ def register_radar1_pmmp_commands(app):
 
 
 def register_commands(app):
+    from app.modules.radar1_markets.preview import register_preview_command
+    register_preview_command(app)
     register_cleanup_command(app)
     register_radar1_pmmp_commands(app)
     @app.cli.command('create-admin')

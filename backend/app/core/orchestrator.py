@@ -63,6 +63,7 @@ class AgentOrchestrator:
             # Claim errors must never mark another worker's run as failed.
             run = self.runs.claim(run_id)
             radar_code = db.session.get(Radar, run.radar_id).code
+            radar = None
             try:
                 radar = RADAR_AGENT_REGISTRY.resolve(radar_code)
                 if self.analyzer is None:
@@ -87,6 +88,8 @@ class AgentOrchestrator:
                 self._validate(run, work, radar, as_of)
                 self.runs.stage(run, Stage.SAVING)
                 self._save(run, work, radar)
+                if not self.dry_run:
+                    radar.finish_processing_run(run_id)
                 kept = (run.manual_review_count if self.dry_run else
                         run.new_results_count + run.updated_results_count if radar.workflow_enabled else
                         run.new_results_count + run.updated_results_count + run.manual_review_count)
@@ -113,6 +116,11 @@ class AgentOrchestrator:
                 kind = 'database' if isinstance(error, SQLAlchemyError) else getattr(error, 'kind', 'unexpected')
                 log_failure(logger, f'run_id={run_id} radar={radar_code} kind={kind}', error)
                 self.runs.safe_fail(run_id, kind)
+                if radar is not None and not self.dry_run:
+                    try:
+                        radar.finish_processing_run(run_id, 'failed_run_retry_available')
+                    except SQLAlchemyError:
+                        db.session.rollback()  # Next normal run reclaims the failed owner.
                 # If the database is down, still provide the committed run ID for investigation.
                 try:
                     summary = self.runs.summary(run_id, radar_code)
@@ -183,6 +191,7 @@ class AgentOrchestrator:
                             collector_config['RADAR1_DISCOVERY_MAX_CALLS'], remaining)
                 collector = build_collector(radar.code, collector_config)
                 if collector:
+                    radar.bind_processing_run(collector, run.id, dry_run=self.dry_run)
                     collector.query_performance = self._query_performance(run)
                     collector.known_unchanged = lambda candidate: self._early_known(run, candidate)
                     collector.source_recent = lambda url, days: self._source_recent(run, url, days)
@@ -352,6 +361,8 @@ class AgentOrchestrator:
                     else (None, False)
                 )
                 if global_existing is not None:
+                    if not self.dry_run and not radar.can_persist_processing(candidate, run.id):
+                        continue
                     run.duplicate_count += int(not material)
                     run.updated_results_count += int(material)
                     metadata = dict(run.run_metadata.get('cross_radar_dedup', {}))
@@ -362,6 +373,8 @@ class AgentOrchestrator:
                     if not self.dry_run:
                         self.results.record_cross_radar(run, global_existing, candidate,
                                                         radar.code, material=material)
+                        radar.acknowledge_processing(candidate, run.id,
+                            ResultState.UPDATED if material else ResultState.UNCHANGED)
                     continue
                 needs_ai, ai_reason = radar.needs_ai_analysis(candidate, decision)
                 if needs_ai:
@@ -501,9 +514,12 @@ class AgentOrchestrator:
                     run.manual_review_count += 1
                 continue
             try:
+                if not radar.can_persist_processing(item.candidate, run.id):
+                    continue
                 state = self.results.save(run, item.candidate, item.analysis, existing,
                                           agent_memory=item.agent_memory,
                                           workflow_enabled=radar.workflow_enabled)
+                radar.acknowledge_processing(item.candidate, run.id, state)
                 if radar.workflow_enabled:
                     if state == ResultState.UNCHANGED:
                         if not item.unchanged:

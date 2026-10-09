@@ -44,6 +44,19 @@ class BaseRadarAgent(ABC):
     analysis_limit_setting = 'AGENT_MAX_CANDIDATES'
     workflow_enabled = False
 
+    def bind_processing_run(self, collector, run_id, *, dry_run=False):
+        """Optional durable discovery handoff, owned by the specialized agent."""
+
+    def acknowledge_processing(self, candidate, run_id, state):
+        """Stage a handoff acknowledgment in the business persistence transaction."""
+
+    def can_persist_processing(self, candidate, run_id):
+        """Specialized agents may reject a handoff superseded by another version."""
+        return True
+
+    def finish_processing_run(self, run_id, reason='business_persistence_not_completed'):
+        """Release any outstanding handoffs after a run ends."""
+
     def get_code(self):
         return self.code
 

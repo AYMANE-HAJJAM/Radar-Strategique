@@ -162,18 +162,18 @@ def test_incremental_overlap_and_actionable_handoff(app):
             result_page([older], state='p3', pages=9, nxt=True),
             result_page([
                 listing(consultation_id='8', organization='yyy', reference='88/2026',
-                        title='Should not be fetched', buyer='X', location='X',
+                        title='Deeper new notice', buyer='X', location='X',
                         detail_url=None),
-            ], state='p4', pages=9, nxt=True),
+            ], state='p4', pages=4, nxt=False),
         ]
         http = ScriptedHttp(pages)
         result = sync_listings(mode='incremental', overlap_pages=2, http=http, delay_seconds=0)
-        assert result.stop_reason == 'incremental_overlap'
-        assert result.pages_fetched == 3
-        assert result.counts[NEW] == 1
+        assert result.stop_reason == 'final_page'
+        assert result.pages_fetched == 4
+        assert result.counts[NEW] == 2
         assert result.counts[UNCHANGED] == 2
-        assert [item.listing.consultation_id for item in result.actionable] == ['9']
-        assert len(http.pages) == 1
+        assert [item.listing.consultation_id for item in result.actionable] == ['9', '8']
+        assert len(http.pages) == 0
         assert actionable_listings(result)[0].state == NEW
 
 

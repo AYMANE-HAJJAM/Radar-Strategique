@@ -17,6 +17,22 @@ class MarketsRadarAgent(BaseRadarAgent):
     conditions = CONDITIONS
     candidate_schema, analysis_schema = MarketCandidate, MarketAnalysis
 
+    def bind_processing_run(self, collector, run_id, *, dry_run=False):
+        if not dry_run:
+            collector.processing_run_id = run_id
+
+    def acknowledge_processing(self, candidate, run_id, state):
+        from .processing import acknowledge_candidate
+        acknowledge_candidate(candidate, run_id, state)
+
+    def can_persist_processing(self, candidate, run_id):
+        from .processing import can_persist
+        return can_persist(candidate, run_id)
+
+    def finish_processing_run(self, run_id, reason='business_persistence_not_completed'):
+        from .processing import release_run
+        release_run(run_id, reason)
+
     def normalize_candidate(self, item):
         """Sanitize optional estimate text before the base serializer and strict model."""
         if not isinstance(item, dict):

@@ -12,9 +12,13 @@ from app.modules.auth import AccessService
 def _radar(row):
     counts = dict(db.session.execute(db.select(Result.review_status, db.func.count(Result.id)).where(
         Result.radar_id == row.id).group_by(Result.review_status)).all())
+    pending_count = counts.get('PENDING', 0)
+    if row.code == 'RADAR_1_MARKETS':
+        from app.api.results import _status_rows
+        pending_count = len(_status_rows(row.id, 'pending', row.code))
     last = db.session.scalar(db.select(SearchRun).where(SearchRun.radar_id == row.id).order_by(SearchRun.id.desc()).limit(1))
     return {'id': row.id, 'code': row.code, 'name': row.name, 'description': row.description,
-            'is_active': row.is_active, 'pending_count': counts.get('PENDING', 0),
+            'is_active': row.is_active, 'pending_count': pending_count,
             'last_run': run_json(last) if last else None}
 
 

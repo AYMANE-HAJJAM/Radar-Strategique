@@ -47,20 +47,27 @@ def _launchers_for(result_ids, run_id):
 
 
 # Web run view: an observation belongs to the selected search only when that run
-# recorded it as new or updated and the result is still pending. Unchanged
+# recorded an actionable new/updated/manual-review decision and the card is pending. Unchanged
 # rediscoveries stay in the global backlog.
-_RUN_MEMBERSHIP = ('new', 'updated')
+_RUN_MEMBERSHIP = ('new', 'updated', 'manual_review')
 
 
 def _actionable_states(run_id, result_ids):
-    """Latest NEW/UPDATED observation state for each result in one SearchRun."""
+    """Actionable persisted observations, including deterministic manual review."""
     states = {}
     if not result_ids:
         return states
-    rows = db.session.execute(db.select(ResultObservation.result_id, ResultObservation.state).where(
+    rows = db.session.execute(db.select(ResultObservation.result_id, ResultObservation.state, ResultObservation.snapshot).where(
         ResultObservation.run_id == run_id, ResultObservation.result_id.in_(result_ids),
         ResultObservation.state.in_(_RUN_MEMBERSHIP)).order_by(ResultObservation.id.desc())).all()
-    for result_id, state in rows:
+    for result_id, state, snapshot in rows:
+        if state == 'manual_review':
+            discovery = (snapshot or {}).get('discovery_status')
+            if discovery == 'UNCHANGED':
+                continue
+            if discovery not in {None, 'NEW', 'UPDATED'}:
+                continue
+            state = (discovery or 'NEW').lower()
         if result_id not in states:
             states[result_id] = state
     return states

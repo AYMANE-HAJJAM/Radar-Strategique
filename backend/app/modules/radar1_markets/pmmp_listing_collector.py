@@ -230,6 +230,8 @@ class PmmpListingCollector:
                 state = index.classify(listing)
                 page_changed = page_changed or state != UNCHANGED
                 observations.append(ListingObservation(listing, state))
+            if hasattr(index, 'finish_page'):
+                index.finish_page()
             logger.info(
                 'pmmp_listing mode=%s page=%s rows=%s has_next=%s declared_pages=%s',
                 mode, pages_fetched, len(rows), _has_next(html), declared_pages)

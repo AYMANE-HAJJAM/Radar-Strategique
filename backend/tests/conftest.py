@@ -39,6 +39,7 @@ def app():
         'INTERNAL_USER_EMAIL': '',
         'INTERNAL_USER_PASSWORD_HASH': '',
         'SEARCH_PROVIDER': 'disabled',
+        'RADAR1_DISCOVERY_MODE': 'legacy',
         'ALLOWED_TELEGRAM_USER_IDS': frozenset({123}),
         'TELEGRAM_BOT_TOKEN': 'test-token',
     })

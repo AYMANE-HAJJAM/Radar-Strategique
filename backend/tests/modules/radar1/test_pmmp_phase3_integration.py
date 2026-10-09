@@ -53,7 +53,7 @@ def listing(**changes):
         reference='04/2026/AUS',
         title='Etude de valorisation du patrimoine culturel de Settat',
         buyer='Agence urbaine de Settat', publication_date='03/09/2026',
-        deadline='02/10/2026 11:00', procedure="Appel d'offres ouvert",
+        deadline='02/10/2027 11:00', procedure="Appel d'offres ouvert",
         category='Services', location='SETTAT',
         detail_url=('https://www.marchespublics.gov.ma/index.php?'
                     'page=entreprise.EntrepriseDetailsConsultation'
@@ -200,6 +200,10 @@ def test_unchanged_listing_is_skipped(app, monkeypatch):
         lambda self, hit, radar, stats, discovery=None: processed.append(hit.reference))
     with app.app_context():
         import_baseline([listing()])
+        from app.modules.radar1_markets.processing import record_terminal, PROCESSED
+        row = db.session.scalar(db.select(PmmpListingIndex))
+        record_terminal(row, PROCESSED, 'fixture_successful_policy_processing')
+        db.session.commit()
         http = ScriptedHttp([result_page([listing()], state='s', pages=1)])
         collector = MarketsCollector(Mock(), _config(RADAR1_DISCOVERY_MODE='pmmp_index'))
         collector.listing_http = http
