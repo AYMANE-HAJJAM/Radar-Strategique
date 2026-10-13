@@ -332,6 +332,55 @@ def register_radar1_pmmp_commands(app):
             raise click.ClickException('Index row count decreased; refusing success.')
         if run.status != 'completed':
             raise click.ClickException(f'Backfill SearchRun ended as {run.status}.')
+
+    @app.cli.command('radar1-pmmp-refresh')
+    @click.option('--front-pages', type=int, default=None,
+                  help='Override RADAR1_PMMP_REFRESH_FRONT_PAGES.')
+    @click.option('--deep-pages', type=int, default=None,
+                  help='Override RADAR1_PMMP_REFRESH_DEEP_PAGES.')
+    @click.option('--max-seconds', type=int, default=None,
+                  help='Override RADAR1_PMMP_REFRESH_MAX_SECONDS.')
+    @click.option('--force-release-expired-lease', is_flag=True, default=False,
+                  help='Clear only an expired lease (never a live lease), then exit.')
+    @click.option('--json-out', type=click.Path(), default=None,
+                  help='Optional path to write the refresh report JSON.')
+    def radar1_pmmp_refresh(front_pages, deep_pages, max_seconds,
+                            force_release_expired_lease, json_out):
+        """Bounded independent PMMP index refresh. Does not run business policy."""
+        from app.modules.radar1_markets.pmmp_refresh import (
+            RefreshLeaseHeld, refresh_status, release_expired_lease, run_refresh)
+
+        if force_release_expired_lease:
+            released = release_expired_lease()
+            payload = {'released_expired_lease': released, 'status': refresh_status()}
+            text = json.dumps(payload, ensure_ascii=False, indent=2, default=str)
+            click.echo(text)
+            if json_out:
+                Path(json_out).write_text(text, encoding='utf-8')
+            if not released:
+                raise click.ClickException(
+                    'No expired lease to release (live lease held or already idle).')
+            return
+        try:
+            result = run_refresh(
+                front_pages=front_pages, deep_pages=deep_pages, max_seconds=max_seconds)
+        except RefreshLeaseHeld as error:
+            raise click.ClickException(str(error)) from None
+        payload = {
+            **result.to_dict(),
+            'status_after': refresh_status(),
+            'note': (
+                'pass_success means this page/time budget finished; '
+                'cycle_complete means the deep catalogue cursor wrapped.'
+            ),
+        }
+        text = json.dumps(payload, ensure_ascii=False, indent=2, default=str)
+        click.echo(text)
+        if json_out:
+            Path(json_out).write_text(text, encoding='utf-8')
+            click.echo(f'Wrote {json_out}', err=True)
+
+    @app.cli.command('radar1-pmmp-shadow-compare')
     @click.option('--reference', default='04/2026/AUS', show_default=True,
                   help='Known notice reference to check for presence.')
     @click.option('--allow-paid', is_flag=True, default=False,

@@ -168,12 +168,13 @@ def test_incremental_overlap_and_actionable_handoff(app):
         ]
         http = ScriptedHttp(pages)
         result = sync_listings(mode='incremental', overlap_pages=2, http=http, delay_seconds=0)
-        assert result.stop_reason == 'final_page'
-        assert result.pages_fetched == 4
-        assert result.counts[NEW] == 2
+        # Honored incremental mode: two consecutive UNCHANGED pages stop the front walk.
+        assert result.stop_reason == 'incremental_overlap'
+        assert result.pages_fetched == 3
+        assert result.counts[NEW] == 1
         assert result.counts[UNCHANGED] == 2
-        assert [item.listing.consultation_id for item in result.actionable] == ['9', '8']
-        assert len(http.pages) == 0
+        assert [item.listing.consultation_id for item in result.actionable] == ['9']
+        assert len(http.pages) == 1  # deeper page not consumed
         assert actionable_listings(result)[0].state == NEW
 
 

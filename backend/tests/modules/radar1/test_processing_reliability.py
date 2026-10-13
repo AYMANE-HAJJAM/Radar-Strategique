@@ -211,8 +211,14 @@ def test_old_worker_cannot_ack_new_fingerprint(app):
         old = row.fingerprint
         assert queue.claim(row.id, old, run.id)
         import_baseline([notice(deadline='31/12/2027 11:00')])
+        db.session.refresh(row)
+        # Refresh must not steal an active PROCESSING owner; stale ack still fails.
+        assert row.processing_state == queue.PROCESSING
+        assert row.processing_run_id == run.id
+        assert row.fingerprint != old
         assert not queue.finish(row.id, old, run.id, queue.PROCESSED, 'stale worker')
-        assert row.processing_state == queue.PENDING
+        db.session.refresh(row)
+        assert row.processing_state == queue.PROCESSING
 
 
 def test_legacy_recovery_uses_business_proof_and_prefilter(app, monkeypatch):
@@ -257,14 +263,27 @@ def test_approved_review_preserved_on_nonmaterial_reprocessing(app, monkeypatch)
         assert db.session.scalars(db.select(ResultObservation.state).order_by(ResultObservation.id)).all()[-1] == 'unchanged'
 
 
-@pytest.mark.parametrize('mode', ['incremental', 'reconciliation'])
-def test_deeper_notice_after_three_unchanged_pages_is_discovered(app, mode):
+def test_incremental_stops_before_deeper_notice_after_unchanged_overlap(app):
     known = [notice(i) for i in range(1, 4)]
     seed(app, known)
     pages = [result_page([row], state=str(i), pages=4, nxt=True) for i, row in enumerate(known)]
     pages.append(result_page([notice(4)], state='deep', pages=4))
     with app.app_context():
-        sync = sync_listings(mode=mode, http=ScriptedHttp(pages), delay_seconds=0)
+        sync = sync_listings(mode='incremental', overlap_pages=3,
+                             http=ScriptedHttp(pages), delay_seconds=0)
+        assert sync.stop_reason == 'incremental_overlap'
+        assert sync.pages_fetched == 3
+        assert sync.counts.get('NEW', 0) == 0
+        assert count(Listing) == 3
+
+
+def test_reconciliation_discovers_deeper_notice_after_unchanged_pages(app):
+    known = [notice(i) for i in range(1, 4)]
+    seed(app, known)
+    pages = [result_page([row], state=str(i), pages=4, nxt=True) for i, row in enumerate(known)]
+    pages.append(result_page([notice(4)], state='deep', pages=4))
+    with app.app_context():
+        sync = sync_listings(mode='reconciliation', http=ScriptedHttp(pages), delay_seconds=0)
         assert sync.pages_fetched == 4
         assert sync.counts['NEW'] == 1
         assert count(Listing) == 4

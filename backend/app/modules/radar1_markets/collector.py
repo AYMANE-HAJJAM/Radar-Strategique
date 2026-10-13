@@ -727,6 +727,11 @@ class MarketsCollector:
         self.report.metrics.update(pmmp_index_size_before=indexed, pmmp_index_size_after=indexed,
             pmmp_discovery_strategy='indexed_title_batch', pmmp_sync_mode='not_requested',
             pmmp_sync_pages=0, pmmp_sync_complete=False)
+        try:
+            from app.modules.radar1_markets.pmmp_refresh import refresh_status
+            self.report.metrics['pmmp_refresh_snapshot'] = refresh_status()
+        except Exception:
+            self.report.metrics['pmmp_refresh_snapshot'] = None
         if not indexed:
             self._warn('pmmp_index_empty_run_baseline_first')
         if owner is not None:

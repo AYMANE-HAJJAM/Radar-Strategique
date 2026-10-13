@@ -195,21 +195,30 @@ class PmmpListingCollector:
         self.http = http or PmmpHttp(delay_seconds=delay_seconds, retries=retries)
         self.listing_url = listing_url
 
-    def collect(self, *, mode='full', index=None, overlap_pages=2, max_pages=None):
+    def collect(self, *, mode='full', index=None, overlap_pages=2, max_pages=None,
+                on_page=None, resume_page_state=None, skip_classify_until_page=0):
+        """Walk listing pages. PAGESTATE resume is soft; invalid tokens force re-navigation.
+
+        on_page(page_num, html, rows, observations, declared_pages, declared_results)
+        may be used by durable refresh to commit after each page. skip_classify_until_page
+        walks already-completed pages without classify side effects (re-navigation).
+        """
         if mode not in MODES:
             raise ValueError('mode must be full, incremental, or reconciliation.')
         if overlap_pages < 1:
             raise ValueError('overlap_pages must be at least 1.')
         index = index or ListingIndex()
-        html = self._first_page()
+        html, start_page, navigated = self._open_or_resume(
+            resume_page_state, skip_classify_until_page)
         observations = []
         seen_pages = set()
         seen_ids = set()
         unchanged_pages = 0
-        pages_fetched = 0
-        declared_pages = _number(_PAGE_COUNT, html)
-        declared_results = _number(_RESULT_COUNT, html)
+        pages_fetched = navigated
+        declared_pages = _number(_PAGE_COUNT, html) if html else None
+        declared_results = _number(_RESULT_COUNT, html) if html else None
         stop = 'final_page'
+        page_num = start_page
         while html:
             signature = _page_signature(html)
             if signature in seen_pages:
@@ -219,23 +228,36 @@ class PmmpListingCollector:
             seen_pages.add(signature)
             rows = parse_listings(html)
             pages_fetched += 1
+            page_num += 1
             declared_pages = _number(_PAGE_COUNT, html) or declared_pages
             declared_results = _number(_RESULT_COUNT, html) or declared_results
             page_changed = False
+            page_observations = []
+            classify = page_num > skip_classify_until_page
             for listing in rows:
                 if listing.identity in seen_ids:
-                    observations.append(ListingObservation(listing, DUPLICATE))
+                    item = ListingObservation(listing, DUPLICATE)
+                    page_observations.append(item)
+                    if classify:
+                        observations.append(item)
                     continue
                 seen_ids.add(listing.identity)
-                state = index.classify(listing)
-                page_changed = page_changed or state != UNCHANGED
-                observations.append(ListingObservation(listing, state))
-            if hasattr(index, 'finish_page'):
+                if classify:
+                    state = index.classify(listing)
+                    page_changed = page_changed or state != UNCHANGED
+                    item = ListingObservation(listing, state)
+                    page_observations.append(item)
+                    observations.append(item)
+                else:
+                    page_observations.append(ListingObservation(listing, UNCHANGED))
+            if classify and hasattr(index, 'finish_page'):
                 index.finish_page()
+            if on_page:
+                on_page(page_num, html, rows, page_observations, declared_pages, declared_results)
             logger.info(
-                'pmmp_listing mode=%s page=%s rows=%s has_next=%s declared_pages=%s',
-                mode, pages_fetched, len(rows), _has_next(html), declared_pages)
-            if mode == 'incremental':
+                'pmmp_listing mode=%s page=%s rows=%s has_next=%s declared_pages=%s classify=%s',
+                mode, page_num, len(rows), _has_next(html), declared_pages, classify)
+            if classify and mode == 'incremental':
                 unchanged_pages = 0 if page_changed or not rows else unchanged_pages + 1
                 if rows and unchanged_pages >= overlap_pages:
                     stop = 'incremental_overlap'
@@ -243,13 +265,14 @@ class PmmpListingCollector:
             if not rows and not _has_next(html):
                 stop = 'empty_page'
                 break
-            if max_pages is not None and pages_fetched >= max_pages:
+            classified_pages = max(0, page_num - skip_classify_until_page)
+            if max_pages is not None and classified_pages >= max_pages:
                 stop = 'max_pages'
                 break
             if not _has_next(html):
                 stop = 'final_page'
                 break
-            if declared_pages is not None and pages_fetched >= declared_pages:
+            if declared_pages is not None and page_num >= declared_pages:
                 stop = 'final_page'
                 break
             html = self._next_page(html)
@@ -258,6 +281,60 @@ class PmmpListingCollector:
             observations=observations, index=index, pages_fetched=pages_fetched,
             stop_reason=stop, declared_pages=declared_pages,
             declared_results=declared_results, mode=mode)
+
+    def _open_or_resume(self, resume_page_state, skip_classify_until_page):
+        """Return (html, pages_already_completed, http_pages_used_for_navigation)."""
+        if resume_page_state and skip_classify_until_page > 0:
+            html = self.try_resume(resume_page_state)
+            if html is not None:
+                return html, skip_classify_until_page, 0
+            logger.info('pmmp_listing pagestate_invalid renavigate_to=%s', skip_classify_until_page)
+            return self.renavigate_to(skip_classify_until_page)
+        return self._first_page(), 0, 0
+
+    def try_resume(self, page_state):
+        """Soft PAGESTATE resume. Returns result HTML or None if the token is unusable."""
+        if not page_state:
+            return None
+        try:
+            html = self.http.post(self.listing_url, {
+                'PRADO_PAGESTATE': page_state,
+                'PRADO_POSTBACK_TARGET': NEXT_TARGET,
+                'PRADO_POSTBACK_PARAMETER': '',
+            })
+        except Exception as error:
+            logger.warning('pmmp_listing resume_failed error=%s', type(error).__name__)
+            return None
+        if not _is_result_page(html) or not _PAGE_STATE.search(html):
+            return None
+        return html
+
+    def renavigate_to(self, target_page):
+        """Fresh session from page 1, walk until target_page completed; return next HTML.
+
+        target_page is the count of already-committed pages. Returns HTML for page
+        target_page+1, or raises if the board ends earlier. Never skips ahead.
+        """
+        html = self._first_page()
+        navigated = 1
+        page = 1
+        while page < target_page:
+            if not _has_next(html):
+                raise PmmpListingError(
+                    f'Cannot renavigate to page {target_page}; board ended at {page}.')
+            html = self._next_page(html)
+            if not _is_result_page(html):
+                raise PmmpListingError('PMMP renavigation lost the result list.')
+            navigated += 1
+            page += 1
+        if not _has_next(html) and page >= target_page:
+            # At the last committed page with no next — caller sees final_page.
+            return html, target_page, navigated
+        if page >= target_page and _has_next(html):
+            html = self._next_page(html)
+            navigated += 1
+            return html, target_page, navigated
+        return html, target_page, navigated
 
     def _first_page(self):
         html = self.http.get(self.listing_url)
@@ -281,6 +358,15 @@ class PmmpListingCollector:
             'PRADO_POSTBACK_TARGET': NEXT_TARGET,
             'PRADO_POSTBACK_PARAMETER': '',
         })
+
+
+def extract_page_state(html):
+    match = _PAGE_STATE.search(html or '')
+    return match.group(1) if match else None
+
+
+def page_signature_text(html):
+    return '|'.join(f'{idx}:{cid}' for idx, cid in _page_signature(html or ''))
 
 
 def new_pmmp_collector(*, http=None, index=None, mode='full', overlap_pages=2,

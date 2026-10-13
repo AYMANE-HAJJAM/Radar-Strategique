@@ -13,10 +13,11 @@ from app.db.models.market_review import MarketReview
 from app.db.models.result_audit_event import ResultAuditEvent
 from app.db.models.source_state import SourceState
 from app.db.models.pmmp_listing_index import PmmpListingIndex
+from app.db.models.pmmp_refresh_checkpoint import PmmpRefreshCheckpoint
 from app.db.models.targeted_search import (TargetedSearchSession, TargetedSearchBriefVersion,
                                         TargetedSearchResultLink, TargetedSearchFeedback)
 from app.db.models.user import User, AuthAuditEvent
 
 __all__ = ['Radar', 'SearchRun', 'Result', 'ResultObservation', 'MarketReview', 'ResultAuditEvent', 'SourceState',
-           'PmmpListingIndex', 'TargetedSearchSession', 'TargetedSearchBriefVersion', 'TargetedSearchResultLink',
-           'TargetedSearchFeedback', 'User', 'AuthAuditEvent']
+           'PmmpListingIndex', 'PmmpRefreshCheckpoint', 'TargetedSearchSession', 'TargetedSearchBriefVersion',
+           'TargetedSearchResultLink', 'TargetedSearchFeedback', 'User', 'AuthAuditEvent']

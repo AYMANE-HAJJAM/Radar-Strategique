@@ -13,13 +13,17 @@ def _radar(row):
     counts = dict(db.session.execute(db.select(Result.review_status, db.func.count(Result.id)).where(
         Result.radar_id == row.id).group_by(Result.review_status)).all())
     pending_count = counts.get('PENDING', 0)
+    payload = {'id': row.id, 'code': row.code, 'name': row.name, 'description': row.description,
+               'is_active': row.is_active, 'pending_count': pending_count, 'last_run': None,
+               'pmmp_refresh': None}
     if row.code == 'RADAR_1_MARKETS':
         from app.api.results import _status_rows
-        pending_count = len(_status_rows(row.id, 'pending', row.code))
+        from app.modules.radar1_markets.pmmp_refresh import refresh_status
+        payload['pending_count'] = len(_status_rows(row.id, 'pending', row.code))
+        payload['pmmp_refresh'] = refresh_status()
     last = db.session.scalar(db.select(SearchRun).where(SearchRun.radar_id == row.id).order_by(SearchRun.id.desc()).limit(1))
-    return {'id': row.id, 'code': row.code, 'name': row.name, 'description': row.description,
-            'is_active': row.is_active, 'pending_count': pending_count,
-            'last_run': run_json(last) if last else None}
+    payload['last_run'] = run_json(last) if last else None
+    return payload
 
 
 def register(bp):
@@ -28,6 +32,25 @@ def register(bp):
     def radars():
         rows = db.session.scalars(db.select(Radar).order_by(Radar.id)).all()
         return jsonify(items=[_radar(row) for row in rows])
+
+    @bp.post('/radars/<int:radar_id>/pmmp-refresh')
+    @require_auth
+    def pmmp_refresh(radar_id):
+        radar = db.session.get(Radar, radar_id)
+        if not radar or radar.code != 'RADAR_1_MARKETS':
+            return error('RADAR_NOT_FOUND', 'Radar 1 introuvable.', 404)
+        from app.modules.radar1_markets.pmmp_refresh import (
+            RefreshLeaseHeld, refresh_status, run_refresh_job)
+        status = refresh_status()
+        if status.get('lease_held'):
+            return error('REFRESH_LEASE_HELD',
+                         'Un rafraîchissement PMMP détient encore un bail valide.', 409)
+        runner = current_app.extensions['radar_job_runner']
+        runner.submit(run_refresh_job, current_app._get_current_object())
+        AccessService.audit('PMMP_REFRESH_QUEUED', current_user_id(), current_user_id(), {
+            'radar_id': radar.id})
+        db.session.commit()
+        return jsonify(status='accepted', pmmp_refresh=refresh_status()), 202
 
     @bp.post('/radars/<int:radar_id>/runs')
     @require_auth
