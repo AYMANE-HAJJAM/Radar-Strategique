@@ -62,6 +62,10 @@ def configure(app, monkeypatch, rows, *, pages=None, fail=False):
         provider.search.side_effect = AssertionError('No paid calls in fixture tests')
         collector = MarketsCollector(provider, config, pages=Pages(rows, fail=fail))
         collector.listing_http = ScriptedHttp(pages or [result_page(rows, state='fixture', pages=1)])
+        # Reliability fixtures exercise business processing; refresh budgets stay
+        # zero so ScriptedHttp is not exhausted by a front/deep walk.
+        collector.config = {**collector.config, 'RADAR1_PMMP_REFRESH_FRONT_PAGES': 0,
+                            'RADAR1_PMMP_REFRESH_DEEP_PAGES': 0}
         created.append(collector)
         original_collect = collector.collect
         def collect_with_cause(radar):
@@ -369,9 +373,11 @@ def test_runtime_mode_and_strategy_reported(app, monkeypatch):
         run = db.session.get(SearchRun, result.id)
         metrics = run.run_metadata['collector_metrics']
         assert metrics['discovery_mode'] == 'pmmp_index'
-        assert metrics['pmmp_sync_mode'] == 'not_requested'
+        assert metrics['pmmp_sync_mode'] == 'bounded_refresh'
         assert metrics['pmmp_sync_complete'] is False
         assert metrics['pmmp_discovery_strategy'] == 'indexed_title_batch'
+        assert metrics['pmmp_refresh_pass']['attempted'] is True
+        assert metrics['pmmp_refresh_pass']['pass_success'] is True
         assert metrics['pmmp_index_size_before'] == metrics['pmmp_index_size_after'] == 1
         assert metrics['pmmp_evaluated'] == 1
 

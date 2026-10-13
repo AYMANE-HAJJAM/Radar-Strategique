@@ -1,6 +1,8 @@
 """Independent PMMP refresh: lease, PAGESTATE recovery, concurrent UPDATED, budgets."""
 from datetime import timedelta
 
+import pytest
+
 from app.db.extensions import db
 from app.db.models import Radar, SearchRun, utcnow
 from app.db.models.pmmp_listing_index import PmmpListingIndex
@@ -198,28 +200,155 @@ def test_invalid_pagestate_renavigates_without_skipping(app):
         assert db.session.get(PmmpRefreshCheckpoint, 1).cursor_page == 3
 
 
-def test_business_collect_does_not_refresh(app, monkeypatch):
+def test_launch_runs_bounded_refresh_then_business_not_full_crawl(app, monkeypatch):
+    """Button path: bounded refresh → business; never sync_listings(full)."""
     with app.app_context():
         from unittest.mock import Mock
-        import_baseline([listing()])
-        called = []
-
-        def boom(*args, **kwargs):
-            called.append(True)
-            raise AssertionError('refresh must not run')
-
-        monkeypatch.setattr('app.modules.radar1_markets.pmmp_listing_index.sync_listings', boom)
-        monkeypatch.setattr('app.modules.radar1_markets.pmmp_refresh.run_refresh', boom)
-        collector = MarketsCollector(Mock(), app.config)
-        collector.config = {**collector.config, 'RADAR1_DISCOVERY_MODE': 'pmmp_index',
-                            'RADAR1_PROCESSING_BATCH_SIZE': 1,
-                            'RADAR1_PROCESSING_MAX_SECONDS': 30}
         from types import SimpleNamespace
-        radar = SimpleNamespace(code='RADAR_1_MARKETS', id=1)
-        collector.pmmp_index_discovery(radar)
-        assert collector.report.metrics['pmmp_sync_mode'] == 'not_requested'
-        assert collector.report.metrics['pmmp_discovery_strategy'] == 'indexed_title_batch'
-        assert called == []
+        from app.core.orchestrator import AgentOrchestrator
+        from test_processing_reliability import Pages, notice
+
+        fresh = notice(8880001, reference='88/2026/NEW',
+                       title='Etude architecturale de restauration patrimoine',
+                       buyer='Commune')
+        # Existing PROCESSED unchanged listing must not be reprocessed.
+        import_baseline([listing()])
+        row = db.session.scalar(db.select(PmmpListingIndex))
+        row.processing_state = PROCESSED
+        row.evaluated_fingerprint = row.fingerprint
+        row.policy_version = 'archeritage-r11'
+        db.session.commit()
+
+        sync_calls = []
+        monkeypatch.setattr(
+            'app.modules.radar1_markets.pmmp_listing_index.sync_listings',
+            lambda **kwargs: sync_calls.append(kwargs) or (_ for _ in ()).throw(
+                AssertionError('full sync_listings must not run on launch')))
+
+        # Listing page HTML for refresh + official detail HTML for business.
+        http = ScriptedHttp(_pages([[fresh]], declared=1))
+        created = []
+
+        def build(code, config):
+            provider = Mock()
+            provider.search.side_effect = AssertionError('No paid calls')
+            collector = MarketsCollector(provider, config, pages=Pages([fresh]))
+            collector.listing_http = http
+            collector.config = {**collector.config, 'RADAR1_DISCOVERY_MODE': 'pmmp_index',
+                                'RADAR1_PMMP_REFRESH_FRONT_PAGES': 1,
+                                'RADAR1_PMMP_REFRESH_DEEP_PAGES': 0,
+                                'RADAR1_PROCESSING_BATCH_SIZE': 5}
+            created.append(collector)
+            return collector
+
+        monkeypatch.setattr('app.core.orchestrator.build_collector', build)
+        app.config['RADAR1_DISCOVERY_MODE'] = 'pmmp_index'
+        app.config['RADAR1_AI_ENABLED'] = 'false'
+        summary = AgentOrchestrator(app, no_ai=True).run_radar('RADAR_1_MARKETS')
+        assert summary.status == 'completed', getattr(created[-1], 'fixture_error', summary)
+        assert sync_calls == []
+        metrics = created[-1].report.metrics
+        assert metrics['pmmp_sync_mode'] == 'bounded_refresh'
+        assert metrics['pmmp_refresh_pass']['attempted'] is True
+        assert metrics['pmmp_refresh_pass']['pass_success'] is True
+        assert metrics['pmmp_refresh_pass']['index_refreshed'] is True
+        assert metrics['pmmp_refresh_pass']['catalogue_reconciled'] is False
+        assert metrics['pmmp_refresh_pass']['new'] >= 1
+        assert metrics['pmmp_discovery_strategy'] == 'indexed_title_batch'
+        # Unchanged PROCESSED fingerprint stays terminal.
+        original = db.session.scalars(
+            db.select(PmmpListingIndex).order_by(PmmpListingIndex.id)).first()
+        assert original.processing_state == PROCESSED
+        # Separate outcomes recorded on the SearchRun.
+        run = db.session.get(SearchRun, summary.id)
+        pass_meta = run.run_metadata['collector_metrics']['pmmp_refresh_pass']
+        assert pass_meta['pass_success'] is True
+        assert run.run_metadata['collector_metrics']['radar1_progress']['phase'] != 'pmmp_refresh'
+
+
+def test_partial_refresh_failure_is_recorded_separately(app, monkeypatch):
+    with app.app_context():
+        from unittest.mock import Mock
+        from app.modules.radar1_markets.pmmp_refresh import RefreshPassResult
+
+        import_baseline([listing()])
+        monkeypatch.setattr(
+            'app.modules.radar1_markets.pmmp_refresh.run_refresh',
+            lambda **kwargs: RefreshPassResult(
+                acquired=True, lease_owner='t', stop_reason='error', pass_success=False,
+                cycle_complete=False, pages=0, new=0, updated=0, unchanged=0, duplicates=0,
+                front_pages=0, deep_pages=0, cursor_page=0, declared_pages=None,
+                error='FixtureError:boom'))
+        collector = MarketsCollector(Mock(), {**app.config, 'RADAR1_DISCOVERY_MODE': 'pmmp_index',
+                                              'RADAR1_PROCESSING_BATCH_SIZE': 1})
+        from types import SimpleNamespace
+        collector.pmmp_index_discovery(SimpleNamespace(code='RADAR_1_MARKETS', id=1))
+        pass_meta = collector.report.metrics['pmmp_refresh_pass']
+        assert pass_meta['pass_success'] is False
+        assert pass_meta['index_refreshed'] is False
+        assert 'FixtureError' in (pass_meta['error'] or '')
+        assert collector.report.metrics['pmmp_sync_mode'] == 'bounded_refresh'
+        assert collector.report.metrics['pmmp_index_refreshed'] is False
+        assert 'pmmp_business_on_unrefreshed_index' in collector.report.health_reasons
+
+
+def test_lease_held_refresh_does_not_block_business_phase(app, monkeypatch):
+    with app.app_context():
+        from unittest.mock import Mock
+        from types import SimpleNamespace
+        import_baseline([listing()])
+        ensure_checkpoint()
+        acquire_lease()
+        collector = MarketsCollector(Mock(), {**app.config, 'RADAR1_DISCOVERY_MODE': 'pmmp_index',
+                                              'RADAR1_PMMP_REFRESH_FRONT_PAGES': 1,
+                                              'RADAR1_PMMP_REFRESH_DEEP_PAGES': 0,
+                                              'RADAR1_PROCESSING_BATCH_SIZE': 1})
+        collector.pmmp_index_discovery(SimpleNamespace(code='RADAR_1_MARKETS', id=1))
+        pass_meta = collector.report.metrics['pmmp_refresh_pass']
+        assert pass_meta['lease_held'] is True
+        assert pass_meta['index_refreshed'] is False
+        assert collector.report.metrics['pmmp_index_refreshed'] is False
+        assert 'pmmp_refresh_lease_held' in collector.report.health_reasons
+
+
+def test_duplicate_launch_still_conflicts(app):
+    from app.core.orchestrator import AgentOrchestrator
+    from app.core.agent_errors import ActiveRunError
+    worker = AgentOrchestrator(app, no_ai=True)
+    first = worker.reserve('RADAR_1_MARKETS')
+    with pytest.raises(ActiveRunError):
+        worker.reserve('RADAR_1_MARKETS')
+    with app.app_context():
+        assert db.session.get(SearchRun, first).status in {'initialized', 'running'}
+
+
+def test_expired_refresh_lease_recovered_on_next_launch(app, monkeypatch):
+    """Restart recovery: expired lease is reclaimable; checkpoint cursor survives."""
+    with app.app_context():
+        from unittest.mock import Mock
+        ensure_checkpoint()
+        owner = acquire_lease()
+        row = db.session.get(PmmpRefreshCheckpoint, 1)
+        row.cursor_page = 7
+        row.lease_until = utcnow() - timedelta(seconds=1)
+        row.heartbeat_at = utcnow() - timedelta(minutes=10)
+        db.session.commit()
+        http = ScriptedHttp(_pages([[listing()]], declared=1))
+        monkeypatch.setattr(
+            'app.modules.radar1_markets.pmmp_listing_index.sync_listings',
+            lambda **kwargs: (_ for _ in ()).throw(AssertionError('no full sync')))
+        collector = MarketsCollector(Mock(), {**app.config, 'RADAR1_DISCOVERY_MODE': 'pmmp_index',
+                                              'RADAR1_PMMP_REFRESH_FRONT_PAGES': 1,
+                                              'RADAR1_PMMP_REFRESH_DEEP_PAGES': 0,
+                                              'RADAR1_PROCESSING_BATCH_SIZE': 1})
+        collector.listing_http = http
+        from types import SimpleNamespace
+        collector.pmmp_index_discovery(SimpleNamespace(code='RADAR_1_MARKETS', id=1))
+        assert collector.report.metrics['pmmp_refresh_pass']['pass_success'] is True
+        assert collector.report.metrics['pmmp_refresh_pass']['lease_held'] is False
+        # Deep cursor from prior dead worker is preserved (front does not reset it).
+        assert db.session.get(PmmpRefreshCheckpoint, 1).cursor_page == 7
+        assert owner  # previous owner was superseded via expired reclaim
 
 
 def test_http_bounded_by_front_budget(app):

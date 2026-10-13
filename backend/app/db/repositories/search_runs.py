@@ -18,15 +18,24 @@ ACTIVE = (RunStatus.INITIALIZED, RunStatus.RUNNING)
 class SearchRunService:
     def _recover_stale(self, radar_id):
         """Release process-safe run locks left behind by a dead worker."""
-        if db.session.scalar(db.select(Radar.code).where(Radar.id == radar_id)) == 'RADAR_1_MARKETS':
-            # Age is not proof of worker death. Explicit operator recovery is
-            # required, especially for pre-upgrade reconciliation runs like #59.
-            return
         from flask import current_app
-        cutoff = utcnow() - timedelta(minutes=current_app.config['SEARCH_RUN_STALE_MINUTES'])
+        code = db.session.scalar(db.select(Radar.code).where(Radar.id == radar_id))
+        stale_minutes = current_app.config['SEARCH_RUN_STALE_MINUTES']
+        if code == 'RADAR_1_MARKETS':
+            # Radar 1 jobs are budget-bounded (refresh + business). Use a tighter
+            # window so Render Free spin-down does not block launches for hours,
+            # while still covering the configured budgets + lease TTL.
+            budget_seconds = (
+                int(current_app.config.get('RADAR1_PMMP_REFRESH_MAX_SECONDS', 90))
+                + int(current_app.config.get('RADAR1_PROCESSING_MAX_SECONDS', 120))
+                + int(current_app.config.get('RADAR1_PMMP_REFRESH_LEASE_SECONDS', 180))
+            )
+            stale_minutes = max(10, min(stale_minutes, (budget_seconds // 60) + 5))
+        cutoff = utcnow() - timedelta(minutes=stale_minutes)
         rows = db.session.scalars(db.select(SearchRun).where(
             SearchRun.radar_id == radar_id, SearchRun.status.in_(ACTIVE),
             SearchRun.started_at < cutoff).with_for_update()).all()
+        recovered_ids = []
         for row in rows:
             row.status = RunStatus.FAILED
             row.current_stage = Stage.FAILED
@@ -35,9 +44,17 @@ class SearchRunService:
             row.finished_at = utcnow()
             row.stage_history = [*(row.stage_history or []), {
                 'stage': Stage.FAILED, 'at': row.finished_at.isoformat(), 'reason': 'stale_run_recovered'}]
+            recovered_ids.append(row.id)
         if rows:
             db.session.commit()
             logger.warning('Recovered %s stale active run(s) for radar_id=%s', len(rows), radar_id)
+            if code == 'RADAR_1_MARKETS':
+                from app.modules.radar1_markets.processing import release_run
+                for run_id in recovered_ids:
+                    try:
+                        release_run(run_id, 'stale_run_recovered')
+                    except SQLAlchemyError:
+                        db.session.rollback()
 
     def _enforce_daily_caps(self):
         from flask import current_app

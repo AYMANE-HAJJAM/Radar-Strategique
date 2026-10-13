@@ -714,8 +714,87 @@ class MarketsCollector:
             return self.pmmp_index_discovery(radar)
         return self.legacy_discovery(radar)
 
+    def _launch_bounded_refresh(self):
+        """Bounded checkpointed PMMP refresh for the user search button.
+
+        Never runs a full catalogue crawl. Outcomes are recorded separately from
+        business processing. Lease conflicts / pass failures continue into the
+        business phase on the existing index with an explicit failure flag.
+        """
+        from app.modules.radar1_markets.pmmp_refresh import (
+            DEFAULT_DEEP, DEFAULT_FRONT, DEFAULT_MAX_SECONDS, RefreshLeaseHeld,
+            refresh_status, run_refresh,
+        )
+
+        front = int(self.config.get('RADAR1_PMMP_REFRESH_FRONT_PAGES', DEFAULT_FRONT))
+        deep = int(self.config.get('RADAR1_PMMP_REFRESH_DEEP_PAGES', DEFAULT_DEEP))
+        max_seconds = int(self.config.get('RADAR1_PMMP_REFRESH_MAX_SECONDS', DEFAULT_MAX_SECONDS))
+        delay = float(self.config.get('RADAR1_PMMP_REFRESH_DELAY_SECONDS', 0.35))
+        outcome = {
+            'attempted': True,
+            'phase': 'refresh',
+            'index_refreshed': False,
+            'catalogue_reconciled': False,
+            'pass_success': False,
+            'lease_held': False,
+            'stop_reason': None,
+            'error': None,
+            'pages': 0,
+            'new': 0,
+            'updated': 0,
+            'unchanged': 0,
+            'front_pages': 0,
+            'deep_pages': 0,
+            'means': 'bounded_page_time_budget_not_full_catalogue',
+            'result': None,
+        }
+        from app.db.models import utcnow
+        self.report.metrics['pmmp_refresh_pass'] = outcome
+        self.report.metrics['radar1_progress'] = {
+            'phase': 'pmmp_refresh', 'indexed': 0, 'selected': 0, 'processed': 0,
+            'relevant': 0, 'rejected': 0, 'pending': 0, 'last_listing_id': None,
+            'updated_at': utcnow().isoformat(),
+        }
+        self.on_progress()
+        try:
+            result = run_refresh(
+                http=getattr(self, 'listing_http', None),
+                front_pages=front, deep_pages=deep, max_seconds=max_seconds,
+                delay_seconds=delay,
+            )
+            payload = result.to_dict()
+            outcome.update(
+                index_refreshed=bool(result.pass_success),
+                catalogue_reconciled=bool(result.cycle_complete),
+                pass_success=bool(result.pass_success),
+                stop_reason=result.stop_reason,
+                error=result.error,
+                pages=result.pages, new=result.new, updated=result.updated,
+                unchanged=result.unchanged, front_pages=result.front_pages,
+                deep_pages=result.deep_pages, result=payload,
+            )
+            if not result.pass_success:
+                self._warn('pmmp_refresh_pass_failed:' + (result.error or result.stop_reason or 'unknown'))
+        except RefreshLeaseHeld as exc:
+            outcome.update(
+                lease_held=True, stop_reason='lease_held', error=str(exc)[:255],
+                pass_success=False, index_refreshed=False)
+            self._warn('pmmp_refresh_lease_held')
+        except Exception as exc:
+            outcome.update(
+                stop_reason='error', error=f'{type(exc).__name__}:{exc}'[:255],
+                pass_success=False, index_refreshed=False)
+            self._warn('pmmp_refresh_unexpected:' + type(exc).__name__)
+        try:
+            outcome['checkpoint_after'] = refresh_status()
+        except Exception:
+            outcome['checkpoint_after'] = None
+        self.report.metrics['pmmp_refresh_pass'] = outcome
+        self.on_progress()
+        return outcome
+
     def pmmp_index_discovery(self, radar):
-        """Select existing indexed titles, then verify a bounded durable batch."""
+        """Bounded refresh, then verify a durable batch of pending index rows."""
         from app.db.extensions import db
         from app.db.models import SearchRun, utcnow
         from app.db.models.pmmp_listing_index import PmmpListingIndex as Listing
@@ -723,15 +802,25 @@ class MarketsCollector:
         from . import processing
 
         owner = getattr(self, 'processing_run_id', None)
+        refresh_outcome = self._launch_bounded_refresh()
         indexed = db.session.scalar(db.select(db.func.count()).select_from(Listing)) or 0
-        self.report.metrics.update(pmmp_index_size_before=indexed, pmmp_index_size_after=indexed,
-            pmmp_discovery_strategy='indexed_title_batch', pmmp_sync_mode='not_requested',
-            pmmp_sync_pages=0, pmmp_sync_complete=False)
+        # Business phase is always indexed_title_batch. Refresh outcome is separate.
+        self.report.metrics.update(
+            pmmp_index_size_before=indexed, pmmp_index_size_after=indexed,
+            pmmp_discovery_strategy='indexed_title_batch',
+            pmmp_sync_mode='bounded_refresh',
+            pmmp_sync_pages=int(refresh_outcome.get('pages') or 0),
+            pmmp_sync_complete=False,
+            pmmp_index_refreshed=bool(refresh_outcome.get('index_refreshed')),
+            pmmp_catalogue_reconciled=bool(refresh_outcome.get('catalogue_reconciled')),
+        )
         try:
             from app.modules.radar1_markets.pmmp_refresh import refresh_status
             self.report.metrics['pmmp_refresh_snapshot'] = refresh_status()
         except Exception:
             self.report.metrics['pmmp_refresh_snapshot'] = None
+        if not refresh_outcome.get('index_refreshed'):
+            self._warn('pmmp_business_on_unrefreshed_index')
         if not indexed:
             self._warn('pmmp_index_empty_run_baseline_first')
         if owner is not None:

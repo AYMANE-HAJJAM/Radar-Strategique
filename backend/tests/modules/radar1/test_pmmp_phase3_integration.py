@@ -30,6 +30,8 @@ def _config(**overrides):
         'RADAR1_KEYWORD_GROUPS': {},
         'RADAR1_DISCOVERY_MODE': 'legacy',
         'RADAR1_PMMP_OVERLAP_PAGES': 3,
+        'RADAR1_PMMP_REFRESH_FRONT_PAGES': 0,
+        'RADAR1_PMMP_REFRESH_DEEP_PAGES': 0,
         'RADAR1_DIRECT_DISCOVERY_ENABLED': False,
         'RADAR1_SEARCH_MODE': 'normal_coverage',
         'RADAR1_MAX_QUERIES_PER_RUN': 2,

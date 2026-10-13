@@ -1,4 +1,18 @@
-export type Run = {run_metadata?:{collector_metrics?:{radar1_progress?:{indexed:number;selected:number;processed:number;relevant:number;rejected:number;pending:number;phase:string;updated_at:string}}};id:number; status:string; current_stage:string; started_at:string; finished_at:string|null; new_results_count:number; updated_results_count:number; error_message?:string|null; launched_by?:{id:number; name:string}|null};
+export type PmmpRefreshPass = {
+  attempted?:boolean;
+  index_refreshed?:boolean;
+  catalogue_reconciled?:boolean;
+  pass_success?:boolean;
+  lease_held?:boolean;
+  stop_reason?:string|null;
+  error?:string|null;
+  pages?:number;
+  new?:number;
+  updated?:number;
+  unchanged?:number;
+  means?:string;
+};
+export type Run = {run_metadata?:{collector_metrics?:{radar1_progress?:{indexed:number;selected:number;processed:number;relevant:number;rejected:number;pending:number;phase:string;updated_at:string};pmmp_refresh_pass?:PmmpRefreshPass;pmmp_index_refreshed?:boolean}};id:number; status:string; current_stage:string; started_at:string; finished_at:string|null; new_results_count:number; updated_results_count:number; error_message?:string|null; launched_by?:{id:number; name:string}|null};
 export type PmmpRefreshStatus = {
   indexed:number;
   pending_business:number;

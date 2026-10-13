@@ -80,6 +80,7 @@ function radar(context, params = "status=pending&q=Architecture&sort=estimate&pa
     }
     if (path.includes("/results?")) return Promise.resolve({ items: model.items, total: model.items.length, pages: 1, page: 1, page_size: 20 });
     if (path.includes("/runs?")) return Promise.resolve({ items: model.run ? [{ ...model.run }] : [] });
+    if (path === "/radars") return Promise.resolve({ items: [{ id: 1, code: "RADAR_1_MARKETS", name: "Marchés", description: "", pending_count: 0, is_active: true, last_run: null, pmmp_refresh: null }] });
     throw new Error("Unexpected request: " + path);
   };
   const apiModule = { api, ApiError };

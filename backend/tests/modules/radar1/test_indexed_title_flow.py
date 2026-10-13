@@ -127,17 +127,28 @@ def test_arabic_buyer_must_literally_occur_on_official_page(app):
         verify_detail(candidate.model_copy(update={'institution': 'مؤسسة أخرى'}), pages)
 
 
-def test_old_active_radar1_is_never_recovered_by_age(app):
+def test_active_radar1_blocks_until_stale_then_recovers(app):
     worker = AgentOrchestrator(app, no_ai=True)
     run_id = worker.reserve(CODE)
+    with pytest.raises(ActiveRunError):
+        worker.reserve(CODE)
     with app.app_context():
-        run = db.session.get(SearchRun, run_id); run.started_at = utcnow() - timedelta(days=2)
+        run = db.session.get(SearchRun, run_id)
+        # Younger than the Radar 1 budget-derived stale window → still blocked.
+        run.started_at = utcnow() - timedelta(minutes=2)
         db.session.commit()
     with pytest.raises(ActiveRunError):
         worker.reserve(CODE)
     with app.app_context():
-        assert db.session.get(SearchRun, run_id).status == 'initialized'
-        assert db.session.get(SearchRun, run_id).error_kind is None
+        run = db.session.get(SearchRun, run_id)
+        run.started_at = utcnow() - timedelta(hours=2)
+        db.session.commit()
+    next_id = worker.reserve(CODE)
+    with app.app_context():
+        recovered = db.session.get(SearchRun, run_id)
+        assert recovered.status == 'failed'
+        assert recovered.error_kind == 'stale_run_recovered'
+        assert next_id != run_id
 
 
 def test_progress_is_committed_during_collection_and_budget_leaves_work(app, monkeypatch):
