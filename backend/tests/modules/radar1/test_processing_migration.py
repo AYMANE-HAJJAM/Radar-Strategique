@@ -47,3 +47,44 @@ def test_postgresql_migration_sql_does_not_consume_legacy_work():
     assert 'UPDATE ' not in sql
     assert 'INSERT ' not in sql
     assert 'DELETE ' not in sql
+
+
+def test_refresh_checkpoint_migration_sqlite_inserts_singleton():
+    engine = create_engine('sqlite://')
+    refresh = migration('f8a3c1d92e07_pmmp_refresh_checkpoint.py')
+    with engine.begin() as connection:
+        refresh.op = Operations(MigrationContext.configure(connection))
+        refresh.upgrade()
+        row = connection.execute(text(
+            'SELECT id, status, cursor_page, cycle_complete, last_new FROM pmmp_refresh_checkpoint'
+        )).mappings().one()
+        assert row['id'] == 1
+        assert row['status'] == 'idle'
+        assert row['cursor_page'] == 0
+        assert row['cycle_complete'] in (0, False)
+        assert row['last_new'] == 0
+        refresh.downgrade()
+        assert 'pmmp_refresh_checkpoint' not in inspect(connection).get_table_names()
+    engine.dispose()
+
+
+def test_refresh_checkpoint_postgresql_sql_uses_boolean_false():
+    """Offline PostgreSQL SQL must not cast integer 0 into boolean cycle_complete."""
+    refresh = migration('f8a3c1d92e07_pmmp_refresh_checkpoint.py')
+    output = io.StringIO()
+    context = MigrationContext.configure(
+        dialect_name='postgresql', opts={'as_sql': True, 'output_buffer': output})
+    refresh.op = Operations(context)
+    refresh.upgrade()
+    sql = output.getvalue()
+    assert 'CREATE TABLE pmmp_refresh_checkpoint' in sql
+    assert 'cycle_complete' in sql
+    assert 'BOOLEAN' in sql.upper() or 'boolean' in sql
+    # Seed INSERT must use SQL FALSE for the boolean column, not integer 0.
+    assert 'FALSE' in sql.upper()
+    assert "VALUES (1, 'idle', 0, FALSE," in sql.replace('false', 'FALSE').replace('False', 'FALSE')
+    # Boolean server default must not be the integer literal used for counters.
+    create = sql.split('INSERT INTO pmmp_refresh_checkpoint')[0]
+    assert 'cycle_complete' in create
+    assert "cycle_complete BOOLEAN DEFAULT '0'" not in create
+    assert 'cycle_complete BOOLEAN DEFAULT 0' not in create

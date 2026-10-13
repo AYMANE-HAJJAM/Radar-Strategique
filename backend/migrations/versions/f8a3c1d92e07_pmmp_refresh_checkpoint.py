@@ -25,7 +25,7 @@ def upgrade():
         sa.Column('page_signature', sa.Text()),
         sa.Column('declared_pages', sa.Integer()),
         sa.Column('declared_results', sa.Integer()),
-        sa.Column('cycle_complete', sa.Boolean(), nullable=False, server_default='0'),
+        sa.Column('cycle_complete', sa.Boolean(), nullable=False, server_default=sa.false()),
         sa.Column('last_cycle_completed_at', sa.DateTime(timezone=True)),
         sa.Column('last_success_at', sa.DateTime(timezone=True)),
         sa.Column('last_started_at', sa.DateTime(timezone=True)),
@@ -48,7 +48,7 @@ def upgrade():
         "INSERT INTO pmmp_refresh_checkpoint (id, status, cursor_page, cycle_complete, "
         "last_new, last_updated, last_unchanged, last_pages, "
         "cycle_new, cycle_updated, cycle_unchanged, cycle_pages, updated_at) "
-        "VALUES (1, 'idle', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, CURRENT_TIMESTAMP)"
+        "VALUES (1, 'idle', 0, FALSE, 0, 0, 0, 0, 0, 0, 0, 0, CURRENT_TIMESTAMP)"
     )
 
 

@@ -15,7 +15,7 @@ class PmmpRefreshCheckpoint(db.Model):
     page_signature = db.Column(db.Text)
     declared_pages = db.Column(db.Integer)
     declared_results = db.Column(db.Integer)
-    cycle_complete = db.Column(db.Boolean, nullable=False, default=False, server_default='0')
+    cycle_complete = db.Column(db.Boolean, nullable=False, default=False, server_default=db.false())
     last_cycle_completed_at = db.Column(db.DateTime(timezone=True))
     last_success_at = db.Column(db.DateTime(timezone=True))
     last_started_at = db.Column(db.DateTime(timezone=True))
